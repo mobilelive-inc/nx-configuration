@@ -26,5 +26,33 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "angular": {
+      "tags": []
+    },
+    "angular-demos": {
+      "tags": []
+    },
+    "angular-demos-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "angular-demos"
+      ]
+    },
+    "angular-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "angular"
+      ]
+    },
+    "react-demos": {
+      "tags": []
+    },
+    "react-demos-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "react-demos"
+      ]
+    }
+  }
 }
