@@ -10,21 +10,18 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-configuration/angular": [
-        "libs/angular/src/index.ts"
+      "@nx-configuration/angular-components-lib": [
+        "libs/angular-components-lib/src/index.ts"
+      ],
+      "@nx-configuration/react-components-lib": [
+        "libs/react-components-lib/src/index.ts"
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

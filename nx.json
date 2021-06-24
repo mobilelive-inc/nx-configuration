@@ -12,22 +12,14 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "OTQ4MjVmNjEtMTVlOS00N2ZlLWIzYWItNzkyNDdmMzAwN2VmfHJlYWQtd3JpdGU=",
-        "canTrackAnalytics": false,
-        "showUsageWarnings": true
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
   "projects": {
-    "angular": {
+    "angular-components-lib": {
       "tags": []
     },
     "angular-demos": {
@@ -35,24 +27,17 @@
     },
     "angular-demos-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "angular-demos"
-      ]
+      "implicitDependencies": ["angular-demos"]
     },
-    "angular-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "angular"
-      ]
+    "react-components-lib": {
+      "tags": []
     },
     "react-demos": {
       "tags": []
     },
     "react-demos-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "react-demos"
-      ]
+      "implicitDependencies": ["react-demos"]
     }
   }
 }
