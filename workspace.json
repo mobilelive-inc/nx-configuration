@@ -9,9 +9,7 @@
       "targets": {
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/angular-components-lib"
-          ],
+          "outputs": ["coverage/libs/angular-components-lib"],
           "options": {
             "jestConfig": "libs/angular-components-lib/jest.config.js",
             "passWithNoTests": true
@@ -25,6 +23,63 @@
               "libs/angular-components-lib/src/**/*.html"
             ]
           }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/angular-components-lib/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/angular-components-lib",
+            "config": {
+              "configFolder": "libs/angular-components-lib/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "angular-components-lib-e2e": {
+      "root": "apps/angular-components-lib-e2e",
+      "sourceRoot": "apps/angular-components-lib-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular-components-lib-e2e/cypress.json",
+            "tsConfig": "apps/angular-components-lib-e2e/tsconfig.e2e.json",
+            "devServerTarget": "angular-components-lib:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "angular-components-lib:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/angular-components-lib-e2e/**/*.{js,ts}"]
+          }
         }
       }
     },
@@ -36,9 +91,7 @@
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/angular-demos",
             "index": "apps/angular-demos/src/index.html",
@@ -50,9 +103,7 @@
               "apps/angular-demos/src/favicon.ico",
               "apps/angular-demos/src/assets"
             ],
-            "styles": [
-              "apps/angular-demos/src/styles.scss"
-            ],
+            "styles": ["apps/angular-demos/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -117,9 +168,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/angular-demos"
-          ],
+          "outputs": ["coverage/apps/angular-demos"],
           "options": {
             "jestConfig": "apps/angular-demos/jest.config.js",
             "passWithNoTests": true
@@ -148,9 +197,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/angular-demos-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/angular-demos-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -170,12 +217,67 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/react-components-lib"
-          ],
+          "outputs": ["coverage/libs/react-components-lib"],
           "options": {
             "jestConfig": "libs/react-components-lib/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/react-components-lib/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/react-components-lib",
+            "config": {
+              "configFolder": "libs/react-components-lib/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "react-components-lib-e2e": {
+      "root": "apps/react-components-lib-e2e",
+      "sourceRoot": "apps/react-components-lib-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-components-lib-e2e/cypress.json",
+            "tsConfig": "apps/react-components-lib-e2e/tsconfig.e2e.json",
+            "devServerTarget": "react-components-lib:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "react-components-lib:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/react-components-lib-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -187,9 +289,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/react-demos",
             "index": "apps/react-demos/src/index.html",
@@ -200,9 +300,7 @@
               "apps/react-demos/src/favicon.ico",
               "apps/react-demos/src/assets"
             ],
-            "styles": [
-              "apps/react-demos/src/styles.scss"
-            ],
+            "styles": ["apps/react-demos/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -247,16 +345,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/react-demos/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/react-demos/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/react-demos"
-          ],
+          "outputs": ["coverage/apps/react-demos"],
           "options": {
             "jestConfig": "apps/react-demos/jest.config.js",
             "passWithNoTests": true
@@ -285,9 +379,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/react-demos-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/react-demos-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -300,16 +392,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/static/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/static/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/static"
-          ],
+          "outputs": ["coverage/libs/static"],
           "options": {
             "jestConfig": "libs/static/jest.config.js",
             "passWithNoTests": true

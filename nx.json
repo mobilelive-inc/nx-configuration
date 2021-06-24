@@ -18,7 +18,8 @@
           "build",
           "lint",
           "test",
-          "e2e"
+          "e2e",
+          "build-storybook"
         ]
       }
     }
@@ -27,26 +28,30 @@
     "angular-components-lib": {
       "tags": []
     },
+    "angular-components-lib-e2e": {
+      "tags": [],
+      "implicitDependencies": ["angular-components-lib"]
+    },
     "angular-demos": {
       "tags": []
     },
     "angular-demos-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "angular-demos"
-      ]
+      "implicitDependencies": ["angular-demos"]
     },
     "react-components-lib": {
       "tags": []
+    },
+    "react-components-lib-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-components-lib"]
     },
     "react-demos": {
       "tags": []
     },
     "react-demos-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "react-demos"
-      ]
+      "implicitDependencies": ["react-demos"]
     },
     "static": {
       "tags": []
