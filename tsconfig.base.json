@@ -26,7 +26,7 @@
       ],
       "@fds-static": [
         "libs/static/src/index.ts"
-      ],
+      ]
     }
   },
   "exclude": [
