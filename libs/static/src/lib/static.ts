@@ -1,3 +1,3 @@
-export function static(): string {
+export function _static(): string {
   return 'static';
 }
