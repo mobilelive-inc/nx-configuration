@@ -1,6 +1,47 @@
 {
   "version": 2,
   "projects": {
+    "angular": {
+      "projectType": "library",
+      "root": "libs/angular",
+      "sourceRoot": "libs/angular/src",
+      "prefix": "nx-configuration",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/libs/angular"],
+          "options": {
+            "project": "libs/angular/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/angular/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/angular/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/angular"],
+          "options": {
+            "jestConfig": "libs/angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/angular/src/**/*.ts",
+              "libs/angular/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "angular-demos": {
       "projectType": "application",
       "root": "apps/angular-demos",
@@ -120,6 +161,46 @@
         }
       }
     },
+    "react": {
+      "root": "libs/react",
+      "sourceRoot": "libs/react/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/react",
+            "tsConfig": "libs/react/tsconfig.lib.json",
+            "project": "libs/react/package.json",
+            "entryFile": "libs/react/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/react/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/react/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/react"],
+          "options": {
+            "jestConfig": "libs/react/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "react-demos": {
       "root": "apps/react-demos",
       "sourceRoot": "apps/react-demos/src",
@@ -218,6 +299,37 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/react-demos-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "static": {
+      "root": "libs/static",
+      "sourceRoot": "libs/static/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/static",
+            "main": "libs/static/src/index.ts",
+            "tsConfig": "libs/static/tsconfig.lib.json",
+            "assets": ["libs/static/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/static/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/static"],
+          "options": {
+            "jestConfig": "libs/static/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

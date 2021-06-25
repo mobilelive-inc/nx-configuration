@@ -25,6 +25,9 @@
     }
   },
   "projects": {
+    "angular": {
+      "tags": []
+    },
     "angular-demos": {
       "tags": []
     },
@@ -32,12 +35,18 @@
       "tags": [],
       "implicitDependencies": ["angular-demos"]
     },
+    "react": {
+      "tags": []
+    },
     "react-demos": {
       "tags": []
     },
     "react-demos-e2e": {
       "tags": [],
       "implicitDependencies": ["react-demos"]
+    },
+    "static": {
+      "tags": []
     }
   }
 }
