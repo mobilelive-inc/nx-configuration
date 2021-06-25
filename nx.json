@@ -14,17 +14,12 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
   "projects": {
-    "angular-components-lib": {
+    "angular": {
       "tags": []
     },
     "angular-demos": {
@@ -32,11 +27,9 @@
     },
     "angular-demos-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "angular-demos"
-      ]
+      "implicitDependencies": ["angular-demos"]
     },
-    "react-components-lib": {
+    "react": {
       "tags": []
     },
     "react-demos": {
@@ -44,9 +37,7 @@
     },
     "react-demos-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "react-demos"
-      ]
+      "implicitDependencies": ["react-demos"]
     },
     "static": {
       "tags": []
