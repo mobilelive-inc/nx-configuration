@@ -25,13 +25,6 @@
     }
   },
   "projects": {
-    "angular-components-lib": {
-      "tags": []
-    },
-    "angular-components-lib-e2e": {
-      "tags": [],
-      "implicitDependencies": ["angular-components-lib"]
-    },
     "angular-demos": {
       "tags": []
     },
@@ -39,22 +32,12 @@
       "tags": [],
       "implicitDependencies": ["angular-demos"]
     },
-    "react-components-lib": {
-      "tags": []
-    },
-    "react-components-lib-e2e": {
-      "tags": [],
-      "implicitDependencies": ["react-components-lib"]
-    },
     "react-demos": {
       "tags": []
     },
     "react-demos-e2e": {
       "tags": [],
       "implicitDependencies": ["react-demos"]
-    },
-    "static": {
-      "tags": []
     }
   }
 }
