@@ -15,9 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fds-angular": ["libs/angular/src/index.ts"],
-      "@fds-react": ["libs/react/src/index.ts"],
-      "@fds-static": ["libs/static/src/index.ts"]
+      "@nx-configuration/angular": ["libs/angular/src/index.ts"],
+      "@nx-configuration/react": ["libs/react/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

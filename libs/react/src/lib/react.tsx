@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './react.module.scss';
 
 /* eslint-disable-next-line */

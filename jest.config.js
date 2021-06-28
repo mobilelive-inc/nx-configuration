@@ -1,9 +1,8 @@
 module.exports = {
   projects: [
-    '<rootDir>/apps/react-demos',
     '<rootDir>/apps/angular-demos',
+    '<rootDir>/apps/react-demos',
+    '<rootDir>/libs/angular',
     '<rootDir>/libs/react',
-    '<rootDir>/libs/static',
-    '<rootDir>/libs/angular'
-  ]
+  ],
 };
