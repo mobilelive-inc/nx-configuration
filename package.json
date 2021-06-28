@@ -25,7 +25,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "build-angular-npm": "rm -rf dist/ && ng-packagr -p libs/angular/ng-package.json"
   },
   "private": true,
   "dependencies": {
