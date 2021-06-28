@@ -3,7 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "angular-demos",
+  "defaultProject": "react-demos",
   "schematics": {
     "@nrwl/angular": {
       "application": {
@@ -46,6 +46,106 @@
     }
   },
   "projects": {
+    "react-demos": {
+      "root": "apps/react-demos",
+      "sourceRoot": "apps/react-demos/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/react-demos",
+            "index": "apps/react-demos/src/index.html",
+            "main": "apps/react-demos/src/main.tsx",
+            "polyfills": "apps/react-demos/src/polyfills.ts",
+            "tsConfig": "apps/react-demos/tsconfig.app.json",
+            "assets": [
+              "apps/react-demos/src/favicon.ico",
+              "apps/react-demos/src/assets"
+            ],
+            "styles": ["apps/react-demos/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/react-demos/src/environments/environment.ts",
+                  "with": "apps/react-demos/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "react-demos:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "react-demos:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/react-demos/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/react-demos"],
+          "options": {
+            "jestConfig": "apps/react-demos/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "react-demos-e2e": {
+      "root": "apps/react-demos-e2e",
+      "sourceRoot": "apps/react-demos-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-demos-e2e/cypress.json",
+            "tsConfig": "apps/react-demos-e2e/tsconfig.e2e.json",
+            "devServerTarget": "react-demos:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react-demos:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/react-demos-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "angular-demos": {
       "projectType": "application",
       "root": "apps/angular-demos",
@@ -160,112 +260,24 @@
         }
       }
     },
-    "react-demos": {
-      "root": "apps/react-demos",
-      "sourceRoot": "apps/react-demos/src",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/react-demos",
-            "index": "apps/react-demos/src/index.html",
-            "main": "apps/react-demos/src/main.tsx",
-            "polyfills": "apps/react-demos/src/polyfills.ts",
-            "tsConfig": "apps/react-demos/tsconfig.app.json",
-            "assets": [
-              "apps/react-demos/src/favicon.ico",
-              "apps/react-demos/src/assets"
-            ],
-            "styles": ["apps/react-demos/src/styles.scss"],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/react-demos/src/environments/environment.ts",
-                  "with": "apps/react-demos/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "react-demos:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "react-demos:build:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/react-demos/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/react-demos"],
-          "options": {
-            "jestConfig": "apps/react-demos/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "react-demos-e2e": {
-      "root": "apps/react-demos-e2e",
-      "sourceRoot": "apps/react-demos-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/react-demos-e2e/cypress.json",
-            "tsConfig": "apps/react-demos-e2e/tsconfig.e2e.json",
-            "devServerTarget": "react-demos:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "react-demos:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/react-demos-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
     "angular": {
       "projectType": "library",
       "root": "libs/angular",
       "sourceRoot": "libs/angular/src",
       "prefix": "nx-configuration",
       "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/angular/tsconfig.lib.json",
+            "project": "libs/angular/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/angular/tsconfig.lib.prod.json"
+            }
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
@@ -321,6 +333,26 @@
       "sourceRoot": "libs/react/src",
       "projectType": "library",
       "architect": {
+        "build": {
+          "builder": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/react",
+            "tsConfig": "libs/react/tsconfig.lib.json",
+            "project": "libs/react/package.json",
+            "entryFile": "libs/react/src/index.ts",
+            "external": ["react", "react-dom"],
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/react/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {

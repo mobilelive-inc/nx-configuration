@@ -24,13 +24,13 @@
     }
   },
   "projects": {
+    "react-demos": { "tags": [] },
+    "react-demos-e2e": { "tags": [], "implicitDependencies": ["react-demos"] },
     "angular-demos": { "tags": [] },
     "angular-demos-e2e": {
       "tags": [],
       "implicitDependencies": ["angular-demos"]
     },
-    "react-demos": { "tags": [] },
-    "react-demos-e2e": { "tags": [], "implicitDependencies": ["react-demos"] },
     "angular": { "tags": [] },
     "react": { "tags": [] },
     "angular-e2e": { "tags": [], "implicitDependencies": ["angular"] },

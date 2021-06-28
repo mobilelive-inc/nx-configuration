@@ -3,7 +3,7 @@ import { React, ReactProps } from './react';
 
 export default {
   component: React,
-  title: 'React',
+  title: 'React'
 };
 
 export const primary = () => {
