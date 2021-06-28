@@ -24,7 +24,8 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "ngcc --properties es2015 browser module main"
+    "postinstall": "ngcc --properties es2015 browser module main",
+    "build-angular-npm": "rm -rf dist/ && ng-packagr -p libs/angular/ng-package.json"
   },
   "private": true,
   "dependencies": {
@@ -63,15 +64,9 @@
     "@nrwl/jest": "12.4.0",
     "@nrwl/linter": "12.4.0",
     "@nrwl/react": "12.4.0",
-    "@nrwl/storybook": "^12.4.0",
     "@nrwl/tao": "12.4.0",
     "@nrwl/web": "^12.4.0",
     "@nrwl/workspace": "12.4.0",
-    "@storybook/addon-knobs": "^6.3.0",
-    "@storybook/angular": "^6.3.0",
-    "@storybook/builder-webpack5": "^6.3.0",
-    "@storybook/core": "^6.3.0",
-    "@storybook/react": "^6.3.0",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "11.2.6",
     "@types/jest": "26.0.8",
@@ -95,6 +90,7 @@
     "jest-preset-angular": "9.0.3",
     "ng-packagr": "^12.1.0-next.0",
     "prettier": "2.2.1",
+    "tippy.js": "^6.3.1",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4",

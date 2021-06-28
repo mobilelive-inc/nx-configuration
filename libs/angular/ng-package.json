@@ -1,7 +1,9 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/angular",
+  "dest": "../../dist/@mobilelivenpm/fds-angular",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "deleteDestPath": true,
+  "allowedNonPeerDependencies": ["tippy.js"]
 }
