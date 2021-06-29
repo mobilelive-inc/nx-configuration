@@ -1,4 +1,4 @@
 import { addDecorator } from '@storybook/angular';
-import { withKnobs } from '@storybook/addon-knobs';
+import { componentWrapperDecorator } from '@storybook/angular'
 
-addDecorator(withKnobs);
+addDecorator(componentWrapperDecorator((story) => `<div style="margin: 1em">${story}</div>`));
