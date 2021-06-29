@@ -4,6 +4,9 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": "apps/angular-demos-e2e/tsconfig.*?.json"
+      },
       "rules": {}
     },
     {
