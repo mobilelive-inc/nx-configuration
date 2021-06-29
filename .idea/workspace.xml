@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6078d92d-5ac1-404b-8d2c-82aa9f17e108" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.storybook/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/.storybook/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/angular/.storybook/preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/angular/.storybook/preview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/angular/src/lib/angular.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/angular/src/lib/angular.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,7 @@
       <updated>1624885820465</updated>
       <workItem from="1624885822958" duration="4219000" />
       <workItem from="1624902814941" duration="5677000" />
-      <workItem from="1624953806921" duration="4314000" />
+      <workItem from="1624953806921" duration="6154000" />
     </task>
     <servers />
   </component>
