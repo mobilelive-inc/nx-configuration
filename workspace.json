@@ -5,7 +5,7 @@
       "projectType": "library",
       "root": "libs/angular",
       "sourceRoot": "libs/angular/src",
-      "prefix": "nx-configuration",
+      "prefix": "friday-design-systems",
       "targets": {
         "build": {
           "executor": "@nrwl/angular:package",
@@ -46,7 +46,7 @@
       "projectType": "application",
       "root": "apps/angular-demos",
       "sourceRoot": "apps/angular-demos/src",
-      "prefix": "nx-configuration",
+      "prefix": "friday-design-systems",
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",

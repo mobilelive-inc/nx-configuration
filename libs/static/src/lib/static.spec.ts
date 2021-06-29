@@ -1,7 +1,7 @@
-import { _static } from './static';
+import { static } from './static';
 
 describe('static', () => {
   it('should work', () => {
-    expect(_static()).toEqual('static');
+    expect(static()).toEqual('static');
   });
 });

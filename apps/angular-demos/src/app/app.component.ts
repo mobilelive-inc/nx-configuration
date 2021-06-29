@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nx-configuration-root',
+  selector: 'friday-design-systems-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

@@ -1,5 +1,5 @@
 {
-  "name": "@mobilelivenpm/fds-angular",
+  "name": "@mobilelivenpm/fds-angular-qa",
   "version": "0.0.1",
   "license": "MIT",
   "module": "fds.js",
@@ -13,3 +13,4 @@
     "tippy.js": "^6.3.1"
   }
 }
+

@@ -1,6 +1,6 @@
 
 
-# NxConfiguration
+# FridayDesignSystems
 
 This project was generated using [Nx](https://nx.dev).
 
@@ -29,7 +29,7 @@ Below are our core plugins:
 - [Node](https://nodejs.org)
   - `npm install --save-dev @nrwl/node`
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+There are also many [community plugins](https://nx.dev/community) you could add.
 
 ## Generate an application
 
@@ -45,7 +45,7 @@ Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
-Libraries are shareable across libraries and applications. They can be imported from `@nx-configuration/mylib`.
+Libraries are shareable across libraries and applications. They can be imported from `@friday-design-systems/mylib`.
 
 ## Development server
 
