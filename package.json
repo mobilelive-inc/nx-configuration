@@ -52,6 +52,7 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@angular-devkit/build-angular": "~0.1102.0",
     "@angular-eslint/eslint-plugin": "~1.0.0",
     "@angular-eslint/eslint-plugin-template": "~1.0.0",
@@ -80,6 +81,29 @@
     "@storybook/react": "^6.1.11",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "11.1.2",
+=======
+    "@angular-devkit/build-angular": "^12.0.0",
+    "@angular-eslint/eslint-plugin": "~12.0.0",
+    "@angular-eslint/eslint-plugin-template": "~12.0.0",
+    "@angular-eslint/template-parser": "~12.0.0",
+    "@angular/compiler-cli": "^12.0.0",
+    "@angular/language-service": "^12.0.0",
+    "@babel/core": "7.12.13",
+    "@babel/preset-env": "7.12.13",
+    "@babel/preset-react": "7.12.13",
+    "@babel/preset-typescript": "7.12.13",
+    "@nrwl/cli": "12.4.0",
+    "@nrwl/cypress": "12.4.0",
+    "@nrwl/eslint-plugin-nx": "12.4.0",
+    "@nrwl/jest": "12.4.0",
+    "@nrwl/linter": "12.4.0",
+    "@nrwl/react": "12.4.0",
+    "@nrwl/storybook": "^12.4.0",
+    "@nrwl/tao": "12.4.0",
+    "@nrwl/web": "^12.4.0",
+    "@nrwl/workspace": "12.4.0",
+    "@testing-library/react": "11.2.6",
+>>>>>>> main
     "@types/jest": "26.0.8",
     "@types/node": "14.14.33",
     "@types/react": "16.9.56",
