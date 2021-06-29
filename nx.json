@@ -1,0 +1,54 @@
+{
+  "npmScope": "friday-design-systems",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "angular": {
+      "tags": []
+    },
+    "angular-demos": {
+      "tags": []
+    },
+    "angular-demos-e2e": {
+      "tags": [],
+      "implicitDependencies": ["angular-demos"]
+    },
+    "react": {
+      "tags": []
+    },
+    "react-demos": {
+      "tags": []
+    },
+    "react-demos-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-demos"]
+    },
+    "static": {
+      "tags": []
+    }
+  }
+}
