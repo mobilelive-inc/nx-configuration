@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6078d92d-5ac1-404b-8d2c-82aa9f17e108" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/angular/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/angular/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/angular/src/lib/angular.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/angular/src/lib/angular.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/angular/src/lib/stepper/stepper.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/react/src/lib/react.stories.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -74,7 +77,7 @@
       <workItem from="1624965268428" duration="1436000" />
       <workItem from="1624966813713" duration="481000" />
       <workItem from="1624967329849" duration="723000" />
-      <workItem from="1624968057209" duration="697000" />
+      <workItem from="1624968057209" duration="8123000" />
     </task>
     <servers />
   </component>

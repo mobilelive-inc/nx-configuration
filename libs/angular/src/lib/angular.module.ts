@@ -3,18 +3,24 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { Template, Header, Footer } from  './shared/template.directive';
-import { AccordionComponent } from './accordion/accordion.component';
+import {Accordion, AccordionComponent } from './accordion/accordion.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { InputMaskComponent } from './input-mask/input-mask.component';
 import { InputNumberComponent } from './input-number/input-number.component';
 import { LabelDirective } from './label/label.component';
-import { ModalComponent } from './modal/modal.component';
 import { ProgressComponent } from './progress/progress.component';
-// import { RadioComponent } from './radio/radio.component';
 import { RangeSliderComponent } from './range-slider/range-slider.component';
-import { StepperComponent } from './stepper/stepper.component';
+import { InputDirective } from './input/input.directive';
+import { ErrorDirective } from './form-field/error';
+import { TooltipDirective } from './tooltip/fdsTooltip.directive';
+import { PopoverDirective } from './popover/fdsPopover.directive';
+import {FdsHorizontalStepper, FdsStep, FdsStepper } from './stepper/stepper';
+import { FdsStepLabel } from './stepper/step-label';
+import { FdsStepHeader } from './stepper/stepper-header';
+import { FdsStepperNext, FdsStepperPrevious } from './stepper/stepper-button';
+import { FdsRadioGroup } from './radio/radio.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -24,6 +30,7 @@ import { StepperComponent } from './stepper/stepper.component';
     Template,
     Header,
     Footer,
+    InputDirective,
     AccordionComponent,
     AutocompleteComponent,
     FormFieldComponent,
@@ -31,12 +38,52 @@ import { StepperComponent } from './stepper/stepper.component';
     InputMaskComponent,
     InputNumberComponent,
     LabelDirective,
-    ModalComponent,
     ProgressComponent,
-    // RadioComponent,
     RangeSliderComponent,
-    StepperComponent,
+    ErrorDirective,
+    TooltipDirective,
+    PopoverDirective,
+    FdsStep,
+    FdsStepper,
+    FdsHorizontalStepper,
+    FdsStepLabel,
+    FdsStepHeader,
+    FdsStepperNext,
+    FdsStepperPrevious,
+    FdsRadioGroup,
+    InputMaskComponent,
+    AccordionComponent,
+    Accordion
   ],
-  exports: [ ButtonComponent, CardComponent, Template, Header, Footer]
+  exports: [
+      ButtonComponent,
+      AutocompleteComponent,
+      Template,
+      Header,
+      Footer,
+      InputDirective,
+      FormFieldComponent,
+      LabelDirective,
+      ErrorDirective,
+      RangeSliderComponent,
+      ProgressComponent,
+      TooltipDirective,
+      PopoverDirective,
+      FdsStep,
+      FdsStepper,
+      FdsHorizontalStepper,
+      FdsStepLabel,
+      FdsStepHeader,
+      FdsStepperNext,
+      FdsStepperPrevious,
+      FdsRadioGroup,
+      InputMaskComponent,
+      InputNumberComponent,
+      CardComponent,
+      CheckboxComponent,
+      AccordionComponent,
+      Accordion
+
+      ]
 })
 export class AngularModule {}
