@@ -1,0 +1,20 @@
+<div class="progress mb--5">
+  <div
+    class="progress-bar progress-primary"
+    [style.width.%]="_getWidth()"
+    role="progressbar"
+    [attr.aria-valuenow]="value"
+    [attr.aria-valuemin]="min"
+    [attr.aria-valuemax]="max"
+  >
+        <span
+          role="alert"
+          aria-live="polite"
+          aria-atomic="true"
+          class="pt--2 px--2"
+          *ngIf="showLabel"
+          [ngStyle]="_getLabelStyle()"
+        >{{ formatValue(value) }}</span
+        >
+  </div>
+</div>
