@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import css from '@styled-system/css';
+import  styled  from 'styled-components';
+import { css } from '@styled-system/css';
 
 export const ContainerDiv = styled(`div`)(
     css({

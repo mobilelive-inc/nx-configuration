@@ -1,17 +1,14 @@
-import React, { useState, useEffect,FC  } from 'react';
-import { Progress, Progressdone,ContainerDiv } from './css';
-import './progressbar.module.scss';
-  
+import React, { useState, useEffect, FC } from "react";
+import { Progress, Progressdone, ContainerDiv } from "./css";
+import "./progressbar.module.scss";
+
 /* eslint-disable-next-line */
 export interface ProgressbarProps {
-  progressbarstatus:number,
-  progressbarheading:string,
+  progressbarstatus: number;
+  progressbarheading: string;
 }
 
-
-
 export function Progressbar(props: ProgressbarProps) {
- 
   const [style, setStyle] = useState({});
 
   useEffect(() => {
@@ -22,7 +19,7 @@ export function Progressbar(props: ProgressbarProps) {
       };
       setStyle(newStyle);
     }
-  }, [props.progressbarstatus])
+  }, [props.progressbarstatus]);
   return (
     <ContainerDiv>
       <p>Progressbar status {props.progressbarstatus}% completed</p>
@@ -33,7 +30,6 @@ export function Progressbar(props: ProgressbarProps) {
       </Progress>
     </ContainerDiv>
   );
-};
-
+}
 
 export default Progressbar;
