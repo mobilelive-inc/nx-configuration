@@ -52,12 +52,12 @@ folder you will have a npm pubishable package.
 
 ## Running unit tests
 
-Run `ng test angular-demos` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test angular-demos` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
 ## Running end-to-end tests
 
-Run `ng e2e angular-demos` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `nx e2e angular-demos` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
