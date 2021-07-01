@@ -1,6 +1,6 @@
 {
   "extends": [
-    "plugin:@nrwl/nx/react",
+    "plugin:cypress/recommended",
     "../../.eslintrc.json"
   ],
   "ignorePatterns": [
@@ -18,17 +18,12 @@
     },
     {
       "files": [
-        "*.ts",
-        "*.tsx"
+        "src/plugins/index.js"
       ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off"
+      }
     }
   ]
 }

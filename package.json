@@ -37,12 +37,15 @@
     "@angular/platform-browser": "^12.0.0",
     "@angular/platform-browser-dynamic": "^12.0.0",
     "@angular/router": "^12.0.0",
+    "@styled-system/css": "^5.1.5",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "regenerator-runtime": "0.13.7",
     "rxjs": "~6.6.0",
+    "styled-components": "^5.3.0",
+    "styled-system": "^5.1.5",
     "tippy.js": "^6.3.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -66,9 +69,13 @@
     "@nrwl/linter": "12.5.0",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/react": "12.5.0",
+    "@nrwl/storybook": "12.5.0",
     "@nrwl/tao": "12.5.0",
     "@nrwl/web": "^12.5.0",
     "@nrwl/workspace": "12.5.0",
+    "@storybook/addon-essentials": "~6.3.0",
+    "@storybook/react": "~6.3.0",
+    "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "11.2.6",
     "@types/jest": "26.0.8",
     "@types/node": "14.14.33",
@@ -77,6 +84,7 @@
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
     "babel-jest": "26.2.2",
+    "babel-loader": "8.1.0",
     "cypress": "^7.3.0",
     "dotenv": "8.2.0",
     "eslint": "7.22.0",
@@ -92,6 +100,7 @@
     "prettier": "^2.3.1",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
-    "typescript": "~4.2.4"
+    "typescript": "~4.2.4",
+    "url-loader": "^3.0.0"
   }
 }
