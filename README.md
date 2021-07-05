@@ -1,140 +1,62 @@
-# NxConfiguration
+# Friday - The Design System
 
-This project was generated using [Nx](https://nx.dev).
+Friday is MobileLIVE's open-source design system for products and digital experiences. With the MobileLIVE Design System as its foundation, the system consists of a working code for multiple frameworks and examples with it.
 
-<p  style="text-align: center;"><img  src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"  width="450"></p>
+To combine the code for multiple implementations in the one project we use the monorepos technology [NX](https://github.com/nrwl/nx).
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+> Guide to setup repo for [Nx](README_Nx.md)
 
-## Quick Start & Documentation
+There are several sub-projects with implementations, you can find details by the links below:
 
-[Nx Documentation](https://nx.dev/angular)
+- [HTML+CSS](README_STATIC.md)
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+- [React](README_REACT.md)
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+- [Angular](README_ANGULAR.md)
 
-## Create Nx-workspace
+## Available Compoents
 
-Created an empty Nx-monorepo using nx-cli
-Command: `npx nx-create-workspace nx-configuration`
+- [Compoents](README_COMPONENTS.md)
 
-## Adding capabilities to your workspace
+## Requirements
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+The MobileLIVE Friday Design System team aims to support browsers and screen reader combinations across all internal team segments.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+This support list gets updated on an occasional basis.
 
-Below are our core plugins:
+### Browsers support
 
-- [Angular](https://nx.dev/latest/angular/angular/overview)
+**Desktop browsers (Windows, macOS)**
 
-- `npm install -D @nrwl/angular`
+- Chrome latest
 
-- [React](https://nx.dev/previous/angular/react/overview)
+- Firefox latest and extended support release (ESR)
 
-- `npm install -D @nrwl/react`
+- Safari 2 most recent major versions
 
-- Web (no framework frontends)
+- Microsoft Edge 2 most recent major versions
 
-- `npm install -D @nrwl/web`
+- Internet Explorer 11
 
-- [Storybook](https://nx.dev/latest/angular/storybook/overview)
+**Mobile (Android, iOS)**
 
-- `npm install -D @nrwl/storybook`
+- Chrome (Android) X (10.0), Pie (9.0), Oreo (8.0), Nougat (7.0)
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+- Safari (iOS) 2 most recent major versions
 
-## Generate an Angular application (angular-demos)
+### Accessibility support
 
-Run `nx g @nrwl/angular:app angular-demos` to generate an application.
+**Screen readers combinations**
 
-> You can use any of the plugins above to generate applications as well.
+- Windows + IE11 + JAWS
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+- Windows + Firefox + NVDA
 
-## Generate a React application (react-demos)
+- macOS + Safari + VoiceOver
 
-Run `nx g @nrwl/react:app angular-demos` to generate an application.
+- Android + Chrome + Talkback
 
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-> Make angular publishable and buildable library
-
-Run `nx g @nrwl/angular:lib angular --publishable --buildable --importPath=fds-angular` to generate an angular library.
-
-> Make react publishable and buildable library
-
-Run `nx g @nrwl/angular:lib angular --publishable --buildable --importPath=fds-angular` to generate a react library
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@nx-configuration/angular`.
-
-## Storybook
-
-> For angular project
-
-Run `nx g @nrwl/angular:storybook-configuration angular`
-
-> For react project
-
-Run `nx g @nrwl/react:storybook-configuration react`
-
-Storybook is a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components.
-
-## Development server for angular/react
-
-For angular-demos application dev-server
-
-> Run `nx serve angular-demos`
-
-For react-demos application dev-server
-
-> Run `nx serve react-demos`
-
-Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-To create components in angular application
-
-> Run `nx g @nrwl/angular:component my-component --project=my-app` to generate a new component.
-
-> Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component
-
-## Build Application
-
-> For Angular Application
-
-Run `nx build angular-demos` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-> For React Application
-
-Run `nx build react-demos` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Build Libraries
-
-> For angular application
-
-To build library for angular project run `npm run build-angular-lib`. In `dist/`
-folder you will have a npm pubishable package.
-
-## Running unit tests
-
-Run `ng test angular-demos` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+- iOS + Safari + VoiceOver
 
 ## Understand your workspace
 
