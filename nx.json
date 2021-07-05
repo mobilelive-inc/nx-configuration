@@ -14,7 +14,12 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
@@ -35,7 +40,9 @@
     },
     "angular-demos-e2e": {
       "tags": [],
-      "implicitDependencies": ["angular-demos"]
+      "implicitDependencies": [
+        "angular-demos"
+      ]
     },
     "react": {
       "tags": []
@@ -45,10 +52,9 @@
     },
     "react-demos-e2e": {
       "tags": [],
-      "implicitDependencies": ["react-demos"]
-    },
-    "static": {
-      "tags": []
+      "implicitDependencies": [
+        "react-demos"
+      ]
     }
   }
 }
