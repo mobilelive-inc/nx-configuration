@@ -1,0 +1,16 @@
+//
+// Visibility utilities
+//
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.invisible {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
+}
