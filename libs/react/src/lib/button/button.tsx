@@ -1,5 +1,3 @@
-import './button.module.scss';
-
 /* eslint-disable-next-line */
 export interface ButtonProps {
 }

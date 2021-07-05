@@ -1,6 +1,9 @@
 import React, { useState, useEffect,} from "react";
-import { Progress, Progressdone, ContainerDiv } from "./css";
-import "./progressbar.module.scss";
+import { Progress, Progressdone } from "./css";
+import { ThemeProvider } from "styled-components";
+import progressTheme from '../../theme/styles/progressbar';
+import GlobalStyle from "../../theme/globalStyles";
+import Container from "../container";
 
 /* eslint-disable-next-line */
 export interface ProgressbarProps {
@@ -21,14 +24,17 @@ export function Progressbar(props: ProgressbarProps) {
     }
   }, [props.progressbarstatus]);
   return (
-    <ContainerDiv>
+    <ThemeProvider theme={progressTheme}>
+      <GlobalStyle />
+    <Container>
       <p>Progressbar status {props.progressbarstatus}% completed</p>
       <Progress {...props}>
         <Progressdone style={style} {...props}>
           {props.progressbarstatus}%
         </Progressdone>
       </Progress>
-    </ContainerDiv>
+    </Container>
+    </ThemeProvider>
   );
 }
 
