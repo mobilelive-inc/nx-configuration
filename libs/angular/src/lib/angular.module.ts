@@ -1,11 +1,38 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+// Button Component
 import { ButtonComponent } from './button/button.component';
-import { RangeSliderComponent} from './range-slider/range-slider.component';
-import { ProgressComponent} from './progress/progress.component';
-import { FdsRadioButton, FdsRadioGroup} from './radio/radio.component';
+
+// CheckBox
 import { CheckboxComponent} from './checkbox/checkbox.component';
+
+// Card
 import { CardComponent} from './card/card.component';
+
+// Popover
+import { PopoverDirective} from './popover/fdsPopover.directive';
+
+// Progress Component
+import { ProgressComponent} from './progress/progress.component';
+
+// Range Slider
+import { RangeSliderComponent} from './range-slider/range-slider.component';
+// Tabs
+import { TabView, TabPanel} from './tabs/tabs';
+// Table
+import {
+  Table,
+  TableBody,
+  ScrollableView,
+  SortableColumn,
+  SortIcon,
+  TableCheckbox,
+  TableHeaderCheckbox
+} from './table/table';
+
+
+import { FdsRadioButton, FdsRadioGroup} from './radio/radio.component';
 import { Template, Header, Footer} from './shared/template.directive';
 import { Accordion, AccordionTabComponent} from './accordion/accordion.component';
 import { FdsHorizontalStepper, FdsStep, FdsStepper } from './stepper/stepper';
@@ -15,6 +42,8 @@ import { FdsStepperNext, FdsStepperPrevious } from './stepper/stepper-button';
 import { LabelDirective } from './label/label.directive';
 import { ErrorDirective} from './form-field/error';
 import { FormFieldComponent } from './form-field/form-field.component';
+import { InputDirective} from './input/input.directive';
+import { AutocompleteComponent} from './autocomplete/autocomplete.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -25,16 +54,13 @@ import { FormFieldComponent } from './form-field/form-field.component';
     Template,
     Header,
     Footer,
-    // AutocompleteComponent,
+    AutocompleteComponent,
     ErrorDirective,
     CardComponent,
     CheckboxComponent,
     FormFieldComponent,
-    // InputMaskComponent,
-    // InputNumberComponent,
-    // InputDirective,
     LabelDirective,
-    // PopoverDirective,
+    PopoverDirective,
     ProgressComponent,
     RangeSliderComponent,
     FdsStep,
@@ -45,9 +71,20 @@ import { FormFieldComponent } from './form-field/form-field.component';
     FdsStepper,
     FdsStepperNext,
     FdsStepperPrevious,
-    // TooltipDirective,
     FdsRadioButton,
-    FdsRadioGroup
+    FdsRadioGroup,
+    InputDirective,
+    // Tabs
+    TabView,
+    TabPanel,
+    // Table
+    Table,
+    TableBody,
+    ScrollableView,
+    SortableColumn,
+    SortIcon,
+    TableCheckbox,
+    TableHeaderCheckbox,
   ],
   exports: [
     ButtonComponent,
@@ -56,16 +93,13 @@ import { FormFieldComponent } from './form-field/form-field.component';
     Template,
     Header,
     Footer,
-    // AutocompleteComponent,
+    AutocompleteComponent,
     ErrorDirective,
     CardComponent,
     CheckboxComponent,
     FormFieldComponent,
-    // InputMaskComponent,
-    // InputNumberComponent,
-    // InputDirective,
+    InputDirective,
     LabelDirective,
-    // PopoverDirective,
     ProgressComponent,
     RangeSliderComponent,
     FdsStep,
@@ -76,9 +110,21 @@ import { FormFieldComponent } from './form-field/form-field.component';
     FdsStepper,
     FdsStepperNext,
     FdsStepperPrevious,
-    // TooltipDirective,
     FdsRadioButton,
-    FdsRadioGroup
+    FdsRadioGroup,
+    PopoverDirective,
+    // Tabs
+    TabView,
+    TabPanel,
+
+    // Table
+    Table,
+    TableBody,
+    ScrollableView,
+    SortableColumn,
+    SortIcon,
+    TableCheckbox,
+    TableHeaderCheckbox,
   ]
 })
 export class AngularModule {}

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import {FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'demo-checkbox-basic',
   template: `
     <div class="row">
-      <div class="col-4">
+      <div class="col--4">
         <fds-checkbox
           [formControl]="paidOvertime"
           label="Paid Overtime"
+          [binary]=binary
           inputId="binary"
         ></fds-checkbox>
         <pre>
@@ -21,7 +22,9 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styles: []
 })
 export class BasicCheckboxComponent implements OnInit {
+  binary = true;
   paidOvertime: FormControl;
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {

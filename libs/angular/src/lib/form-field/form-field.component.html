@@ -1,5 +1,4 @@
 <label
-  [attr.for]="_control.id"
   [class.required]="
     !hideRequiredMarker && _control?.required && !_control?.disabled
   "
@@ -15,6 +14,7 @@
 >
   <div
     class="formControlHolder formControlHolder__{{ controlType }}"
+    [class.disabled]="_control.disabled"
     [class.error]="isInvalid()"
     [ngClass]="getClasses()"
   >

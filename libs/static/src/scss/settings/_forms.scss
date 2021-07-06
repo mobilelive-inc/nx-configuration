@@ -1,0 +1,12 @@
+// Form control focus state
+// Example usage: change the default blue border and shadow to white for better
+// contrast against a dark gray background.
+@mixin formControl-focus {
+  &:focus {
+    color: var(--input-focus-color);
+    background-color: var(--input-focus-bg);
+    border-color: var(--input-focus-border-color);
+    outline: inherit;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+  }
+}

@@ -23,6 +23,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
           {{ stepperHeader.stepsCount }}
         </div>
       </ng-template>
+
       <fds-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" class="w--25 m--auto">
           <div class="formGroup">
@@ -46,6 +47,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
           </div>
         </form>
       </fds-step>
+
       <fds-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup" class="w--25 m--auto">
           <div class="formGroup">
@@ -64,6 +66,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
               >
             </fds-form-field>
           </div>
+
           <div class="text--center pt--3">
             <button class="btn btn--secondary mr--4" fdsStepperPrevious>
               Back
@@ -72,6 +75,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
           </div>
         </form>
       </fds-step>
+
       <fds-step>
         <div class="w--50 m--auto">
           <p class="text--center my--3 h3">You are now done.</p>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ThemeListItem, ThemeService} from 'fds-angular';
+import { ThemeService, ThemeListItem } from 'fds-angular';
 
 @Component({
   selector: 'theme-switcher',
@@ -9,8 +9,8 @@ import { ThemeListItem, ThemeService} from 'fds-angular';
       <div class="btns-switcher-holder">
         <button
           *ngFor="let theme of themes"
-          class="mb--2 btn btn--sm navy default"
-          [class.btn--primary]="activeClassName == theme.className"
+          class="mb--2 btn navy default"
+          [class.btn--primary]= "activeClassName == theme.className"
           (click)="switchTheme(theme)"
         >
           {{ theme.title }}
