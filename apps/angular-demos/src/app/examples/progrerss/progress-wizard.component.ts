@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
       [showLabel]="true"
       [displayWith]="labelFormatFn"
     ></fds-progress>
-    <div class="text--center pt--6">
+    <div class="text--center pt--6 mt--1">
       <a
         class="btn btn--secondary mr--3"
         href="javascript:void(0)"
