@@ -1,106 +1,113 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { colors } from '../../theme/properties/colors';
 import {
-  compose,
-  border,
-  layout,
-  variant,
-  space,
-  typography,
-  color
-} from 'styled-system';
-import { capitalizeFirstLetter } from '../../utils/utils';
-import {
-  fontSizes,
-  fontWeights,
-  lineHeights,
-  radii
-} from '../../theme/defaultTheme';
+  BaseSelect,
+  SelectWrapper,
+  RightIconButton,
+  LeftIconButton,
+  ChevronDownIcon,
+  ValidationIcon
+} from './css';
+import Text from '../typography';
+import Option from '../option';
+import { fontSizes, lineHeights, fontWeights } from '../../theme/defaultTheme';
+import './select.module.scss';
+  
 
-const padding = '1rem 2rem';
-
-interface Props {
-   // your props validation
-  alignItems:string;
-  boxSizing: string;
-  cursor: string; 
-  borderRadius: string; 
-  opacity: any;
-  ustifyContent:string
+/* eslint-disable-next-line */
+export interface SelectProps {
 }
-const getDerivedStyles = (props: any) => {
-  const { theme, borderType, withIcon, clear, variant, disabled } = props;
-  // default styles for button
-  const styles = {
-    boxSizing: 'border-box',
-    cursor: 'pointer',
-    borderRadius: `${
-      theme[`border${capitalizeFirstLetter(borderType)}`]
-    } !important`,
-    '&:disabled': {
-      opacity: theme.opacity
-    }
-  } as React.CSSProperties;;
-  // styles conditionally applied w.r.t props
-  if (withIcon) {
-    styles.alignItems = 'center';
-    styles.justifyContent = 'space-evenly';
-    styles.display = 'inline-flex';
-  }
-  return styles;
-};
 
-type BaseButton ={
-  props?:boolean
-}
-const BaseButton = styled('button')(
-  // props => getDerivedStyles(props),
-  compose(
-    border,
-    layout,
-    space,
-    typography,
-    color,
-    variant({ scale: 'buttons' })
-  )
-);
-
-
-export  function Button(props:any) {
+export function Select(props: SelectProps) {
+  const {
+    children,
+    width,
+    id,
+    name,
+    value,
+    placeholder,
+    onRightIconButtonClick,
+    rightIcon,
+    errorMessage,
+    leftIcon,
+    onLeftIconClick,
+    borderType,
+    withBorderBottomOnly,
+    validationIcon,
+    isValid,
+    chevron,
+    onChange,
+    ...restProps
+  } = props;
   return (
-    <BaseButton {...props} />
+    <>
+      <SelectWrapper width={width} leftIcon={leftIcon}>
+        {leftIcon && (
+          <LeftIconButton onClick={onLeftIconClick}>
+            <span className={leftIcon} />
+          </LeftIconButton>
+        )}
+        <BaseSelect
+          {...restProps}
+          id={id}
+          name={name}
+          value={value}
+          error={errorMessage}
+          borderType={borderType}
+          withBorderBottomOnly={withBorderBottomOnly}
+          onChange={onChange}>
+          {placeholder && <Option>{placeholder}</Option>}
+          {children}
+        </BaseSelect>
+        {chevron && <ChevronDownIcon className={chevron} />}
+        {rightIcon && (
+          <RightIconButton onClick={onRightIconButtonClick}>
+            <span className={rightIcon} />
+          </RightIconButton>
+        )}
+        {validationIcon && (
+          <ValidationIcon className={validationIcon} isValid={isValid} />
+        )}
+      </SelectWrapper>
+      {errorMessage && (
+        <Text
+          position="absolute"
+          as="p"
+          color={errorMessage ? 'error' : 'black'}
+          fontSize="10px"
+          lineHeight="1px"
+          pl={3}
+          mt={17}
+          pt={0}>
+          {errorMessage}
+        </Text>
+      )}
+    </>
   );
 };
-Button.defaultProps = {
+
+
+Select.defaultProps = {
   disabled: false,
-  fontSize: [fontSizes.fontSizeSM, fontSizes.fontSizeBase],
-  lineHeight: [lineHeights.lineheight_1x_tiny],
+  fontSize: [fontSizes.fontSizeBase, fontSizes.fontSizeSM],
+  lineHeight: [lineHeights.lineheight_3x_small],
   m: [0],
   fontWeight: [fontWeights.fontweight_medium],
-  // display: ['inline-block'],
   width: [1],
   textAlign: ['center'],
-  borderRadius: [radii.borderRadiusNone],
+  borderRadius: [0],
   onClick: () => {},
   withIcon: false
 };
 
-Button.propTypes = {
-  /** Text for Button could be string or node. */
+Select.propTypes = {
+  /** Need to be instances of Option component */
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node)
   ]).isRequired,
-  /** Click handler for Button */
-  onClick: PropTypes.func,
-  /** Option to disable Button */
+  /** Option to disable select */
   disabled: PropTypes.bool,
-  /** button variant consumes buttons object in the theme file */
-  variant: PropTypes.string,
-  /** The props needs to be passed in when using icons in buttons */
-  withIcon: PropTypes.bool,
   /** borderType consumes borderCurved and borderRounded variables from Theme file */
   borderType: PropTypes.oneOf(['curved', 'rounded']),
   /** Defines font size of child elements. Accepts responsive value from theme */
@@ -119,13 +126,6 @@ Button.propTypes = {
   ]),
   /** Defines font weight of child elements. Accepts responsive value from theme */
   fontWeight: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.number)
-  ]),
-  /** The display property specifies the display behavior (the type of rendering box) of an element. */
-  display: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.number,
@@ -187,4 +187,4 @@ Button.propTypes = {
   ])
 };
 
-export default Button;
+export default Select;

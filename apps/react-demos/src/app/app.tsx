@@ -4,6 +4,7 @@ import Progress from './components/progress';
 import { ContainerDiv, Div } from './components/progress/css';
 import Container from './components/container';
 import { Flex, Box } from 'rebass/styled-components';
+import Checkbox from './components/checkbox';
 import { ThemeProvider } from 'styled-components';
 import theme from '../app/components/theme/defaultTheme';
 import { 
@@ -28,9 +29,23 @@ import Button from './components/Button';
 import {Text} from './components/typography';
 import Select  from './components/select';
 import {Cards} from './components/cards';
+import Input from './components/Input';
+import Label from './components/label';
+import TextArea from './components/textArea';
 
-export function App() {
-  const options = [
+/* eslint-disable-next-line */
+export interface AppProps {
+  // Options:array;
+     name:string;
+     width:string;
+     height:string;
+     rightIcon:string;
+     leftIcon:string;
+}
+
+
+export function App(props: AppProps) {
+  let Options = [
     // {
     //   id: 0,
     //   value: 'Javascript'
@@ -45,7 +60,8 @@ export function App() {
     // }
   ];
   const [selected, setSelected] = useState(null);
-  const [count, setCount] = React.useState(1);
+  const [count, setCount] = useState(1);
+  const [isChecked, setIschecked] = useState(false);
   return (
     <ThemeProvider theme={theme}>
       <Div>
@@ -124,7 +140,7 @@ export function App() {
             value={selected}
             onChange={e => setSelected(e.target.value)}
             color="black">
-            {options.map(option => (
+            {Options.map(option => (
               <Option value={option.id}>{option.value}</Option>
             ))}
           </Select>
@@ -223,7 +239,321 @@ export function App() {
         <Container>
         <Cards />
         </Container>
-
+        <Text fontSize="fontSizeH2">Check boxes</Text>
+          <Container>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services"
+              value="internet"
+              label="Internet"
+              backgroundColor="green"
+              color="black"
+              errorMessage="asdas"
+              isFilled
+              variant={isChecked ? 'checked' : 'unchecked'}
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services"
+              value="internet"
+              label="Internet"
+              backgroundColor="green"
+              color="black"
+              errorMessage="asdas"
+              isFilled
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="white"
+              errorMessage=""
+              isFilled
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="white"
+              errorMessage=""
+              isFilled
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="black"
+              errorMessage=""
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="black"
+              errorMessage=""
+              isFilled={false}
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="primary"
+              color="primary"
+              errorMessage=""
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="primary"
+              color="primary"
+              errorMessage=""
+              isFilled={false}
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label=""
+              backgroundColor="primary"
+              color="primary"
+              borderType="curved"
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label=""
+              backgroundColor="primary"
+              color="primary"
+              borderType="curved"
+              isFilled={false}
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label=""
+              backgroundColor="primary"
+              color="primary"
+              borderType="rounded"
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="dong"
+              backgroundColor="primary"
+              color="primary"
+              errorMessage="dasdasd"
+              checkedIconClass="icon-check_circle_24px"
+              borderType="rounded"
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        </Container>
+        <Text fontSize="fontSizeH2">Text Fields</Text>
+        <Container>
+        <Flex>
+          <Label position="absolute" mb={20}>This is outside label</Label>
+          <Input
+            type="Password"
+            value=""
+            placeholder="Password"
+            label=""
+            id="Password"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            mt={16}
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            clearButtonClasses="icon-delete_24px"
+            onClear={() => {}}
+            // borderType="curved"
+            // borderRadius="10px"
+            withBottomBorderOnly
+            disabled={false}
+          />
+        </Flex>
+        <Flex mt={10}>
+          <Label>This is outside label</Label>
+          <Input
+            type="Email"
+            value=""
+            placeholder="Email"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            // borderType="curved"
+            // borderRadius="10px"
+            // withBottomBorderOnly
+            disabled={false}
+          />
+        </Flex>
+        <Flex mt={10}>
+          <Input
+            type="Email"
+            value=""
+            placeholder="Email"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            borderType="curved"
+            // borderRadius="10px"
+            // withBottomBorderOnly
+            disabled={false}
+          />
+        </Flex>
+        <Flex mt={10} style={{display:'block'}}>
+          <Input
+            type="search"
+            value="sdfsdf"
+            placeholder="Emasdfsdfsdfil"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            borderType="rounded"
+            // disabled
+            errorMessage="required field"
+            error
+            id="search"
+            rows="20"
+            cols="14"
+            iconPosition="inside"
+            validationIcon="icon-check_circle_24px"
+            bottomValidationIcon="icon-check_circle_24px"
+            isValid={true}
+          />
+          <TextArea
+            type="text"
+            // width="auto"
+            // height=""
+            value={''}
+            ml={10}
+            placeholder="Text Area"
+            label=""
+            onChange={e => {
+              setGender(e.target.value);
+            }}
+            borderType="rounded"
+            // disabled
+            errorMessage="required field"
+            error
+            id="search"
+            rows="20"
+            cols="14"
+            iconPosition="inside"
+            validationIcon="icon-check_circle_24px"
+            bottomValidationIcon="icon-check_circle_24px"
+            isValid={true}
+          />
+        </Flex>
+        </Container>
      </Div>
      </ThemeProvider>
   );

@@ -1,93 +1,65 @@
-import React from 'react';
+import { Story, Meta, } from '@storybook/react';
+import { render } from '@testing-library/react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { colors } from '../../theme/properties/colors';
+import { Buttons, ButtonsProps } from './buttons';
 import {
-  compose,
-  border,
-  layout,
-  variant,
-  space,
-  typography,
-  color
-} from 'styled-system';
-import { capitalizeFirstLetter } from '../../utils/utils';
+    PrimaryButton,
+    OutlineButtons,
+    ClearButton,
+    RoundedButtons,
+    RoundedOutlineButtons,
+    CurvedButtons,
+    CurvedOutlineButtons,
+    FilledSocialButtons,
+    OutlineSocialButtons
+  } from './buttons';
+  import {
+    fontSizes,
+    fontWeights,
+    lineHeights,
+    radii
+  } from '../../theme/defaultTheme';
+// import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
 import {
-  fontSizes,
-  fontWeights,
-  lineHeights,
-  radii
-} from '../../theme/defaultTheme';
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  ArgsTable,
+  Stories,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+import { CustomDocumentationComponent } from './CustomDocumentationComponent';
 
-const padding = '1rem 2rem';
+export default {
+    component: Buttons,
+    title: 'Buttons',
+    parameters: { 
+        docs: { 
+          page: CustomDocumentationComponent, 
+        } 
+      },
+  } as Meta ;
 
-interface Props {
-   // your props validation
-  alignItems:string;
-  boxSizing: string;
-  cursor: string; 
-  borderRadius: string; 
-  opacity: any;
-  ustifyContent:string
-}
-const getDerivedStyles = (props: any) => {
-  const { theme, borderType, withIcon, clear, variant, disabled } = props;
-  // default styles for button
-  const styles = {
-    boxSizing: 'border-box',
-    cursor: 'pointer',
-    borderRadius: `${
-      theme[`border${capitalizeFirstLetter(borderType)}`]
-    } !important`,
-    '&:disabled': {
-      opacity: theme.opacity
-    }
-  } as React.CSSProperties;;
-  // styles conditionally applied w.r.t props
-  if (withIcon) {
-    styles.alignItems = 'center';
-    styles.justifyContent = 'space-evenly';
-    styles.display = 'inline-flex';
-  }
-  return styles;
+const Template: Story<ButtonsProps> = (args) =>(<PrimaryButton />);
+
+export const Primary_Buttons = Template.bind({})
+Primary_Buttons.args = {
+  /** Text for Button could be string or node. */
+    disabled:false,
+    fontSize: [fontSizes.fontSizeSM, fontSizes.fontSizeBase],
+    lineHeight: [lineHeights.lineheight_1x_tiny],
+    m: [0],
+    fontWeight: [fontWeights.fontweight_medium],
+    /** display: ['inline-block'], */
+    width: [1],
+    textAlign: ['center'],
+    borderRadius: [radii.borderRadiusNone],
+    onClick: () => {},
+    withIcon: false,
 };
 
-type BaseButton ={
-  props?:boolean
-}
-const BaseButton = styled('button')(
-  // props => getDerivedStyles(props),
-  compose(
-    border,
-    layout,
-    space,
-    typography,
-    color,
-    variant({ scale: 'buttons' })
-  )
-);
-
-
-export  function Button(props:any) {
-  return (
-    <BaseButton {...props} />
-  );
-};
-Button.defaultProps = {
-  disabled: false,
-  fontSize: [fontSizes.fontSizeSM, fontSizes.fontSizeBase],
-  lineHeight: [lineHeights.lineheight_1x_tiny],
-  m: [0],
-  fontWeight: [fontWeights.fontweight_medium],
-  // display: ['inline-block'],
-  width: [1],
-  textAlign: ['center'],
-  borderRadius: [radii.borderRadiusNone],
-  onClick: () => {},
-  withIcon: false
-};
-
-Button.propTypes = {
+Primary_Buttons.propTypes = {
   /** Text for Button could be string or node. */
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -187,4 +159,47 @@ Button.propTypes = {
   ])
 };
 
-export default Button;
+
+const Template_Two: Story<ButtonsProps> = (args) =>(<OutlineButtons />);
+
+export const Outline_Buttons = Template_Two.bind({})
+Outline_Buttons.args = {
+}
+
+const Template_Three: Story<ButtonsProps> = (args) =>(<ClearButton />);
+
+export const Clear_Buttons = Template_Three.bind({})
+Clear_Buttons.args = {
+}
+
+const Template_Four: Story<ButtonsProps> = (args) =>(<RoundedButtons/>);
+
+export const Rounded_Buttons = Template_Four.bind({})
+Rounded_Buttons.args = {
+}
+
+const Template_Five: Story<ButtonsProps> = (args) =>(<RoundedOutlineButtons/>);
+
+export const RoundedOutline_Buttons = Template_Five.bind({})
+RoundedOutline_Buttons.args = {
+}
+const Template_Six: Story<ButtonsProps> = (args) =>(<CurvedButtons/>);
+
+export const Curved_Buttons = Template_Six.bind({})
+Curved_Buttons.args = {
+}
+const Template_Seveen: Story<ButtonsProps> = (args) =>(<CurvedOutlineButtons />);
+
+export const CurvedOutline_Button = Template_Seveen.bind({})
+CurvedOutline_Button.args = {
+}
+const Template_Eight: Story<ButtonsProps> = (args) =>(<FilledSocialButtons />);
+
+export const FilledSocial_Buttons = Template_Eight.bind({})
+FilledSocial_Buttons.args = {
+}
+const Template_Nine: Story<ButtonsProps> = (args) =>(<OutlineSocialButtons />);
+
+export const OutlineSocial_Buttons = Template_Nine.bind({})
+OutlineSocial_Buttons.args = {
+}

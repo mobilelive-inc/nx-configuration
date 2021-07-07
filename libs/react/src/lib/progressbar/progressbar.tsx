@@ -1,7 +1,7 @@
 import React, { useState, useEffect,} from "react";
 import { Progress, Progressdone } from "./css";
 import { ThemeProvider } from "styled-components";
-import progressTheme from '../../theme/styles/progressbar';
+import ProgressTheme from '../../theme/styles/progressbar';
 import GlobalStyle from "../../theme/globalStyles";
 import Container from "../container";
 
@@ -24,7 +24,7 @@ export function Progressbar(props: ProgressbarProps) {
     }
   }, [props.progressbarstatus]);
   return (
-    <ThemeProvider theme={progressTheme}>
+    <ThemeProvider theme={ProgressTheme}>
       <GlobalStyle />
     <Container>
       <p>Progressbar status {props.progressbarstatus}% completed</p>

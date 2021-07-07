@@ -1,0 +1,10 @@
+.infoBlockPiece {
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    padding: 30px 30px;
+    margin-bottom: 30px;
+  }
+  .highlighted-block {
+    border: 3px solid #fffaea;
+    padding: 30px;
+  }
