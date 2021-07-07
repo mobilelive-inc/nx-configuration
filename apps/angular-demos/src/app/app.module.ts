@@ -47,6 +47,8 @@ import { MultiCheckboxComponent} from './examples/checkbox/multi/multi.component
 // Modal
 import { ModalBasicComponent} from './examples/modal/modal-basic/modal-basic.component';
 import { ModalAdvancedComponent} from './examples/modal/modal-advanced/modal-advanced.component';
+import { ModalBasicExampleComponent} from './examples/modal/modal-basic/modal-basic-example.component';
+import { ModalAdvancedExampleComponent} from './examples/modal/modal-advanced/modal-advanced-example.component';
 
 // Popover
 import { PopoverBasicComponent} from './examples/popover/popover-basic/popover-basic.component';
@@ -122,6 +124,8 @@ import { TableSingleSortComponent} from './examples/table/table-single-sort/tabl
     // Modal
     ModalBasicComponent,
     ModalAdvancedComponent,
+    ModalBasicExampleComponent,
+    ModalAdvancedExampleComponent,
 
     // Popover
     PopoverBasicComponent,

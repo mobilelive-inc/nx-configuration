@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { FdsModalRef } from 'fds-angular';
 
 @Component({
