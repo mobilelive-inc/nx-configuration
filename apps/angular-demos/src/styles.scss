@@ -17,7 +17,11 @@
 @import 'libs/static/src/scss/components/_card';
 @import 'libs/static/src/scss/components/_accordion';
 @import 'libs/static/src/scss/components/_tables';
+@import "libs/static/src/scss/components/_modals";
 
 // tippy
 @import 'libs/angular/src/lib/shared/tippy/fds-tippy';
 @import 'node_modules/tippy.js/animations/shift-away';
+
+// Icons
+@import "libs/icons/icomons_styles";
