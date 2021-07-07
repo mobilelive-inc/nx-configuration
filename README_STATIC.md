@@ -4,7 +4,8 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Create Static folder inside libs folder
 
-> **note:** `This is standalone project and we are using webpack to build our fonts, scss and Js`.
+> **note:** `This is standalone project and to build our fonts, scss and Js. First off all go to 
+> static folder and follow then follow the following steps `.
 
 ### Build Project
 
