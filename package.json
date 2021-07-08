@@ -25,7 +25,9 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "postinstall": "ngcc --properties es2015 browser module main",
-    "build-angular-lib": "rm -rf dist/ && ng-packagr -p libs/angular/ng-package.json"
+    "build-react-lib": "nx build react",
+    "build-angular-lib": "ng-packagr -p libs/angular/ng-package.json",
+    "build-libs": "rm -rf dist/ && npm run build-react-lib && npm run build-angular-lib"
   },
   "private": true,
   "dependencies": {

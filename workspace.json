@@ -184,7 +184,7 @@
             "{options.outputPath}"
           ],
           "options": {
-            "outputPath": "dist/libs/react",
+            "outputPath": "dist/libs/@mobilelivenpm/fds-react",
             "tsConfig": "libs/react/tsconfig.lib.json",
             "project": "libs/react/package.json",
             "entryFile": "libs/react/src/index.ts",
