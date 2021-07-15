@@ -6,7 +6,7 @@ $jumbotron-bg: var(--light);
 $jumbotron-border-color: var(--gray-light);
 
 .jumbotron {
-  padding: $jumbotron-padding ($jumbotron-padding * 0.5);
+  padding: $jumbotron-padding ($jumbotron-padding / 2);
   margin-bottom: $jumbotron-padding;
   color: $jumbotron-color;
   //background-color: $jumbotron-bg;
