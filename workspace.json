@@ -9,7 +9,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/angular:package",
-          "outputs": ["dist/libs/angular"],
+          "outputs": [
+            "dist/libs/angular"
+          ],
           "options": {
             "project": "libs/angular/ng-package.json"
           },
@@ -25,7 +27,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular"],
+          "outputs": [
+            "coverage/libs/angular"
+          ],
           "options": {
             "jestConfig": "libs/angular/jest.config.js",
             "passWithNoTests": true
@@ -50,7 +54,9 @@
       "targets": {
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/angular-demos",
             "index": "apps/angular-demos/src/index.html",
@@ -62,7 +68,9 @@
               "apps/angular-demos/src/favicon.ico",
               "apps/angular-demos/src/assets"
             ],
-            "styles": ["apps/angular-demos/src/styles.scss"],
+            "styles": [
+              "apps/angular-demos/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -127,7 +135,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/angular-demos"],
+          "outputs": [
+            "coverage/apps/angular-demos"
+          ],
           "options": {
             "jestConfig": "apps/angular-demos/jest.config.js",
             "passWithNoTests": true
@@ -156,7 +166,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/angular-demos-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/angular-demos-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -168,13 +180,17 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
-            "outputPath": "dist/libs/react",
+            "outputPath": "dist/libs/@mobilelivenpm/fds-react",
             "tsConfig": "libs/react/tsconfig.lib.json",
             "project": "libs/react/package.json",
             "entryFile": "libs/react/src/index.ts",
-            "external": ["react/jsx-runtime"],
+            "external": [
+              "react/jsx-runtime"
+            ],
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
@@ -188,15 +204,52 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/react/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/react/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/react"],
+          "outputs": [
+            "coverage/libs/react"
+          ],
           "options": {
             "jestConfig": "libs/react/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/react/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/react",
+            "config": {
+              "configFolder": "libs/react/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
@@ -208,7 +261,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/react-demos",
             "index": "apps/react-demos/src/index.html",
@@ -219,7 +274,9 @@
               "apps/react-demos/src/favicon.ico",
               "apps/react-demos/src/assets"
             ],
-            "styles": ["apps/react-demos/src/styles.scss"],
+            "styles": [
+              "apps/react-demos/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -264,12 +321,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/react-demos/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/react-demos/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/react-demos"],
+          "outputs": [
+            "coverage/apps/react-demos"
+          ],
           "options": {
             "jestConfig": "apps/react-demos/jest.config.js",
             "passWithNoTests": true
@@ -298,38 +359,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/react-demos-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "static": {
-      "root": "libs/static",
-      "sourceRoot": "libs/static/src",
-      "projectType": "library",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/workspace:tsc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/static",
-            "main": "libs/static/src/index.ts",
-            "tsConfig": "libs/static/tsconfig.lib.json",
-            "assets": ["libs/static/*.md"]
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/static/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/static"],
-          "options": {
-            "jestConfig": "libs/static/jest.config.js",
-            "passWithNoTests": true
+            "lintFilePatterns": [
+              "apps/react-demos-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
