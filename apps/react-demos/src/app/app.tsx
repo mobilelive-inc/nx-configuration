@@ -1,11 +1,4 @@
-import styles from './app.module.scss';
-import Progress from './components/progress';
-import { ContainerDiv, Div } from './components/progress/css';
-import Container from './components/container';
-import { Flex, Box } from 'rebass/styled-components';
-import { ThemeProvider } from 'styled-components';
-import theme from '../app/components/theme/defaultTheme';
-import {Text} from './components/typography';
+import React from 'react';
 import { 
   PrimaryButton,
   OutlineButtons,
@@ -16,71 +9,57 @@ import {
   CurvedOutlineButtons,
   FilledSocialButtons,
   OutlineSocialButtons
-} from './components/ButtonContainer';
+} from './components/buttoncontiner';
+import Container from './components/container';
 export function App() {
   return (
-    <ThemeProvider theme={theme}>
-    <Div>
-        <h1>
-          React Components Demo
-        </h1>
-        <p>
-          Here are all the components we have built in React for Friday Design
-          System. Below are the examples we have formed here using these
-          componenet. We tried to implement all the usabily cases for every
-          component
-        </p>
+   <div>
+     
+     <h2>Primary Buttons</h2>
+        <Container>
+          <PrimaryButton />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Primary Buttons</Text>
-      <Container>
-        <PrimaryButton />
-      </Container>
+        <h2>Outline Buttons</h2>
+        <Container>
+          <OutlineButtons />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Outline Buttons</Text>
-      <Container>
-        <OutlineButtons />
-      </Container>
+        <h2>Clear Buttons</h2>
+        <Container>
+          <ClearButton />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Clear Buttons</Text>
-      <Container>
-        <ClearButton />
-      </Container>
+        <h2>Rounded Buttons</h2>
+        <Container>
+          <RoundedButtons />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Rounded Buttons</Text>
-      <Container>
-        <RoundedButtons />
-      </Container>
+        <h2>Rounded Outline Buttons</h2>
+        <Container>
+          <RoundedOutlineButtons />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Rounded Outline Buttons</Text>
-      <Container>
-        <RoundedOutlineButtons />
-      </Container>
+        <h2>Curved Buttons</h2>
+        <Container>
+          <CurvedButtons />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Curved Buttons</Text>
-      <Container>
-        <CurvedButtons />
-      </Container>
+        <h2>Curved Outline Buttons</h2>
+        <Container>
+          <CurvedOutlineButtons />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Curved Outline Buttons</Text>
-      <Container>
-        <CurvedOutlineButtons />
-      </Container>
+        <h2>Filled Social Buttons</h2>
+        <Container>
+          <FilledSocialButtons />
+        </Container>
 
-      <Text fontSize="fontSizeH2">Filled Social Buttons</Text>
-      <Container>
-        <FilledSocialButtons />
-      </Container>
-
-      <Text fontSize="fontSizeH2">Outline Social Buttons</Text>
-      <Container>
-        <OutlineSocialButtons />
-      </Container>
-      <h2>Progressbar</h2>
-        <ContainerDiv>
-          <Progress progressbarheading='Progress' progressbarstatus={80} />
-        </ContainerDiv>
-    </Div>
-    </ThemeProvider>
+        <h2>Outline Social Buttons</h2>
+        <Container>
+          <OutlineSocialButtons />
+        </Container>
+   </div>
   );
 }
 
