@@ -16,7 +16,9 @@
     [ngClass]="{
       'fds-autocomplete fds-component': true,
       'fds-autocomplete-dd d--flex': dropdown,
-      'fds-autocomplete-multiple': multiple
+      'fds-autocomplete-multiple': multiple,
+      'fds-multiple-tags-below': !withinInput && multiple,
+      'fds-multiple-tags-besides': withinInput && multiple
     }"
     [ngStyle]="style"
     [class]="styleClass"
@@ -219,10 +221,18 @@
             </li>
           </ng-container>
           <li
-            *ngIf="noResults && emptyMessage"
+            *ngIf="noResults && showEmptyMessage"
             class="fds-autocomplete-emptymessage fds-autocomplete-item"
+            [ngClass]="showEmptyMessageClasses"
           >
-            {{ emptyMessage }}
+            <ng-container *ngIf="!emptyTemplate">
+              {{ emptyMessageLabel }}
+            </ng-container>
+            <ng-container *ngIf="emptyTemplate">
+              <ng-container
+                *ngTemplateOutlet="emptyTemplate"
+              ></ng-container>
+            </ng-container>
           </li>
         </ng-template>
       </ul>
