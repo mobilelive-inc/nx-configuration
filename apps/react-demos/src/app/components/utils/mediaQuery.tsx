@@ -4,15 +4,15 @@ import { mediaqueryBreakpoints } from '../theme/defaultTheme';
 export const desktopOnly = `@media only screen and (min-width: ${
   mediaqueryBreakpoints.md
 })`;
-export interface Props {
-  args:[string, string, boolean]
+interface MediaQuery {
+  args:string[]
 }
 const MediaQuery = {
-  desktop: (...args) => css`
-    ${desktopOnly} {
-      ${css(...args)};
-    }
-  `,
+  // desktop: (...args) => css`
+  //   ${desktopOnly} {
+  //     ${css(...args)};
+  //   }
+  // `,
 };
 
 export default MediaQuery;

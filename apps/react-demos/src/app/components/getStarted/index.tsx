@@ -97,19 +97,19 @@ const GetStarted = () => {
         <ul>
           <li>
             <b>Design Kit —</b>
-            <p style={{dispaly:"inline"}}> a library of shared styles, symbols or components that can be used by product teams to design or prototype new experiences.</p>
+            <p> a library of shared styles, symbols or components that can be used by product teams to design or prototype new experiences.</p>
           </li>
           <li>
             <b>Design Tokens —</b>
-            <p style={{dispaly:"inline"}}> the overall visual design of a digital product. This foundation defines characteristics such as typography, colors, icons, spacing and information architecture.</p>
+            <p> the overall visual design of a digital product. This foundation defines characteristics such as typography, colors, icons, spacing and information architecture.</p>
           </li>
           <li>
             <b>Component Library —</b>
-            <p style={{dispaly:"inline"}}> a set of JavaScript components that are version controlled and are composed to build one or more products.</p>
+            <p> a set of JavaScript components that are version controlled and are composed to build one or more products.</p>
           </li>
           <li>
             <b>Documentation —</b>
-            <p style={{dispaly:"inline"}}>
+            <p>
               a set of guidelines on how to consume the Design System, design and dev considerations and detailed documentation for each component. The documentation site often includes a live playground that is aimed at the consumers to try out components in the browser.
             </p>
           </li>

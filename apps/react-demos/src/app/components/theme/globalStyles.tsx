@@ -20,18 +20,12 @@ const GlobalStyle = createGlobalStyle`
   }
   body.disable-scroll {
    overflow:hidden;
-   ${MediaQuery.desktop`
-     overflow:visible;
-   `};
  }
   .ReactModal__Body--open {
     overflow: hidden;
     position: fixed;
     width: 100%;
     height: 100%;
-    ${MediaQuery.desktop`
-      position: relative;
-    `};
   }
   .noPaddingLeftRight div {
     padding-left: 0 !important;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { 
   PrimaryButton,
   OutlineButtons,
@@ -10,12 +11,34 @@ import {
   FilledSocialButtons,
   OutlineSocialButtons
 } from './components/buttoncontiner';
+import {Box } from 'rebass/styled-components';
 import Container from './components/container';
+import { MainContainer } from './components/container';
+import theme, { colors }  from './components/theme/defaultTheme';
+
 export function App() {
   return (
-   <div>
-     
-     <h2>Primary Buttons</h2>
+   
+      <ThemeProvider theme={theme}>
+      <Box
+        p={25}
+        bg={colors.bgLight}
+        justifyContent="center"
+        alignItems="center">
+        <MainContainer>
+          <h1>
+            React Components Demo
+          </h1>
+          <p>
+            Here are all the components we have built in React for Friday Design
+            System. Below are the examples we have formed here using these
+            componenet. We tried to implement all the usabily cases for every
+            component
+          </p>
+        </MainContainer>
+      </Box>
+       <MainContainer>
+        <h2>Primary Buttons</h2>
         <Container>
           <PrimaryButton />
         </Container>
@@ -59,7 +82,8 @@ export function App() {
         <Container>
           <OutlineSocialButtons />
         </Container>
-   </div>
+        </MainContainer>
+        </ThemeProvider>
   );
 }
 

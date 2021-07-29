@@ -339,35 +339,38 @@ export const OutlineSocialButtons = () => (
     </Button>
   </ThemeProvider>
 );
-
+interface ButtonsWithIcons {
+  iconMarginRgiht: string;
+  iconMarignLeft: string;
+}
 // eslint-disable-next-line react/no-multi-comp
 export const ButtonsWithIcons = () => (
   <ThemeProvider theme={theme}>
     <Flex>
       <Box width={1 / 6} mr={10}>
         <Button variant="outlinePrimary" m="10px" withIcon display="flex">
-          <Span iconMarginRight className="icon-accuracy" />
+          <Span  className="icon-accuracy" />
           Primary
         </Button>
       </Box>
       <Box width={1 / 6} mr={10}>
         <Button variant="outlineSecondary" m="10px" withIcon display="flex">
-          <Span iconMarginRight className="icon-cloud-architecture" />
+          <Span  className="icon-cloud-architecture" />
           Secondary
         </Button>
       </Box>
       <Box width={1 / 6} mr={10}>
         <Button variant="outlineSuccess" m="10px" withIcon display="flex">
-          <Span iconMarginRight className="icon-cloud-architecture" />
+          <Span  className="icon-cloud-architecture" />
           Success
-          <Span iconMarginLeft className="icon-favorite_24px" />
+          <Span  className="icon-favorite_24px" />
         </Button>
       </Box>
       <Box width={1 / 6} mr={10}>
         <Button variant="outlineDanger" m="10px" withIcon display="flex">
-          <Span iconMarginRight className="icon-check_circle_outline_24px" />
+          <Span  className="icon-check_circle_outline_24px" />
           Danger
-          <Span iconMarginLeft className="icon-info_24px" />
+          <Span  className="icon-info_24px" />
         </Button>
       </Box>
     </Flex>
@@ -382,7 +385,6 @@ export const iconOnlyButton = () => {
         <Box>
           <Button
             variant="iconBtn"
-            backgroundColor="black"
             color="white"
             withIcon
             m="10px"
@@ -417,13 +419,13 @@ export const buttonsAsTooltips = () => {
       <Flex>
         <Box ml={12}>
           <Button variant="link" width="8%" m="10px" withIcon display="flex">
-            <Span iconMarginRight className="icon-info_24px" />
+            <Span  className="icon-info_24px" />
             Info
           </Button>
         </Box>
         <Box ml={12}>
           <Button variant="link" width="8%" m="10px" withIcon display="flex">
-            <Span iconMarginRight className="icon-delete_24px" />
+            <Span  className="icon-delete_24px" />
             Delete
           </Button>
         </Box>

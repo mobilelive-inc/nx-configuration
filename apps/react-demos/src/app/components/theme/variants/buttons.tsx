@@ -1,7 +1,7 @@
 import { lighten } from '../../utils/lighten';
 import { colors } from '../properties/colors';
 
-const buttonBorder = '2px solid nocolor';
+const buttonBorder = '2px solid transparent';
 export const borderCurved = '10px';
 export const borderRounded = '50px';
 const padding = '1rem 2rem';
@@ -242,7 +242,7 @@ export const buttons = {
   },
   clearPrimary: {
     color: colors.primary,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -256,7 +256,7 @@ export const buttons = {
   },
   clearSecondary: {
     color: colors.secondary,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -270,7 +270,7 @@ export const buttons = {
   },
   clearSuccess: {
     color: colors.success,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -284,7 +284,7 @@ export const buttons = {
   },
   clearDanger: {
     color: colors.danger,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -298,7 +298,7 @@ export const buttons = {
   },
   clearWarning: {
     color: colors.warning,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -312,7 +312,7 @@ export const buttons = {
   },
   clearInfo: {
     color: colors.info,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -326,7 +326,7 @@ export const buttons = {
   },
   clearLight: {
     color: colors.grayHover,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -340,7 +340,7 @@ export const buttons = {
   },
   clearDark: {
     color: colors.black,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     '&:hover': {
@@ -352,7 +352,7 @@ export const buttons = {
   },
   clearDisabled: {
     color: colors.grayHover,
-    backgroundColor: colors.nocolor,
+    backgroundColor: colors.transparent,
     padding,
     border: 'none',
     cursor: 'default'

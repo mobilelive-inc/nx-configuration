@@ -21,6 +21,7 @@ import {
 const getDerivedStyles = props => {
   const { theme, borderType, withIcon, } = props;
   // default styles for button
+  
   const styles = {
     boxSizing: 'border-box',
     cursor: 'pointer',
@@ -33,9 +34,9 @@ const getDerivedStyles = props => {
   };
   // styles conditionally applied w.r.t props
   if (withIcon) {
-    styles.alginItem = 'center';
-    styles.justifyContent = 'space-evenly';
-    styles.display = 'inline-flex';
+    // styles.alginItem= 'center';
+    // styles.justifyContent = 'space-evenly';
+    // styles.display = 'inline-flex';
   }
   return styles;
 };

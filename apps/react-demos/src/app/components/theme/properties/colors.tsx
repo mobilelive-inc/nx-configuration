@@ -10,7 +10,7 @@ const basicColors = {
   backdrop: '#000000',
   textColor: '#333333',
   linkColor: '#336699',
-  nocolor: 'transparent',
+  transparent: 'transparent',
 
   orange: '#f48245',
   orangeLighter: '#fef3ec',
@@ -109,7 +109,7 @@ export const colors = {
   lightHover: basicColors.gray,
   dark: basicColors.grayDark,
   darkHover: basicColors.grayLight,
-  nocolor: 'transparent',
+  transparent: 'transparent',
   error: '#DF4B4B',
   white: '#fff',
   grayLighter: '#F2F2F2',
