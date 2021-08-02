@@ -11,6 +11,7 @@ import {
   FilledSocialButtons,
   OutlineSocialButtons
 } from './components/buttoncontiner';
+import { Text } from './components/typography'
 import {Box } from 'rebass/styled-components';
 import Container from './components/container';
 import { MainContainer } from './components/container';
@@ -26,59 +27,59 @@ export function App() {
         justifyContent="center"
         alignItems="center">
         <MainContainer>
-          <h1>
+          <Text  bold fontSize="fontSizeH1">
             React Components Demo
-          </h1>
-          <p>
+          </Text>
+          <Text fontSize="fontSizeBase">
             Here are all the components we have built in React for Friday Design
             System. Below are the examples we have formed here using these
             componenet. We tried to implement all the usabily cases for every
             component
-          </p>
+          </Text>
         </MainContainer>
       </Box>
        <MainContainer>
-        <h2>Primary Buttons</h2>
+        <Text fontSize="fontSizeH2">Primary Buttons</Text>
         <Container>
           <PrimaryButton />
         </Container>
 
-        <h2>Outline Buttons</h2>
+        <Text fontSize="fontSizeH2">Outline Buttons</Text>
         <Container>
           <OutlineButtons />
         </Container>
 
-        <h2>Clear Buttons</h2>
+        <Text fontSize="fontSizeH2">Clear Buttons</Text>
         <Container>
           <ClearButton />
         </Container>
 
-        <h2>Rounded Buttons</h2>
+        <Text fontSize="fontSizeH2">Rounded Buttons</Text>
         <Container>
           <RoundedButtons />
         </Container>
 
-        <h2>Rounded Outline Buttons</h2>
+        <Text fontSize="fontSizeH2">Rounded Outline Buttons</Text>
         <Container>
           <RoundedOutlineButtons />
         </Container>
 
-        <h2>Curved Buttons</h2>
+        <Text fontSize="fontSizeH2">Curved Buttons</Text>
         <Container>
           <CurvedButtons />
         </Container>
 
-        <h2>Curved Outline Buttons</h2>
+        <Text fontSize="fontSizeH2">Curved Outline Buttons</Text>
         <Container>
           <CurvedOutlineButtons />
         </Container>
 
-        <h2>Filled Social Buttons</h2>
+        <Text fontSize="fontSizeH2">Filled Social Buttons</Text>
         <Container>
           <FilledSocialButtons />
         </Container>
 
-        <h2>Outline Social Buttons</h2>
+        <Text fontSize="fontSizeH2">Outline Social Buttons</Text>
         <Container>
           <OutlineSocialButtons />
         </Container>
