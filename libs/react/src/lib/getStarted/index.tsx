@@ -9,11 +9,10 @@ import {
   shadow,
 } from 'styled-system';
 import {
-  Flex as BaseFlex,
-  Image
+  Flex as BaseFlex, Image
  } from 'rebass/styled-components';
-// import galaxy from '../assets/galaxy.jpg';
-import galaxy from '../../../../src/assets/galaxy.jpg'
+// import {galaxy} from '../../assets/galaxy.jpg';
+import galaxy from '../../assets/galaxy.jpg';
 
 /**
  * Rebass Flex with additional support
