@@ -11,13 +11,10 @@ import {
 import {
   Flex as BaseFlex, Image
  } from 'rebass/styled-components';
-// import {galaxy} from '../../assets/galaxy.jpg';
 import galaxy from '../../assets/galaxy.jpg';
-
 /**
  * Rebass Flex with additional support
  */
-
 export const Flex = styled(BaseFlex)(
   compose(
     border,
@@ -27,7 +24,6 @@ export const Flex = styled(BaseFlex)(
     shadow,
   ),
 );
-
 
 const GetStarted = () => {
   return (
