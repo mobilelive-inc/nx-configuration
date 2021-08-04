@@ -17,11 +17,9 @@ import {
   radii
 } from '../theme/defaultTheme';
 
-
 const getDerivedStyles = props => {
   const { theme, borderType, withIcon, } = props;
   // default styles for button
-  
   const styles = {
     boxSizing: 'border-box',
     cursor: 'pointer',
@@ -52,11 +50,9 @@ const BaseButton = styled('button')(
     variant({ scale: 'buttons' })
   )
 );
-
 /* eslint-disable-next-line */
 export interface ButtonProps {
 }
-
 export function Button(props: ButtonProps) {
   return (
      // eslint-disable-next-line react/jsx-props-no-spreading
