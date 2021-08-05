@@ -33,7 +33,7 @@ const AdvancedStepper = ({
       setVisitedCount(value);
     }
     setCurrentStep(value);
-  }, []);
+  }, [total, value]);
 
   useEffect(() => {
     setStatus('You are now on step ' + value);
@@ -71,8 +71,7 @@ const AdvancedStepper = ({
         <AnnouncementText aria-live="assertive" aria-label={status} />
         <StepperContainer>
           {steps.map((item, index) => {
-            let alignValue: string;
-             alignValue = 'start';
+            let alignValue = 'start';
             switch (index) {
               case 0:
                   alignValue = 'start';
