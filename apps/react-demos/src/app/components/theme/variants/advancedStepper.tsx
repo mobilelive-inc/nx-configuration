@@ -8,7 +8,6 @@ const padding = '1rem 2rem';
 const getBorder = color => {
   return `2px solid ${color}`;
 };
-
 export const unVisitedStep = {
   primary: {
     borderColor: colors.primary,
