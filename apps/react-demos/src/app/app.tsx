@@ -12,12 +12,15 @@ import {
   OutlineSocialButtons
 } from './components/buttoncontiner';
 import { Text } from './components/typography'
-import {Box } from 'rebass/styled-components';
 import Container from './components/container';
 import { MainContainer } from './components/container';
-import theme, { colors }  from './components/theme/defaultTheme';
+import theme, { colors } from './components/theme/defaultTheme';
+import AdvancedStepper from './components/advanced-stepper';
+import { Flex, Box } from 'rebass/styled-components';
+import Button from './components/button';
 
 export function App() {
+   const [count, setCount] = React.useState(1);
   return (
    
       <ThemeProvider theme={theme}>
@@ -82,6 +85,39 @@ export function App() {
         <Text fontSize="fontSizeH2">Outline Social Buttons</Text>
         <Container>
           <OutlineSocialButtons />
+        </Container>
+        <Text fontSize="fontSizeH2">Advanced Stepper</Text>
+        <Container>
+          <AdvancedStepper
+            variant="primary"
+            value={count}
+            total={3}
+            hideName={true}
+            dataList={['Option 1', 'Option 2', 'Option 3']}
+          />
+          <Flex mt={20}>
+            <Button
+              disabled={count === 1}
+              variant={count === 1 ? 'disabled' : 'primary'}
+              onClick={() => {
+                if (count > 1) {
+                  setCount(count - 1);
+                }
+              }}>
+              Previous
+            </Button>
+            <Button
+              disabled={count === 3}
+              variant={count === 3 ? 'disabled' : 'secondary'}
+              onClick={() => {
+                if (count < 3) {
+                  setCount(count + 1);
+                }
+              }}>
+              Next
+            </Button>
+          </Flex>
+
         </Container>
         </MainContainer>
         </ThemeProvider>
