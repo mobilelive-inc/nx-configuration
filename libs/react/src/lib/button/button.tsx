@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
@@ -21,7 +20,6 @@ import {
 const getDerivedStyles = props => {
   const { theme, borderType, withIcon, } = props;
   // default styles for button
-
   const styles = {
     boxSizing: 'border-box',
     cursor: 'pointer',
@@ -52,13 +50,16 @@ const BaseButton = styled('button')(
     variant({ scale: 'buttons' })
   )
 );
-
-const Button = props => {
+/* eslint-disable-next-line */
+export interface ButtonProps {
+}
+export function Button(props: ButtonProps) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <BaseButton {...props} />
+     // eslint-disable-next-line react/jsx-props-no-spreading
+     <BaseButton {...props} />
   );
 };
+
 
 Button.defaultProps = {
   disabled: false,
@@ -173,5 +174,7 @@ Button.propTypes = {
     PropTypes.arrayOf(PropTypes.number)
   ])
 };
+
+
 
 export default Button;
