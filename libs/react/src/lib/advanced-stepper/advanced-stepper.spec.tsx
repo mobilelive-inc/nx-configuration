@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-
 import AdvancedStepper from './advanced-stepper';
 
 describe('AdvancedStepper', () => {

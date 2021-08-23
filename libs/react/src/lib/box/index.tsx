@@ -8,10 +8,6 @@ import {
   layout,
 } from 'styled-system';
 
-/**
- * Rebass Box with additional support
- */
-
 const Box = styled('div')(
   {
     boxSizing: 'border-box'

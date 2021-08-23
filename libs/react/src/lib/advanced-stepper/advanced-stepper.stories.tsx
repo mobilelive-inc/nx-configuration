@@ -15,10 +15,8 @@ export default {
   title: 'AdvancedStepper'
 } as Meta ;
 
-
 export const Example = () => {
     const [count, setCount] = useState(1);
-
     return (
       <ThemeProvider theme={advancedStepperTheme}>
         <GlobalStyle />
@@ -54,7 +52,6 @@ export const Example = () => {
 
   export const StepperThemes = () => {
     const [count, setCount] = useState(1);
-
     return (
       <ThemeProvider theme={advancedStepperTheme}>
         <GlobalStyle />
