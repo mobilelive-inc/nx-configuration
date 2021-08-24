@@ -444,6 +444,7 @@ input[type='search'] {
   //select styling
   &__select {
     select {
+      cursor: pointer;
       -moz-appearance: none;
       -webkit-appearance: none;
       &.formControl {
@@ -774,8 +775,8 @@ label {
     &__bg {
       input {
         &:checked ~ .checkboxFake {
-          background-color: var(--primary);
-          border-color: var(--primary);
+          background-color: var(--form-check-box-filled-bg-color);
+          border-color: var(--form-check-box-filled-border-color);
 
           &:after {
             border: solid var(--gray-lighter);
@@ -796,6 +797,24 @@ label {
       }
 
       ///if error class comes with bg
+    }
+  }
+
+  &.fds-checkbox-minus-checked {
+    input {
+      &:checked ~ .checkboxFake {
+        &:after {
+          border: 0;
+          top: var(--form-parent-check-box-top);
+          left: var(--form-parent-check-box-left);
+          width: var(--form-parent-check-box-width);
+          height: var(--form-parent-check-box-height);
+          border-top-width: var(--form-parent-check-box-border-width-top);
+          border-top-style: var(--form-parent-check-box-border-style);
+          border-top-color: var(--form-parent-check-box-border-color);
+          transform: rotate(0) scale(1);
+        }
+      }
     }
   }
 
@@ -1298,9 +1317,11 @@ label {
   }
 }
 .fds-autocomplete-multiple {
+  border-width: var(--warraper-auto-completep-border-width);
   top: var(--warraper-auto-completep-top);
   left: var(--warraper-auto-completep-left);
   width: var(--warraper-auto-completep-width);
+  border-style: var(--warraper-auto-completep-border-style);
   z-index: var(--warraper-auto-completep-z-index);
   padding: var(--warraper-auto-completep-padding);
   position: var(--warraper-auto-completep-position);
@@ -1319,11 +1340,26 @@ label {
     border-color: var(--auto-complete-search-border-color);
     border-radius: var(--auto-complete-search-border-radius);
   }
+  .fds-autocomplete-panel {
+    width: calc(100% - 2rem);
+    left: 1rem !important;
+  }
+  .fds-multiple-tags-below {
+    .fds-autocomplete-panel {
+      top: 56px !important;
+    }
+  }
+
+  .fds-multiple-tags-besides {
+    .fds-autocomplete-panel {
+      top: calc(100% - 16px) !important;
+    }
+  }
 }
 .fds-autocomplete-panel {
   overflow: auto;
   position: absolute;
-  left: -1px !important;
+  left: 0 !important;
   width: var(--dropdown-auto-complete-width);
   margin: var(--dropdown-auto-complete-margin);
   padding: var(--dropdown-auto-complete-padding);
@@ -1344,7 +1380,9 @@ label {
     margin: var(--dropdown-auto-complete-item-margin);
     padding: var(--dropdown-auto-complete-item-padding);
     list-style-type: var(--dropdown-auto-complete-item-style-type);
+    &:hover,
     &.fds-highlight {
+      cursor: pointer;
       font-weight: var(--font-weight-normal);
       color: var(--dropdown-auto-complete-item-text-color);
       background-color: var(--dropdown-auto-complete-item-bg-color);
