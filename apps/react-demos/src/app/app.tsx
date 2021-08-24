@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { 
+import {
   PrimaryButton,
   OutlineButtons,
   ClearButton,
@@ -18,11 +18,17 @@ import theme, { colors } from './components/theme/defaultTheme';
 import AdvancedStepper from './components/advanced-stepper';
 import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
+import {
+  Accordion,
+  AccordionCollapse,
+  AccordionHeader,
+  AccordionContainer
+} from './components/accordion';
 
 export function App() {
    const [count, setCount] = React.useState(1);
   return (
-   
+
       <ThemeProvider theme={theme}>
       <Box
         p={25}
@@ -117,7 +123,35 @@ export function App() {
               Next
             </Button>
           </Flex>
-
+        </Container>
+        <Text fontSize="fontSizeH2">Accordion</Text>
+        <Container>
+        <AccordionContainer hasMultiple={false}>
+            <Accordion
+              onExpand={() => console.log('Opened')}
+              onCollapse={() => console.log('Closed')}>
+              <AccordionHeader title={'Heading'}></AccordionHeader>
+              <AccordionCollapse>
+                <Text>This is the for testing purpose</Text>
+              </AccordionCollapse>
+            </Accordion>
+            <Accordion
+              onExpand={() => console.log('Opened')}
+              onCollapse={() => console.log('Closed')}>
+              <AccordionHeader title={'Heading'}></AccordionHeader>
+              <AccordionCollapse>
+                <Text>This is the for testing purpose</Text>
+              </AccordionCollapse>
+            </Accordion>
+            <Accordion
+              onExpand={() => console.log('Opened')}
+              onCollapse={() => console.log('Closed')}>
+              <AccordionHeader title={'Heading'}></AccordionHeader>
+              <AccordionCollapse>
+                <Text>This is the for testing purpose</Text>
+              </AccordionCollapse>
+            </Accordion>
+          </AccordionContainer>
         </Container>
         </MainContainer>
         </ThemeProvider>
