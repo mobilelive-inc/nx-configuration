@@ -8,22 +8,9 @@ import GlobalStyle from '../theme/globalStyles';
 import accordionTheme from '../theme/styles/accordion';
 import { ThemeProvider } from 'styled-components';
 
-// /* eslint-disable-next-line */
-// export interface AccordionProps {
-// }
-// export function Accordion(props: AccordionProps) {
-//   return (
-//     <div>
-//       <h1>Welcome to accordion!</h1>
-//     </div>
-//   );
-// };
-// export default Accordion;
-
 const AccordionContainer = ({ children, hasMultiple }) => {
   const [openedIndex, setOpenedIndex] = useState(0);
   const [childrenWithProps, setChildrenWithProps] = useState(children);
-
   const updateIndex = index => {
     setOpenedIndex(index);
   };
@@ -34,7 +21,7 @@ const AccordionContainer = ({ children, hasMultiple }) => {
         React.Children.map(children, child => {
           // checking isValidElement is the safe way and avoids a typescript error too
           if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement<any>, {
               openedIndex: openedIndex,
               index: children.indexOf(child),
               updateIndex: updateIndex
@@ -75,7 +62,7 @@ const Accordion = ({
       React.Children.map(children, child => {
         // checking isValidElement is the safe way and avoids a typescript error too
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement<any>, {
             isVisible: isVisible,
             isOpen: isOpen,
             setIsOpen: setIsOpen,

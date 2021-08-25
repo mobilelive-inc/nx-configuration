@@ -22,7 +22,7 @@ const AccordionContainer = ({ children, hasMultiple }) => {
         React.Children.map(children, child => {
           // checking isValidElement is the safe way and avoids a typescript error too
           if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement<any>, {
               openedIndex: openedIndex,
               index: children.indexOf(child),
               updateIndex: updateIndex
@@ -63,7 +63,7 @@ const Accordion = ({
       React.Children.map(children, child => {
         // checking isValidElement is the safe way and avoids a typescript error too
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement<any>, {
             isVisible: isVisible,
             isOpen: isOpen,
             setIsOpen: setIsOpen,
