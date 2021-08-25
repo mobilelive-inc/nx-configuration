@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { 
+import {
   PrimaryButton,
   OutlineButtons,
   ClearButton,
@@ -18,11 +18,12 @@ import theme, { colors } from './components/theme/defaultTheme';
 import AdvancedStepper from './components/advanced-stepper';
 import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
+import { OtherSpecs, Typography } from './components/otherspecs';
 
 export function App() {
    const [count, setCount] = React.useState(1);
   return (
-   
+
       <ThemeProvider theme={theme}>
       <Box
         p={25}
@@ -117,7 +118,14 @@ export function App() {
               Next
             </Button>
           </Flex>
-
+        </Container>
+        <Text fontSize="fontSizeH2">Typography</Text>
+        <Container>
+          <Typography />
+        </Container>
+        <Text fontSize="fontSizeH2">OtherSpecs</Text>
+        <Container>
+          <OtherSpecs />
         </Container>
         </MainContainer>
         </ThemeProvider>
