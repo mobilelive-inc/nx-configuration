@@ -23,7 +23,6 @@ import { OtherSpecs, Typography } from './components/otherspecs';
 export function App() {
    const [count, setCount] = React.useState(1);
   return (
-
       <ThemeProvider theme={theme}>
       <Box
         p={25}
