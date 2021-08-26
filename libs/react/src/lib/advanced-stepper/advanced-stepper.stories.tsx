@@ -14,15 +14,14 @@ export default {
   component: AdvancedStepper,
   title: 'AdvancedStepper'
 } as Meta ;
-
-export const Example = () => {
-    const [count, setCount] = useState(1);
+export const Example= ():JSX.Element  => {
+    const [count, setCount] = useState<number>(1);
     return (
       <ThemeProvider theme={advancedStepperTheme}>
         <GlobalStyle />
         <Text fontSize="fontSizeH2">Advanced Stepper</Text>
         <Container>
-          <AdvancedStepper value={count} total={5} />
+          <AdvancedStepper value={count} total={5} variant='primary'/>
           <Flex mt={20}>
             <Button
               disabled={count === 1}
@@ -51,7 +50,7 @@ export const Example = () => {
   };
 
   export const StepperThemes = () => {
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState<number>(1);
     return (
       <ThemeProvider theme={advancedStepperTheme}>
         <GlobalStyle />
