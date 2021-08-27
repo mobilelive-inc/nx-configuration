@@ -15,17 +15,25 @@ import {
 import { Text } from './../typography';
 import Icon from './../icon/icon';
 
-const AdvancedStepper = ({
-  total = 3,
-  value = 1,
-  hideName = true,
-  dataList = [],
-  ...props
-}) => {
-  const [currentStep, setCurrentStep] = useState(value);
-  const [steps, setSteps] = useState([]);
-  const [visitedCount, setVisitedCount] = useState(1);
-  const [status, setStatus] = useState('');
+
+interface advstepper {
+  currentStep:number
+  steps:any
+  visitedCount:number
+  status:number | string
+}
+interface advstepperprops {
+  total:number
+  value:number
+  hideName?:boolean
+  dataList?:any
+  variant?:string
+}
+const AdvancedStepper:React.FC<advstepperprops> = ({total,value,hideName,dataList,variant, ...props}) => {
+  const [currentStep, setCurrentStep] = useState<advstepper['currentStep']>(value);
+  const [steps, setSteps] = useState<advstepper['steps']>([]);
+  const [visitedCount, setVisitedCount] = useState<advstepper['visitedCount']>(1);
+  const [status, setStatus] = useState<advstepper['status']>('');
 
   useEffect(() => {
     // setProgressWidth((value / total) * 100);
@@ -67,8 +75,8 @@ const AdvancedStepper = ({
   return (
     <ThemeProvider theme={advancedStepper}>
       <GlobalStyle />
-      <Box width="100%">
-        <AnnouncementText aria-live="assertive" aria-label={status} />
+      <Box>
+        <AnnouncementText aria-live="assertive" />
         <StepperContainer>
           {steps.map((item, index) => {
             let alignValue = 'start';
@@ -83,9 +91,9 @@ const AdvancedStepper = ({
                 alignValue = 'center';
             }
             return (
-              <Box>
+              <Box key={index}>
                 {item.isCurrentStep === true ? (
-                  <StepItemContainer alignment={alignValue}>
+                  <StepItemContainer>
                     <VistedStep
                       {...props}
                       aria-label={
@@ -107,7 +115,7 @@ const AdvancedStepper = ({
                 ) : (
                   <Box>
                     {item.isVisited === true ? (
-                      <StepItemContainer alignment={alignValue}>
+                      <StepItemContainer>
                         <VistedStep
                           {...props}
                           aria-label={
@@ -128,7 +136,7 @@ const AdvancedStepper = ({
                         )}
                       </StepItemContainer>
                     ) : (
-                      <StepItemContainer alignment={alignValue}>
+                      <StepItemContainer>
                         <UnVisitedStep
                           {...props}
                           aria-label={

@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { ThemeProvider } from 'styled-components';
-import { 
+import {
   PrimaryButton,
   OutlineButtons,
   ClearButton,
@@ -20,9 +20,9 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 
 export function App() {
-   const [count, setCount] = React.useState(1);
+   const [count, setCount] = useState<number>(1);
   return (
-   
+
       <ThemeProvider theme={theme}>
       <Box
         p={25}

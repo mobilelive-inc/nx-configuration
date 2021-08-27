@@ -7,7 +7,7 @@ export const StepperContainer = styled(`div`)(
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    position: 'relative' 
+    position: 'relative'
   })
 );
 
@@ -31,7 +31,6 @@ export const UnVisitedStep = styled(`div`)(
       backgroundColor: 'stepperThemeColor'
     }
   }),
-  props => props,
   compose(border, layout, space, color, variant({ scale: 'unVisitedStep' }))
 );
 
@@ -51,7 +50,7 @@ export const VistedStep = styled(`div`)(
       color: 'white'
     }
   }),
-  props => props,
+
   compose(border, layout, space, color, variant({ scale: 'visitedStep' }))
 );
 
@@ -73,14 +72,11 @@ export const ProgressBar = styled(`div`)(
   compose(border, layout, space, color, variant({ scale: 'progressBar' }))
 );
 
-export const StepItemContainer = styled(`div`)(
+export const StepItemContainer = styled.div (
   css({
     display: 'flex',
     flexDirection: 'column'
   }),
-  {
-    alignItems: props => props.alignment || 'start'
-  }
 );
 
 export const AnnouncementText = styled(`span`)(
