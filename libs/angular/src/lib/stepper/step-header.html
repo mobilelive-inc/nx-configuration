@@ -10,10 +10,10 @@
     [ngClass]="selected ? 'btn--primary' : 'btn--primary--outline'"
     [ngSwitch]="!!(iconOverrides && iconOverrides[state])"
   >
-    <ng-container
+    <!-- <ng-container
       *ngSwitchCase="true"
       [ngTemplateOutlet]="iconOverrides[state]"
-    ></ng-container>
+    ></ng-container> -->
   <!--      [ngTemplateOutletContext]="_getIconContext()"-->
     <ng-container *ngSwitchDefault [ngSwitch]="state">
       <span *ngSwitchCase="'number'">{{_getDefaultTextForState(state)}}</span>

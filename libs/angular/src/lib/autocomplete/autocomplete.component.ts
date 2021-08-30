@@ -193,6 +193,8 @@ export class AutocompleteComponent
 
   @Input() showTransitionOptions = '.12s cubic-bezier(0, 0, 0.2, 1)';
 
+  @Input() showTransitionOptions = '.12s cubic-bezier(0, 0, 0.2, 1)';
+
   @Input() hideTransitionOptions = '.1s linear';
 
   @Input() autofocus: boolean;
