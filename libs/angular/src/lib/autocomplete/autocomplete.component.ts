@@ -12,33 +12,24 @@ import {
   Input,
   IterableDiffers,
   OnDestroy,
-  OnInit,
-  Optional,
   Output,
   QueryList,
   Renderer2,
-  Self,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import { DomHandler, ObjectUtils } from './autocomplete.helpers';
+import { DomHandler} from "../shared/utils/domhandler";
+import { ObjectUtils} from "../shared/utils/objectutil";
 import { trigger, style, transition, animate } from '@angular/animations';
-import { Template } from '../shared/template.directive';
+import { Template } from '../shared/shared';
 import { FdsFormFieldControl } from '../form-field/form-field-control';
 
 let nextUniqueId = 0;
-
-export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => AutocompleteComponent),
-  multi: true
-};
 
 @Component({
   selector: 'fds-autocomplete',
@@ -72,14 +63,14 @@ export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
   styleUrls: ['./autocomplete.component.scss']
 })
 export class AutocompleteComponent
-  implements
-    AfterViewChecked,
-    AfterContentInit,
-    OnDestroy,
-    ControlValueAccessor {
-  @Input() minLength: number = 1;
+    implements
+        AfterViewChecked,
+        AfterContentInit,
+        OnDestroy,
+        ControlValueAccessor {
+  @Input() minLength = 1;
 
-  @Input() delay: number = 300;
+  @Input() delay = 300;
 
   @Input() style: any;
 
@@ -87,13 +78,15 @@ export class AutocompleteComponent
 
   @Input() styleClass: string;
 
+  @Input() showEmptyMessageClasses: string;
+
   @Input() btnText = 'Select a Person or Group';
 
-  @Input() withinInput: boolean = true;
+  @Input() withinInput = true;
 
   _btnDropdown = false;
 
-  @Input() disableBtnDropdown: boolean = false;
+  @Input() disableBtnDropdown = false;
 
   @Input() get btnDropdown(): boolean {
     return this._btnDropdown;
@@ -144,21 +137,21 @@ export class AutocompleteComponent
 
   @Input() forceSelection: boolean;
 
-  @Input() type: string = 'text';
+  @Input() type = 'text';
 
-  @Input() autoZIndex: boolean = true;
+  @Input() autoZIndex = true;
 
-  @Input() baseZIndex: number = 0;
+  @Input() baseZIndex = 0;
 
   @Input() ariaLabel: string;
 
   @Input() ariaLabelledBy: string;
 
-  @Input() dropdownIcon: string = 'icon-arrow-down';
+  @Input() dropdownIcon = 'icon-arrow-down';
 
-  @Input() unique: boolean = true;
+  @Input() unique = true;
 
-  @Input() completeOnFocus: boolean = false;
+  @Input() completeOnFocus = false;
 
   @Output() completeMethod: EventEmitter<any> = new EventEmitter();
 
@@ -182,11 +175,11 @@ export class AutocompleteComponent
 
   @Input() field: string;
 
-  @Input() scrollHeight: string = '200px';
+  @Input() scrollHeight = '200px';
 
   @Input() dropdown: boolean;
 
-  @Input() dropdownMode: string = 'blank';
+  @Input() dropdownMode = 'blank';
 
   @Input() multiple: boolean;
 
@@ -196,13 +189,15 @@ export class AutocompleteComponent
 
   @Input() emptyMessage: string;
 
-  @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
+  @Input() showEmptyMessage: boolean;
 
-  @Input() hideTransitionOptions: string = '.1s linear';
+  @Input() showTransitionOptions = '.12s cubic-bezier(0, 0, 0.2, 1)';
+
+  @Input() hideTransitionOptions = '.1s linear';
 
   @Input() autofocus: boolean;
 
-  @Input() autocomplete: string = 'off';
+  @Input() autocomplete = 'off';
 
   @ViewChild('in') inputEL: ElementRef;
 
@@ -218,6 +213,8 @@ export class AutocompleteComponent
 
   itemTemplate: TemplateRef<any>;
 
+  emptyTemplate: TemplateRef<any>;
+
   selectedItemTemplate: TemplateRef<any>;
 
   errorState: boolean;
@@ -228,12 +225,12 @@ export class AutocompleteComponent
 
   value: any;
   timeout: any;
-  overlayVisible: boolean = false;
+  overlayVisible = false;
   documentClickListener: any;
   suggestionsUpdated: boolean;
   highlightOption: any;
   highlightOptionChanged: boolean;
-  focus: boolean = false;
+  focus = false;
   filled: boolean;
   inputClick: boolean;
   inputKeyDown: boolean;
@@ -247,12 +244,12 @@ export class AutocompleteComponent
   itemClicked: boolean;
 
   constructor(
-    /** @docs-private */
-    private _injector: Injector,
-    public el: ElementRef,
-    public renderer: Renderer2,
-    public cd: ChangeDetectorRef,
-    public differs: IterableDiffers
+      /** @docs-private */
+      private _injector: Injector,
+      public el: ElementRef,
+      public renderer: Renderer2,
+      public cd: ChangeDetectorRef,
+      public differs: IterableDiffers
   ) {
     this.differ = differs.find([]).create(null);
     this.listId = ++nextUniqueId + '_list';
@@ -295,9 +292,9 @@ export class AutocompleteComponent
     if (this.highlightOptionChanged) {
       setTimeout(() => {
         if (this.overlay) {
-          let listItem = DomHandler.findSingle(
-            this.overlay,
-            'li.fds-highlight'
+          const listItem = DomHandler.findSingle(
+              this.overlay,
+              'li.fds-highlight'
           );
           if (listItem) {
             DomHandler.scrollInView(this.overlay, listItem);
@@ -322,7 +319,7 @@ export class AutocompleteComponent
       } else {
         this.noResults = true;
 
-        if (this.emptyMessage) {
+        if (this.showEmptyMessage) {
           this.show();
           this.suggestionsUpdated = true;
         } else {
@@ -343,6 +340,10 @@ export class AutocompleteComponent
 
         case 'selectedItem':
           this.selectedItemTemplate = item.template;
+          break;
+
+        case 'empty':
+          this.emptyTemplate = item.template;
           break;
 
         default:
@@ -381,7 +382,7 @@ export class AutocompleteComponent
       clearTimeout(this.timeout);
     }
 
-    let value = (<HTMLInputElement>event.target).value;
+    const value = (<HTMLInputElement>event.target).value;
     if (!this.multiple && !this.forceSelection) {
       this.onModelChange(value);
     }
@@ -439,8 +440,8 @@ export class AutocompleteComponent
       }
     } else {
       this.inputEL.nativeElement.value = this.field
-        ? ObjectUtils.resolveFieldData(option, this.field) || ''
-        : option;
+          ? ObjectUtils.resolveFieldData(option, this.field) || ''
+          : option;
       this.value = option;
       this.onModelChange(this.value);
     }
@@ -456,10 +457,10 @@ export class AutocompleteComponent
 
   show() {
     if (this.multiInputEL || this.inputEL) {
-      let hasFocus = this.multiple
-        ? this.multiInputEL.nativeElement.ownerDocument.activeElement ==
+      const hasFocus = this.multiple
+          ? this.multiInputEL.nativeElement.ownerDocument.activeElement ==
           this.multiInputEL.nativeElement
-        : this.inputEL.nativeElement.ownerDocument.activeElement ==
+          : this.inputEL.nativeElement.ownerDocument.activeElement ==
           this.inputEL.nativeElement;
 
       if (!this.overlayVisible && hasFocus) {
@@ -475,7 +476,7 @@ export class AutocompleteComponent
         this.appendOverlay();
         if (this.autoZIndex) {
           this.overlay.style.zIndex = String(
-            this.baseZIndex + ++DomHandler.zindex
+              this.baseZIndex + ++DomHandler.zindex
           );
         }
         this.alignOverlay();
@@ -503,7 +504,7 @@ export class AutocompleteComponent
 
       if (!this.overlay.style.minWidth) {
         this.overlay.style.minWidth =
-          DomHandler.getWidth(this.el.nativeElement.children[0]) + 'px';
+            DomHandler.getWidth(this.el.nativeElement.children[0]) + 'px';
       }
     }
   }
@@ -521,17 +522,17 @@ export class AutocompleteComponent
   alignOverlay() {
     if (this.appendTo)
       DomHandler.absolutePosition(
-        this.overlay,
-        this.multiple
-          ? this.multiContainerEL.nativeElement
-          : this.inputEL.nativeElement
+          this.overlay,
+          this.multiple
+              ? this.multiContainerEL.nativeElement
+              : this.inputEL.nativeElement
       );
     else
       DomHandler.relativePosition(
-        this.overlay,
-        this.multiple
-          ? this.multiContainerEL.nativeElement
-          : this.inputEL.nativeElement
+          this.overlay,
+          this.multiple
+              ? this.multiContainerEL.nativeElement
+              : this.inputEL.nativeElement
       );
   }
 
@@ -543,9 +544,9 @@ export class AutocompleteComponent
   handleDropdownClick(event) {
     if (!this.overlayVisible) {
       this.focusInput();
-      let queryValue = this.multiple
-        ? this.multiInputEL.nativeElement.value
-        : this.inputEL.nativeElement.value;
+      const queryValue = this.multiple
+          ? this.multiInputEL.nativeElement.value
+          : this.inputEL.nativeElement.value;
 
       if (this.dropdownMode === 'blank') this.search(event, '');
       else if (this.dropdownMode === 'current') this.search(event, queryValue);
@@ -564,9 +565,13 @@ export class AutocompleteComponent
     else this.inputEL.nativeElement.focus();
   }
 
+  get emptyMessageLabel(): string {
+    return this.emptyMessage;
+  }
+
   removeItem(item: any) {
-    let itemIndex = DomHandler.index(item);
-    let removedValue = this.value[itemIndex];
+    const itemIndex = DomHandler.index(item);
+    const removedValue = this.value[itemIndex];
     this.value = this.value.filter((val, i) => i != itemIndex);
     this.onModelChange(this.value);
     this.updateFilledState();
@@ -575,13 +580,13 @@ export class AutocompleteComponent
 
   onKeydown(event) {
     if (this.overlayVisible) {
-      let highlightItemIndex = this.findOptionIndex(this.highlightOption);
+      const highlightItemIndex = this.findOptionIndex(this.highlightOption);
 
       switch (event.which) {
-        //down
+          //down
         case 40:
           if (highlightItemIndex != -1) {
-            var nextItemIndex = highlightItemIndex + 1;
+            const nextItemIndex = highlightItemIndex + 1;
             if (nextItemIndex != this.suggestions.length) {
               this.highlightOption = this.suggestions[nextItemIndex];
               this.highlightOptionChanged = true;
@@ -593,10 +598,10 @@ export class AutocompleteComponent
           event.preventDefault();
           break;
 
-        //up
+          //up
         case 38:
           if (highlightItemIndex > 0) {
-            let prevItemIndex = highlightItemIndex - 1;
+            const prevItemIndex = highlightItemIndex - 1;
             this.highlightOption = this.suggestions[prevItemIndex];
             this.highlightOptionChanged = true;
           }
@@ -604,7 +609,7 @@ export class AutocompleteComponent
           event.preventDefault();
           break;
 
-        //enter
+          //enter
         case 13:
           if (this.highlightOption) {
             this.selectItem(this.highlightOption);
@@ -613,13 +618,13 @@ export class AutocompleteComponent
           event.preventDefault();
           break;
 
-        //escape
+          //escape
         case 27:
           this.hide();
           event.preventDefault();
           break;
 
-        //tab
+          //tab
         case 9:
           if (this.highlightOption) {
             this.selectItem(this.highlightOption);
@@ -635,12 +640,12 @@ export class AutocompleteComponent
 
     if (this.multiple && this.withinInput) {
       switch (event.which) {
-        //backspace
+          //backspace
         case 8:
           if (
-            this.value &&
-            this.value.length &&
-            !this.multiInputEL.nativeElement.value
+              this.value &&
+              this.value.length &&
+              !this.multiInputEL.nativeElement.value
           ) {
             this.value = [...this.value];
             const removedValue = this.value.pop();
@@ -661,9 +666,9 @@ export class AutocompleteComponent
 
   onInputFocus(event) {
     if (!this.itemClicked && this.completeOnFocus) {
-      let queryValue = this.multiple
-        ? this.multiInputEL.nativeElement.value
-        : this.inputEL.nativeElement.value;
+      const queryValue = this.multiple
+          ? this.multiInputEL.nativeElement.value
+          : this.inputEL.nativeElement.value;
       this.search(event, queryValue);
     }
 
@@ -681,13 +686,13 @@ export class AutocompleteComponent
   onInputChange(event) {
     if (this.forceSelection) {
       let valid = false;
-      let inputValue = event.target.value.trim();
+      const inputValue = event.target.value.trim();
 
       if (this.suggestions) {
-        for (let suggestion of this.suggestions) {
-          let itemValue = this.field
-            ? ObjectUtils.resolveFieldData(suggestion, this.field)
-            : suggestion;
+        for (const suggestion of this.suggestions) {
+          const itemValue = this.field
+              ? ObjectUtils.resolveFieldData(suggestion, this.field)
+              : suggestion;
           if (itemValue && inputValue === itemValue.trim()) {
             valid = true;
             this.forceSelectionUpdateModelTimeout = setTimeout(() => {
@@ -719,7 +724,7 @@ export class AutocompleteComponent
   }
 
   isSelected(val: any): boolean {
-    let selected: boolean = false;
+    let selected = false;
     if (this.value && this.value.length) {
       for (let i = 0; i < this.value.length; i++) {
         if (ObjectUtils.equals(this.value[i], val, this.dataKey)) {
@@ -732,7 +737,7 @@ export class AutocompleteComponent
   }
 
   findOptionIndex(option): number {
-    let index: number = -1;
+    let index = -1;
     if (this.suggestions) {
       for (let i = 0; i < this.suggestions.length; i++) {
         if (ObjectUtils.equals(option, this.suggestions[i])) {
@@ -748,24 +753,24 @@ export class AutocompleteComponent
   updateFilledState() {
     if (this.multiple)
       this.filled =
-        (this.value && this.value.length) ||
-        (this.multiInputEL &&
-          this.multiInputEL.nativeElement &&
-          this.multiInputEL.nativeElement.value != '');
+          (this.value && this.value.length) ||
+          (this.multiInputEL &&
+              this.multiInputEL.nativeElement &&
+              this.multiInputEL.nativeElement.value != '');
     else
       this.filled =
-        (this.inputFieldValue && this.inputFieldValue != '') ||
-        (this.inputEL &&
-          this.inputEL.nativeElement &&
-          this.inputEL.nativeElement.value != '');
+          (this.inputFieldValue && this.inputFieldValue != '') ||
+          (this.inputEL &&
+              this.inputEL.nativeElement &&
+              this.inputEL.nativeElement.value != '');
   }
 
   updateInputField() {
-    let formattedValue = this.value
-      ? this.field
-        ? ObjectUtils.resolveFieldData(this.value, this.field) || ''
-        : this.value
-      : '';
+    const formattedValue = this.value
+        ? this.field
+            ? ObjectUtils.resolveFieldData(this.value, this.field) || ''
+            : this.value
+        : '';
     this.inputFieldValue = formattedValue;
 
     if (this.inputEL && this.inputEL.nativeElement) {
@@ -778,34 +783,34 @@ export class AutocompleteComponent
   bindDocumentClickListener() {
     if (!this.documentClickListener) {
       const documentTarget: any = this.el
-        ? this.el.nativeElement.ownerDocument
-        : 'document';
+          ? this.el.nativeElement.ownerDocument
+          : 'document';
 
       this.documentClickListener = this.renderer.listen(
-        documentTarget,
-        'click',
-        event => {
-          if (event.which === 3) {
-            return;
-          }
+          documentTarget,
+          'click',
+          event => {
+            if (event.which === 3) {
+              return;
+            }
 
-          if (!this.inputClick && !this.isDropdownClick(event)) {
-            this.hide();
-          }
+            if (!this.inputClick && !this.isDropdownClick(event)) {
+              this.hide();
+            }
 
-          this.inputClick = false;
-          this.cd.markForCheck();
-        }
+            this.inputClick = false;
+            this.cd.markForCheck();
+          }
       );
     }
   }
 
   isDropdownClick(event) {
     if (this.dropdown) {
-      let target = event.target;
+      const target = event.target;
       return (
-        target === this.dropdownButton.nativeElement ||
-        target.parentNode === this.dropdownButton.nativeElement
+          target === this.dropdownButton.nativeElement ||
+          target.parentNode === this.dropdownButton.nativeElement
       );
     } else {
       return false;

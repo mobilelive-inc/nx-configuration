@@ -4,13 +4,13 @@ import { Directive, Input, TemplateRef, Component } from '@angular/core';
   selector: 'fds-header',
   template: '<ng-content></ng-content>'
 })
-export class Header {}
+export class HeaderComponent {}
 
 @Component({
   selector: 'fds-footer',
   template: '<ng-content></ng-content>'
 })
-export class Footer {}
+export class FooterComponent {}
 
 @Directive({
   selector: '[fdsTemplate]'

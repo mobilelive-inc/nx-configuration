@@ -74,6 +74,7 @@ import { AdvanceStepperComponent} from './examples/stepper/advance-stepper/advan
 // Tabs
 import { FullFeaturedComponent} from './examples/tabs/full-featured/full-featured.component';
 
+
 // Table
 import { BorderedTableComponent} from './examples/table/bordered-table/bordered-table.component';
 import { DarkTableHeadComponent} from './examples/table/dark-table-head/dark-table-head.component';

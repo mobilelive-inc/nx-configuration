@@ -5,16 +5,16 @@ import {
   ContentChildren,
   TemplateRef,
   QueryList,
-  ElementRef
+  AfterContentInit
 } from '@angular/core';
-import { Template, Header, Footer } from '../shared/template.directive';
+import { Template, HeaderComponent, FooterComponent } from '../shared/shared';
 
 @Component({
   selector: 'fds-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class CardComponent  implements AfterContentInit{
   @Input() style: any;
 
   @Input() cardClass: string;
@@ -25,9 +25,9 @@ export class CardComponent {
 
   @Input() footerClass: string;
 
-  @ContentChild(Header) headerFacet;
+  @ContentChild(HeaderComponent) headerFacet;
 
-  @ContentChild(Footer) footerFacet;
+  @ContentChild(FooterComponent) footerFacet;
 
   @ContentChildren(Template) templates: QueryList<any>;
 
@@ -37,7 +37,6 @@ export class CardComponent {
 
   footerTemplate: TemplateRef<any>;
 
-  constructor(private el: ElementRef) {}
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
