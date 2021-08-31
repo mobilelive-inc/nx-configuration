@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   PrimaryButton,
@@ -21,7 +21,7 @@ import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 
 export function App() {
-   const [count, setCount] = React.useState(1);
+   const [count, setCount] = useState<number>(1);
   return (
       <ThemeProvider theme={theme}>
       <Box
