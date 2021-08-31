@@ -4,6 +4,6 @@ module.exports = {
     '<rootDir>/apps/angular-demos',
     '<rootDir>/libs/react',
     '<rootDir>/libs/angular',
-    '<rootDir>/libs/static',
+    '<rootDir>/libs/static'
   ],
 };

@@ -1,0 +1,35 @@
+//Card styles
+
+@import '../theme/card';
+
+.fds-card {
+  border-radius: var(--card-border-radius);
+  border-width: var(--card-border-width);
+  border-style: solid;
+  border-color: var(--card-border-color);
+  figure {
+    img {
+      height: auto;
+      display: block;
+      max-width: 100%;
+    }
+  }
+}
+
+.fds-card-head {
+  width: 100%;
+  span {
+    font-size: 4rem;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--card-color);
+  }
+}
+.fds-card-footer {
+  justify-content: flex-end;
+  margin-top: auto;
+}
