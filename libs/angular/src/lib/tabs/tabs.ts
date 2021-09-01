@@ -22,18 +22,19 @@ import {
   ViewChildren,
   AfterViewInit
 } from '@angular/core';
-import { DomHandler, BlockableUI } from '../shared/helpers';
-import { Template } from '../shared/template.directive';
+import { DomHandler} from "../shared/utils/domhandler";
+import { BlockableUI} from "../shared/utils/blockableui";
+import { Template } from '../shared/shared';
 import {
   FocusTrapFactory,
   FocusMonitor,
   ListKeyManager
 } from '@angular/cdk/a11y';
 
-let idx: number = 0;
+let idx = 0;
 
 @Component({
-  selector: 'fds-tabPanel',
+  selector: 'fds-tab-panel',
   template: `
     <div
       [attr.id]="id"
@@ -58,7 +59,7 @@ export class TabPanel implements AfterContentInit, OnDestroy {
 
   @Input() headerStyleClass: string;
 
-  @Input() cache: boolean = true;
+  @Input() cache = true;
 
   @ContentChildren(Template) templates: QueryList<any>;
 
@@ -78,7 +79,7 @@ export class TabPanel implements AfterContentInit, OnDestroy {
 
   loaded: boolean;
 
-  id: string = `fds--tabpanel--${idx++}`;
+  id = `fds--tabpanel--${idx++}`;
 
   contentTemplate: TemplateRef<any>;
 
@@ -168,7 +169,7 @@ export class TabPanel implements AfterContentInit, OnDestroy {
 }
 
 @Component({
-  selector: 'fds-tabView',
+  selector: 'fds-tab-view',
   template: `
     <div
       [ngClass]="'fds--tabview fds--component'"
@@ -196,7 +197,6 @@ export class TabPanel implements AfterContentInit, OnDestroy {
               [attr.id]="tab.id + '-label'"
               [attr.aria-selected]="tab.selected"
               [attr.aria-controls]="tab.id"
-              [attr.aria-selected]="tab.selected"
               (click)="open($event, tab)"
               (keydown.enter)="open($event, tab)"
               [attr.tabindex]="tab.disabled ? null : '0'"
@@ -238,7 +238,7 @@ export class TabPanel implements AfterContentInit, OnDestroy {
 })
 export class TabView
   implements AfterContentInit, AfterViewChecked, AfterViewInit, BlockableUI {
-  @Input() orientation: string = 'top';
+  @Input() orientation = 'top';
 
   @Input() style: any;
 
@@ -282,7 +282,7 @@ export class TabView
   ngAfterContentInit() {
     this.initTabs();
 
-    this.tabPanels.changes.subscribe(_ => {
+    this.tabPanels.changes.subscribe(() => {
       this.initTabs();
     });
   }
@@ -304,7 +304,7 @@ export class TabView
 
   initTabs(): void {
     this.tabs = this.tabPanels.toArray();
-    let selectedTab: TabPanel = this.findSelectedTab();
+    const selectedTab: TabPanel = this.findSelectedTab();
     if (!selectedTab && this.tabs.length) {
       if (this.activeIndex != null && this.tabs.length > this.activeIndex)
         this.tabs[this.activeIndex].selected = true;
@@ -340,14 +340,14 @@ export class TabView
     }
 
     if (!tab.selected) {
-      let selectedTab: TabPanel = this.findSelectedTab();
+      const selectedTab: TabPanel = this.findSelectedTab();
       if (selectedTab) {
         selectedTab.selected = false;
       }
 
       this.tabChanged = true;
       tab.selected = true;
-      let selectedTabIndex = this.findTabIndex(tab);
+      const selectedTabIndex = this.findTabIndex(tab);
       this.preventActiveIndexPropagation = true;
       this.activeIndexChange.emit(selectedTabIndex);
       this.onChange.emit({ originalEvent: event, index: selectedTabIndex });
@@ -386,7 +386,7 @@ export class TabView
       this.tabChanged = true;
       tab.selected = false;
       for (let i = 0; i < this.tabs.length; i++) {
-        let tabPanel = this.tabs[i];
+        const tabPanel = this.tabs[i];
         if (!tabPanel.closed && !tab.disabled) {
           tabPanel.selected = true;
           break;
@@ -444,7 +444,7 @@ export class TabView
   }
 
   updateInkBar() {
-    let tabHeader = DomHandler.findSingle(
+    const tabHeader = DomHandler.findSingle(
       this.navbar.nativeElement,
       'li.fds--active'
     );

@@ -21,7 +21,7 @@ import {
 const getDerivedStyles = props => {
   const { theme, borderType, withIcon, } = props;
   // default styles for button
-  
+
   const styles = {
     boxSizing: 'border-box',
     cursor: 'pointer',

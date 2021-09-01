@@ -22,14 +22,14 @@ import {
   transition,
   animate
 } from '@angular/animations';
-import { Template, Header } from '../shared/template.directive';
+import { Template, HeaderComponent } from '../shared/shared';
 import { Subscription } from 'rxjs';
-import { BlockableUI } from './accordion.config';
+import { BlockableUI} from "../shared/utils/blockableui";
 
-let idx: number = 0;
+let idx = 0;
 
 @Component({
-  selector: 'fds-accordionTab',
+  selector: 'fds-accordion-tab',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
   animations: [
@@ -65,17 +65,28 @@ export class AccordionTabComponent implements AfterContentInit, OnDestroy {
 
   @Input() disabled: boolean;
 
-  @Input() cache: boolean = true;
+  @Input() cache = true;
 
-  @Output() selectedChange: EventEmitter<any> = new EventEmitter();
+  @Output() selectedChange = new EventEmitter();
 
-  @Input() transitionOptions: string = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
+  @Input() transitionOptions = '400ms cubic-bezier(0.86, 0, 0.07, 1)';
 
-  @ContentChildren(Header) headerFacet: QueryList<Header>;
+  @ContentChildren(HeaderComponent) headerFacet: QueryList<HeaderComponent>;
 
   @ContentChildren(Template) templates: QueryList<any>;
 
   private _selected: boolean;
+
+  private _focused: boolean;
+
+  @Input() get focused(): any {
+    return this._focused;
+  }
+
+  set focused(val: any) {
+    this._focused = val;
+    this.changeDetector.markForCheck();
+  }
 
   @Input() get selected(): any {
     return this._selected;
@@ -97,17 +108,17 @@ export class AccordionTabComponent implements AfterContentInit, OnDestroy {
 
   headerTemplate: TemplateRef<any>;
 
-  id: string = `fds-accordiontab-${idx++}`;
+  id = `fds-accordiontab-${idx++}`;
 
   loaded: boolean;
 
-  accordion: Accordion;
+  accordion: AccordionComponent;
 
   constructor(
-    @Inject(forwardRef(() => Accordion)) accordion: any,
+    @Inject(forwardRef(() => AccordionComponent)) accordion: any,
     public changeDetector: ChangeDetectorRef
   ) {
-    this.accordion = accordion as Accordion;
+    this.accordion = accordion as AccordionComponent;
   }
 
   ngAfterContentInit() {
@@ -133,14 +144,14 @@ export class AccordionTabComponent implements AfterContentInit, OnDestroy {
       return false;
     }
 
-    let index = this.findTabIndex();
+    const index = this.findTabIndex();
 
     if (this.selected) {
       this.selected = false;
       this.accordion.onClose.emit({ originalEvent: event, index: index });
     } else {
       if (!this.accordion.multiple) {
-        for (var i = 0; i < this.accordion.tabs.length; i++) {
+        for (let i = 0; i < this.accordion.tabs.length; i++) {
           this.accordion.tabs[i].selected = false;
           this.accordion.tabs[i].selectedChange.emit(false);
           this.accordion.tabs[i].changeDetector.markForCheck();
@@ -161,7 +172,7 @@ export class AccordionTabComponent implements AfterContentInit, OnDestroy {
 
   findTabIndex() {
     let index = -1;
-    for (var i = 0; i < this.accordion.tabs.length; i++) {
+    for (let i = 0; i < this.accordion.tabs.length; i++) {
       if (this.accordion.tabs[i] == this) {
         index = i;
         break;
@@ -175,7 +186,7 @@ export class AccordionTabComponent implements AfterContentInit, OnDestroy {
   }
 
   onKeydown(event: KeyboardEvent) {
-    if (event.which === 32 || event.which === 13) {
+    if (event.code === "Space" || event.key === "Enter") {
       this.toggle(event);
       event.preventDefault();
     }
@@ -194,26 +205,32 @@ export class AccordionTabComponent implements AfterContentInit, OnDestroy {
       [ngStyle]="style"
       [class]="fdsAccordionClass"
       role="tablist"
+      (keydown)="handleKeyDown($event)"
     >
       <ng-content></ng-content>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Accordion implements BlockableUI, AfterContentInit, OnDestroy {
+export class AccordionComponent implements BlockableUI, AfterContentInit, OnDestroy {
+
+  currentlyFocused = 0;
+
+  panelQuantity: number;
+
   @Input() multiple: boolean;
 
-  @Output() onClose: EventEmitter<any> = new EventEmitter();
+  @Output() onClose = new EventEmitter();
 
-  @Output() onOpen: EventEmitter<any> = new EventEmitter();
+  @Output() onOpen = new EventEmitter();
 
   @Input() style: any;
 
   @Input() fdsAccordionClass: string;
 
-  @Input() expandIcon: string = 'icon-arrowdown';
+  @Input() expandIcon = 'icon-arrowdown';
 
-  @Input() collapseIcon: string = 'icon-arrowdown';
+  @Input() collapseIcon = 'icon-arrowdown';
 
   @Output() activeIndexChange: EventEmitter<any> = new EventEmitter();
 
@@ -236,9 +253,11 @@ export class Accordion implements BlockableUI, AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this.initTabs();
 
-    this.tabListSubscription = this.tabList.changes.subscribe(_ => {
+    this.tabListSubscription = this.tabList.changes.subscribe(() => {
       this.initTabs();
     });
+
+    this.panelQuantity = this.tabList.length;
   }
 
   initTabs(): any {
@@ -268,10 +287,10 @@ export class Accordion implements BlockableUI, AfterContentInit, OnDestroy {
   updateSelectionState() {
     if (this.tabs && this.tabs.length && this._activeIndex != null) {
       for (let i = 0; i < this.tabs.length; i++) {
-        let selected = this.multiple
+        const selected = this.multiple
           ? this._activeIndex.includes(i)
           : i === this._activeIndex;
-        let changed = selected !== this.tabs[i].selected;
+        const changed = selected !== this.tabs[i].selected;
 
         if (changed) {
           this.tabs[i].selected = selected;
@@ -280,6 +299,7 @@ export class Accordion implements BlockableUI, AfterContentInit, OnDestroy {
         }
       }
     }
+    this.tabs[0].focused = true;
   }
 
   updateActiveIndex() {
@@ -297,6 +317,10 @@ export class Accordion implements BlockableUI, AfterContentInit, OnDestroy {
 
     this.preventActiveIndexPropagation = true;
     this.activeIndexChange.emit(index);
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    console.log(event);
   }
 
   ngOnDestroy() {

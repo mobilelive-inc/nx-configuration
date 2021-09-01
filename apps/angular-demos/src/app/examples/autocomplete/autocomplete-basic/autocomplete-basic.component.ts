@@ -15,6 +15,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
           field="name"
           [minLength]="1"
           [dropdown]="true"
+          [showEmptyMessage]="true"
+          emptyMessage="No Country Found"
         >
         </fds-autocomplete>
       </fds-form-field>
@@ -34,8 +36,16 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
           [withinInput]="false"
           [toggleAutocomplete]="true"
           [btnDropdown]="true"
+          [showEmptyMessage]="true"
+          showEmptyMessageClasses="border border--dark"
         >
         </fds-autocomplete>
+        <ng-template fdsTemplate="empty">
+            <h6 class="d--flex align--items--center mb--0 p--3 text--danger">
+              <span class="icon-warning font--xl"></span>
+              <span class="pl--3">No record found</span>
+            </h6>
+          </ng-template>
       </fds-form-field>
       <pre>Value: {{ form1.get('country')?.value | json }}</pre>
     </form>
@@ -68,8 +78,8 @@ export class AutocompleteBasicComponent {
 
   filterCountry(event) {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-    let filtered: any[] = [];
-    let { query } = event;
+    const filtered: any[] = [];
+    const { query } = event;
     this.countries.forEach(
       item =>
         item.name.toLowerCase().indexOf(query.toLowerCase()) == 0 &&

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Box from '../box';
 import { ThemeProvider } from 'styled-components';
-import PropTypes from 'prop-types';
 import advancedStepper from './../theme/styles/advancedStepper';
 import GlobalStyle from './../theme/globalStyles';
 import {
@@ -15,17 +14,25 @@ import {
 import { Text } from './../typography';
 import Icon from './../icon/Icon';
 
-const AdvancedStepper = ({
-  total = 3,
-  value = 1,
-  hideName = true,
-  dataList = [],
-  ...props
-}) => {
-  const [currentStep, setCurrentStep] = useState(value);
-  const [steps, setSteps] = useState([]);
-  const [visitedCount, setVisitedCount] = useState(1);
-  const [status, setStatus] = useState('');
+interface advstepper {
+  currentStep:number
+  steps:any
+  visitedCount:number
+  status:number | string
+}
+interface advstepperprops {
+  total:number
+  value:number
+  hideName:boolean
+  dataList:any
+  variant:string
+}
+
+const AdvancedStepper:React.FC<advstepperprops>= ({total,value,hideName,dataList, ...props}) => {
+  const [currentStep, setCurrentStep] = useState<advstepper['currentStep']>(value);
+  const [steps, setSteps] = useState<advstepper['steps']>([]);
+  const [visitedCount, setVisitedCount] = useState<advstepper['visitedCount']>(1);
+  const [status, setStatus] = useState<advstepper['status']>('');
 
   useEffect(() => {
     // setProgressWidth((value / total) * 100);
@@ -67,25 +74,25 @@ const AdvancedStepper = ({
   return (
     <ThemeProvider theme={advancedStepper}>
       <GlobalStyle />
-      <Box width="100%">
-        <AnnouncementText aria-live="assertive" aria-label={status} />
+      <Box>
+        <AnnouncementText aria-live="assertive"/>
         <StepperContainer>
           {steps.map((item, index) => {
             let alignValue = 'start';
             switch (index) {
               case 0:
-                  alignValue = 'start';
+                    alignValue = 'start';
                 break;
               case steps.length - 1:
-                  alignValue = 'flex-end';
+                    alignValue = 'flex-end';
                 break;
               default:
-                alignValue = 'center';
+                     alignValue = 'center';
             }
             return (
-              <Box>
+              <Box key={index}>
                 {item.isCurrentStep === true ? (
-                  <StepItemContainer alignment={alignValue}>
+                  <StepItemContainer >
                     <VistedStep
                       {...props}
                       aria-label={
@@ -107,7 +114,7 @@ const AdvancedStepper = ({
                 ) : (
                   <Box>
                     {item.isVisited === true ? (
-                      <StepItemContainer alignment={alignValue}>
+                      <StepItemContainer>
                         <VistedStep
                           {...props}
                           aria-label={
@@ -128,7 +135,7 @@ const AdvancedStepper = ({
                         )}
                       </StepItemContainer>
                     ) : (
-                      <StepItemContainer alignment={alignValue}>
+                      <StepItemContainer>
                         <UnVisitedStep
                           {...props}
                           aria-label={
@@ -156,24 +163,6 @@ const AdvancedStepper = ({
       </Box>
     </ThemeProvider>
   );
-};
-
-AdvancedStepper.defaultProps = {
-  total: 3,
-  value: 1,
-  hideName: true,
-  dataList: []
-};
-
-AdvancedStepper.propTypes = {
-  /** number of total steps */
-  total: PropTypes.number,
-  /** current step in stepper */
-  value: PropTypes.number,
-  /** want to show/hide name with every step */
-  hideName: PropTypes.bool,
-  /** if names are visible than provide array of string to set these */
-  dataList: PropTypes.array
 };
 
 export default AdvancedStepper;

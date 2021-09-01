@@ -27,7 +27,8 @@
     "postinstall": "ngcc --properties es2015 browser module main",
     "build-react-lib": "nx build react",
     "build-angular-lib": "ng-packagr -p libs/angular/ng-package.json",
-    "build-libs": "rm -rf dist/ && npm run build-react-lib && npm run build-angular-lib"
+    "build-libs": "rm -rf dist/ && npm run build-react-lib && npm run build-angular-lib",
+    "build-angular-v2": "nx build --project=angular-v2 && "
   },
   "private": true,
   "dependencies": {

@@ -1,7 +1,7 @@
 import { CdkStepperNext, CdkStepperPrevious } from '@angular/cdk/stepper';
 import { Directive } from '@angular/core';
 import { CdkStepper } from '@angular/cdk/stepper';
-import { markFormGroupTouched } from '../shared/forms';
+import { markFormGroupTouched } from '../shared/utils/forms';
 import { FormGroup } from '@angular/forms';
 
 /** Button that moves to the next step in a stepper workflow. */
