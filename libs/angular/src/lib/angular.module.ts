@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Accordion
+import { AccordionComponent, AccordionTabComponent} from './accordion/accordion.component';
+
 // Button Component
 import { ButtonComponent } from './button/button.component';
 
@@ -11,7 +14,7 @@ import { CheckboxComponent} from './checkbox/checkbox.component';
 import { CardComponent} from './card/card.component';
 
 // Popover
-import { PopoverDirective} from './popover/fdsPopover.directive';
+import { PopoverDirective} from "./popover/popover.directive";
 
 // Progress Component
 import { ProgressComponent} from './progress/progress.component';
@@ -20,7 +23,8 @@ import { ProgressComponent} from './progress/progress.component';
 import { RangeSliderComponent} from './range-slider/range-slider.component';
 // Tabs
 import { TabView, TabPanel} from './tabs/tabs';
-// Table
+
+/***** Table Components & Directive *********/
 import {
   Table,
   TableBody,
@@ -29,12 +33,14 @@ import {
   SortIcon,
   TableCheckbox,
   TableHeaderCheckbox
-} from './table/table';
+} from "./table/table";
+
+/**** Shared Components & Directive *********/
+import { Template, HeaderComponent, FooterComponent} from './shared/shared';
 
 
 import { FdsRadioButton, FdsRadioGroup} from './radio/radio.component';
-import { Template, Header, Footer} from './shared/template.directive';
-import { Accordion, AccordionTabComponent} from './accordion/accordion.component';
+
 import { FdsHorizontalStepper, FdsStep, FdsStepper } from './stepper/stepper';
 import { FdsStepHeader } from './stepper/step-header';
 import { FdsStepLabel } from './stepper/step-label';
@@ -44,17 +50,21 @@ import { ErrorDirective} from './form-field/error';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { InputDirective} from './input/input.directive';
 import { AutocompleteComponent} from './autocomplete/autocomplete.component';
+import { FocusableDirective} from "./shared/directives/focusable.directive";
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    ButtonComponent,
     AccordionTabComponent,
-    Accordion,
-    Template,
-    Header,
-    Footer,
+    AccordionComponent,
     AutocompleteComponent,
+    ButtonComponent,
+    // Shared
+    Template,
+    HeaderComponent,
+    FooterComponent,
+      FocusableDirective,
+
     ErrorDirective,
     CardComponent,
     CheckboxComponent,
@@ -84,16 +94,20 @@ import { AutocompleteComponent} from './autocomplete/autocomplete.component';
     SortableColumn,
     SortIcon,
     TableCheckbox,
-    TableHeaderCheckbox,
+    TableHeaderCheckbox
+
   ],
   exports: [
-    ButtonComponent,
     AccordionTabComponent,
-    Accordion,
-    Template,
-    Header,
-    Footer,
+    AccordionComponent,
     AutocompleteComponent,
+    ButtonComponent,
+    // Shared
+    Template,
+    HeaderComponent,
+    FooterComponent,
+    FocusableDirective,
+
     ErrorDirective,
     CardComponent,
     CheckboxComponent,
@@ -123,8 +137,8 @@ import { AutocompleteComponent} from './autocomplete/autocomplete.component';
     ScrollableView,
     SortableColumn,
     SortIcon,
-    TableCheckbox,
     TableHeaderCheckbox,
+    TableCheckbox
   ]
 })
 export class AngularModule {}

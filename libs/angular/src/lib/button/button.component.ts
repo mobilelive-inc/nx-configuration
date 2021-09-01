@@ -12,10 +12,10 @@ import {
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements AfterContentInit {
-  @Input() type: string = 'button';
+export class ButtonComponent {
+  @Input() type = 'button';
 
-  @Input() iconPos: string = 'left';
+  @Input() iconPos = 'left';
 
   @Input() icon: string;
 
@@ -33,7 +33,6 @@ export class ButtonComponent implements AfterContentInit {
 
   contentTemplate: TemplateRef<any>;
 
-  // @ContentChildren(PrimeTemplate) templates: QueryList<any>;
 
   @Output() onClick: EventEmitter<any> = new EventEmitter();
 
@@ -41,17 +40,4 @@ export class ButtonComponent implements AfterContentInit {
 
   @Output() onBlur: EventEmitter<any> = new EventEmitter();
 
-  ngAfterContentInit() {
-    // this.templates.forEach((item) => {
-    //     switch (item.getType()) {
-    //         case 'content':
-    //             this.contentTemplate = item.template;
-    //             break;
-    //
-    //         default:
-    //             this.contentTemplate = item.template;
-    //             break;
-    //     }
-    // });
-  }
 }

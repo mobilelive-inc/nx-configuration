@@ -22,7 +22,6 @@ import {
   QueryList,
   SkipSelf,
   TemplateRef,
-  ViewChildren,
   ViewEncapsulation,
   ContentChild
 } from '@angular/core';
@@ -30,13 +29,12 @@ import {
   FormControl,
   FormGroupDirective,
   NgForm,
-  FormGroup
 } from '@angular/forms';
-import { FdsErrorStateMatcher } from '../shared/error-options';
+import { FdsErrorStateMatcher } from '../shared/directives/error-options';
 import { Subject } from 'rxjs';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import { fdsStepperAnimations } from './stepper-animations';
-import { Template } from '../shared/template.directive';
+import { Template } from '../shared/shared';
 import { FdsStepLabel } from './step-label';
 
 @Component({
@@ -76,12 +74,8 @@ export class FdsStep extends CdkStep implements FdsErrorStateMatcher {
     // since user can trigger a form change by calling for another step without directly
     // interacting with the current form.
     const customErrorState = !!(control && control.invalid && this.interacted);
+    return originalErrorState || customErrorState;
 
-    debugger;
-    if (originalErrorState || customErrorState) {
-      return true;
-    }
-    return false;
   }
 }
 

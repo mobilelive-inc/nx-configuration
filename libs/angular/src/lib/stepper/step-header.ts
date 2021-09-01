@@ -5,8 +5,7 @@ import {
   Input,
   TemplateRef,
   ElementRef,
-  ChangeDetectorRef,
-  HostBinding
+  HostBinding, OnDestroy, AfterViewInit
 } from '@angular/core';
 import { FdsStepLabel } from './step-label';
 import { StepState, CdkStepHeader } from '@angular/cdk/stepper';
@@ -23,7 +22,7 @@ import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FdsStepHeader extends CdkStepHeader {
+export class FdsStepHeader extends CdkStepHeader implements OnDestroy, AfterViewInit{
   /** Label of the given step. */
   @Input() label: FdsStepLabel | string;
 
@@ -59,7 +58,6 @@ export class FdsStepHeader extends CdkStepHeader {
   constructor(
     private _focusMonitor: FocusMonitor,
     _elementRef: ElementRef<HTMLElement>,
-    changeDetectorRef: ChangeDetectorRef
   ) {
     super(_elementRef);
   }

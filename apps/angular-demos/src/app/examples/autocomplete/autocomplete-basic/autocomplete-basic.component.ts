@@ -78,8 +78,8 @@ export class AutocompleteBasicComponent {
 
   filterCountry(event) {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-    let filtered: any[] = [];
-    let { query } = event;
+    const filtered: any[] = [];
+    const { query } = event;
     this.countries.forEach(
       item =>
         item.name.toLowerCase().indexOf(query.toLowerCase()) == 0 &&

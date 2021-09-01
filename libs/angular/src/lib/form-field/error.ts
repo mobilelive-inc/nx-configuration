@@ -20,5 +20,5 @@ export const FDS_ERROR = new InjectionToken<ErrorDirective>('FdsError');
   providers: [{ provide: FDS_ERROR, useExisting: ErrorDirective }]
 })
 export class ErrorDirective {
-  @Input() id: string = `fds-error-${nextUniqueId++}`;
+  @Input() id = `fds-error-${nextUniqueId++}`;
 }

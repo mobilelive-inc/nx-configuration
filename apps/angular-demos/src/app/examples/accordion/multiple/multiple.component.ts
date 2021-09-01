@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-accordion-multiple',
   template: `
     <fds-accordion [multiple]="true">
-      <fds-accordionTab
+      <fds-accordion-tab
         accordionTabClass="d--flex justify--content--between btn btn--primary btn--first w--100 mb--1"
         header="Header I"
         [selected]="true"
@@ -18,8 +18,8 @@ import { Component, OnInit } from '@angular/core';
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </fds-accordionTab>
-      <fds-accordionTab
+      </fds-accordion-tab>
+      <fds-accordion-tab
         accordionTabClass="d--flex justify--content--between btn btn--primary btn--first w--100 mb--1"
         header="Header II"
       >
@@ -32,8 +32,8 @@ import { Component, OnInit } from '@angular/core';
           qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit,
           sed quia non numquam eius modi.
         </p>
-      </fds-accordionTab>
-      <fds-accordionTab
+      </fds-accordion-tab>
+      <fds-accordion-tab
         accordionTabClass="d--flex justify--content--between btn btn--primary btn--first w--100 mb--1"
         header="Header III"
       >
@@ -46,13 +46,11 @@ import { Component, OnInit } from '@angular/core';
           distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
           cumque nihil impedit quo minus.
         </p>
-      </fds-accordionTab>
+      </fds-accordion-tab>
     </fds-accordion>
   `,
   styles: []
 })
-export class MultipleComponent implements OnInit {
-  constructor() {}
+export class MultipleComponent {
 
-  ngOnInit(): void {}
 }

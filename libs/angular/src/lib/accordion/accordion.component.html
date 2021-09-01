@@ -4,6 +4,8 @@
 >
   <div
     class="fds-accordion-header"
+    [fdsFocusable]="focused"
+    [ngStyle]="{'border': focused ? '1px solid red': ''}"
     [ngClass]="{
           'fds-highlight': selected,
           'fds-accordion-disabled': disabled

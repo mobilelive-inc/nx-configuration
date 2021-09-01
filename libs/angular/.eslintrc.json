@@ -19,18 +19,26 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "fridayDesignSystems",
-            "style": "camelCase"
+            "prefix": "fds"
           }
         ],
         "@angular-eslint/component-selector": [
           "error",
           {
             "type": "element",
-            "prefix": "friday-design-systems",
-            "style": "kebab-case"
+            "prefix": "fds"
           }
-        ]
+        ],
+        "@angular-eslint/no-output-on-prefix" : 0,
+        "@angular-eslint/no-host-metadata-property": 0,
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-empty-function": 0,
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/member-ordering": "off",
+        "@angular-eslint/component-class-suffix": "off",
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/directive-class-suffix": "off",
+        "@angular-eslint/no-inputs-metadata-property": "off"
       }
     },
     {

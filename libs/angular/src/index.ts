@@ -7,7 +7,7 @@ export * from './lib/checkbox/checkbox.component';
 export * from './lib/form-field/form-field.component';
 export * from './lib/input/input.directive';
 export * from './lib/label/label.directive';
-export * from './lib/popover/fdsPopover.directive';
+export * from './lib/popover/popover.directive';
 export * from './lib/progress/progress.component';
 export * from './lib/range-slider/range-slider.component';
 export * from './lib/stepper/stepper';
@@ -29,9 +29,9 @@ export * from './lib/stepper/step-label';
 
 
 // shared folder
-export * from './lib/shared/template.directive';
-export * from './lib/shared/forms';
-export * from './lib/shared/error-options';
+export * from './lib/shared/shared';
+export * from './lib/shared/utils/forms';
+export * from './lib/shared/directives/error-options';
 
 // Tabs
 export * from  './lib/tabs/tabs';
