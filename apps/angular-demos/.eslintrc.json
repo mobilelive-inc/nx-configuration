@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "friday-design-systems",
+            "prefix": "",
             "style": "kebab-case"
           }
         ]

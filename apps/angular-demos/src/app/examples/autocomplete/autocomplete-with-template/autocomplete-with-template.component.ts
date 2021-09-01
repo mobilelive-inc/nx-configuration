@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
       <fds-form-field>
         <fds-label>With template</fds-label>
         <fds-autocomplete
+          [btnDropdown]=false  
           formControlName="country"
           [suggestions]="filteredCountries"
           (completeMethod)="filterCountry($event)"
@@ -88,10 +89,10 @@ export class AutocompleteWithTemplateComponent {
 
   filterCountry(event) {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-    let filtered: any[] = [];
-    let query = event.query;
+    const filtered: any[] = [];
+    const query = event.query;
     for (let i = 0; i < this.countries.length; i++) {
-      let country = this.countries[i];
+      const country = this.countries[i];
       if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(country);
       }

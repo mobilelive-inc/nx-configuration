@@ -20,12 +20,13 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "strictPropertyInitialization": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "strictFunctionTypes": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false
   }
 }
