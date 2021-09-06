@@ -19,14 +19,17 @@ import {
   Directive,
   HostListener,
   QueryList,
-  NgZone
+  NgZone, TrackByFunction
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Template } from '../shared/template.directive';
-import { ObjectUtils, DomHandler, BlockableUI } from '../shared/helpers';
-import { SortMeta, TableState } from './table.helpers';
-import { TableService } from './table.service';
+import { Template } from '../shared/shared';
+import { ObjectUtils} from "../shared/utils/objectutil";
+import { DomHandler} from "../shared/utils/domhandler";
+import { BlockableUI} from "../shared/utils/blockableui";
+import { SortMeta, TableState} from "./helpers/table.helper";
+import { TableService } from "./services/table.service";
+
 
 @Component({
   selector: 'fds-table',
@@ -52,7 +55,6 @@ import { TableService } from './table.service';
       <div *ngIf="captionTemplate" class="fds-datatable-header">
         <ng-container *ngTemplateOutlet="captionTemplate"></ng-container>
       </div>
-
       <div class="fds-datatable-wrapper" *ngIf="!scrollable">
         <table
           role="grid"
@@ -75,7 +77,6 @@ import { TableService } from './table.service';
           ></tbody>
         </table>
       </div>
-
       <div class="fds-datatable-scrollable-wrapper" *ngIf="scrollable">
         <div
           class="fds-datatable-scrollable-view"
@@ -89,10 +90,9 @@ import { TableService } from './table.service';
   providers: [TableService],
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./table.scss']
 })
 export class Table
-  implements OnInit, AfterViewInit, AfterContentInit, BlockableUI, OnChanges {
+    implements OnInit, AfterContentInit, BlockableUI, OnChanges {
   @Input() style: any;
 
   @Input() styleClass: string;
@@ -101,9 +101,9 @@ export class Table
 
   @Input() tableStyleClass: string;
 
-  @Input() defaultSortOrder: number = 1;
+  @Input() defaultSortOrder = 1;
 
-  @Input() sortMode: string = 'single';
+  @Input() sortMode = 'single';
 
   @Input() selectionMode: string;
 
@@ -113,13 +113,13 @@ export class Table
 
   @Input() metaKeySelection: boolean;
 
-  @Input() rowTrackBy: any = (index: number, item: any) => item;
+  @Input() rowTrackBy: TrackByFunction<any> = (index: number, item: any) => item;
 
-  @Input() lazy: boolean = false;
+  @Input() lazy = false;
 
-  @Input() lazyLoadOnInit: boolean = true;
+  @Input() lazyLoadOnInit = true;
 
-  @Input() compareSelectionBy: string = 'deepEquals';
+  @Input() compareSelectionBy = 'deepEquals';
 
   @Input() scrollable: boolean;
 
@@ -127,17 +127,17 @@ export class Table
 
   // @Input() virtualScroll: boolean;
 
-  @Input() virtualScrollDelay: number = 250;
+  @Input() virtualScrollDelay = 250;
 
-  @Input() virtualRowHeight: number = 28;
+  @Input() virtualRowHeight = 28;
 
   @Input() responsive: boolean;
 
   @Input() loading: boolean;
 
-  @Input() loadingIcon: string = 'icon-spinner';
+  @Input() loadingIcon = 'icon-spinner';
 
-  @Input() showLoader: boolean = true;
+  @Input() showLoader = true;
 
   @Input() rowHover: boolean;
 
@@ -147,7 +147,7 @@ export class Table
 
   @Input() stateKey: string;
 
-  @Input() stateStorage: string = 'session';
+  @Input() stateStorage = 'session';
 
   @Output() onHeaderCheckboxToggle: EventEmitter<any> = new EventEmitter();
 
@@ -179,7 +179,7 @@ export class Table
 
   _columns: any[];
 
-  _first: number = 0;
+  _first = 0;
 
   _rows: number;
 
@@ -201,7 +201,7 @@ export class Table
 
   _sortField: string;
 
-  _sortOrder: number = 1;
+  _sortOrder = 1;
 
   preventSelectionSetterPropagation: boolean;
 
@@ -222,11 +222,12 @@ export class Table
   tableWidthState: string;
 
   constructor(
-    public el: ElementRef,
-    public zone: NgZone,
-    public tableService: TableService,
-    public cd: ChangeDetectorRef // public filterService: FilterService
-  ) {}
+      public el: ElementRef,
+      public zone: NgZone,
+      public tableService: TableService,
+      public cd: ChangeDetectorRef
+  ) // public filterService: FilterService
+  {}
 
   ngOnInit() {
     if (this.lazy && this.lazyLoadOnInit) {
@@ -265,8 +266,6 @@ export class Table
       }
     });
   }
-
-  ngAfterViewInit() {}
 
   ngOnChanges(simpleChange: SimpleChanges) {
     if (simpleChange.value) {
@@ -393,34 +392,34 @@ export class Table
     if (this.dataKey && this._selection) {
       this.selectionKeys = {};
       if (Array.isArray(this._selection)) {
-        for (let data of this._selection) {
+        for (const data of this._selection) {
           this.selectionKeys[
-            String(ObjectUtils.resolveFieldData(data, this.dataKey))
-          ] = 1;
+              String(ObjectUtils.resolveFieldData(data, this.dataKey))
+              ] = 1;
         }
       } else {
         this.selectionKeys[
-          String(ObjectUtils.resolveFieldData(this._selection, this.dataKey))
-        ] = 1;
+            String(ObjectUtils.resolveFieldData(this._selection, this.dataKey))
+            ] = 1;
       }
     }
   }
 
   sort(event) {
-    let originalEvent = event.originalEvent;
+    const originalEvent = event.originalEvent;
 
     if (this.sortMode === 'single') {
       this._sortOrder =
-        this.sortField === event.field
-          ? this.sortOrder * -1
-          : this.defaultSortOrder;
+          this.sortField === event.field
+              ? this.sortOrder * -1
+              : this.defaultSortOrder;
       this._sortField = event.field;
 
       this.sortSingle();
     }
     if (this.sortMode === 'multiple') {
-      let metaKey = originalEvent.metaKey || originalEvent.ctrlKey;
-      let sortMeta = this.getSortMeta(event.field);
+      const metaKey = originalEvent.metaKey || originalEvent.ctrlKey;
+      const sortMeta = this.getSortMeta(event.field);
 
       if (sortMeta) {
         if (!metaKey) {
@@ -468,8 +467,8 @@ export class Table
           });
         } else {
           this.value.sort((data1, data2) => {
-            let value1 = ObjectUtils.resolveFieldData(data1, this.sortField);
-            let value2 = ObjectUtils.resolveFieldData(data2, this.sortField);
+            const value1 = ObjectUtils.resolveFieldData(data1, this.sortField);
+            const value2 = ObjectUtils.resolveFieldData(data2, this.sortField);
             let result = null;
 
             if (value1 == null && value2 != null) result = -1;
@@ -486,7 +485,7 @@ export class Table
         }
       }
 
-      let sortMeta: SortMeta = {
+      const sortMeta: SortMeta = {
         field: this.sortField,
         order: this.sortOrder
       };
@@ -524,13 +523,13 @@ export class Table
   }
 
   multisortField(data1, data2, multiSortMeta, index) {
-    let value1 = ObjectUtils.resolveFieldData(
-      data1,
-      multiSortMeta[index].field
+    const value1 = ObjectUtils.resolveFieldData(
+        data1,
+        multiSortMeta[index].field
     );
-    let value2 = ObjectUtils.resolveFieldData(
-      data2,
-      multiSortMeta[index].field
+    const value2 = ObjectUtils.resolveFieldData(
+        data2,
+        multiSortMeta[index].field
     );
     let result = null;
 
@@ -547,8 +546,8 @@ export class Table
 
     if (value1 == value2) {
       return multiSortMeta.length - 1 > index
-        ? this.multisortField(data1, data2, multiSortMeta, index + 1)
-        : 0;
+          ? this.multisortField(data1, data2, multiSortMeta, index + 1)
+          : 0;
     }
 
     return multiSortMeta[index].order * result;
@@ -566,7 +565,7 @@ export class Table
     return null;
   }
 
-  isSorted(field: string): any{
+  isSorted(field: string) {
     if (this.sortMode === 'single') {
       return this.sortField && this.sortField === field;
     } else if (this.sortMode === 'multiple') {
@@ -584,17 +583,17 @@ export class Table
   }
 
   handleRowClick(event) {
-    let target = <HTMLElement>event.originalEvent.target;
-    let targetNode = target.nodeName;
-    let parentNode = target.parentElement && target.parentElement.nodeName;
+    const target = <HTMLElement>event.originalEvent.target;
+    const targetNode = target.nodeName;
+    const parentNode = target.parentElement && target.parentElement.nodeName;
     if (
-      targetNode == 'INPUT' ||
-      targetNode == 'BUTTON' ||
-      targetNode == 'A' ||
-      parentNode == 'INPUT' ||
-      parentNode == 'BUTTON' ||
-      parentNode == 'A' ||
-      DomHandler.hasClass(event.originalEvent.target, 'fds-clickable')
+        targetNode == 'INPUT' ||
+        targetNode == 'BUTTON' ||
+        targetNode == 'A' ||
+        parentNode == 'INPUT' ||
+        parentNode == 'BUTTON' ||
+        parentNode == 'A' ||
+        DomHandler.hasClass(event.originalEvent.target, 'fds-clickable')
     ) {
       return;
     }
@@ -602,9 +601,9 @@ export class Table
     if (this.selectionMode) {
       this.preventSelectionSetterPropagation = true;
       if (
-        this.isMultipleSelectionMode() &&
-        event.originalEvent.shiftKey &&
-        this.anchorRowIndex != null
+          this.isMultipleSelectionMode() &&
+          event.originalEvent.shiftKey &&
+          this.anchorRowIndex != null
       ) {
         DomHandler.clearSelection();
         if (this.rangeRowIndex != null) {
@@ -613,18 +612,18 @@ export class Table
 
         this.rangeRowIndex = event.rowIndex;
       } else {
-        let rowData = event.rowData;
-        let selected = this.isSelected(rowData);
-        let metaSelection = this.rowTouched ? false : this.metaKeySelection;
-        let dataKeyValue = this.dataKey
-          ? String(ObjectUtils.resolveFieldData(rowData, this.dataKey))
-          : null;
+        const rowData = event.rowData;
+        const selected = this.isSelected(rowData);
+        const metaSelection = this.rowTouched ? false : this.metaKeySelection;
+        const dataKeyValue = this.dataKey
+            ? String(ObjectUtils.resolveFieldData(rowData, this.dataKey))
+            : null;
         this.anchorRowIndex = event.rowIndex;
         this.rangeRowIndex = event.rowIndex;
 
         if (metaSelection) {
-          let metaKey =
-            event.originalEvent.metaKey || event.originalEvent.ctrlKey;
+          const metaKey =
+              event.originalEvent.metaKey || event.originalEvent.ctrlKey;
 
           if (selected && metaKey) {
             if (this.isSingleSelectionMode()) {
@@ -632,9 +631,9 @@ export class Table
               this.selectionKeys = {};
               this.selectionChange.emit(null);
             } else {
-              let selectionIndex = this.findIndexInSelection(rowData);
+              const selectionIndex = this.findIndexInSelection(rowData);
               this._selection = this.selection.filter(
-                (val, i) => i != selectionIndex
+                  (val, i) => i != selectionIndex
               );
               this.selectionChange.emit(this.selection);
               if (dataKeyValue) {
@@ -705,9 +704,9 @@ export class Table
             }
           } else if (this.selectionMode === 'multiple') {
             if (selected) {
-              let selectionIndex = this.findIndexInSelection(rowData);
+              const selectionIndex = this.findIndexInSelection(rowData);
               this._selection = this.selection.filter(
-                (val, i) => i != selectionIndex
+                  (val, i) => i != selectionIndex
               );
               this.selectionChange.emit(this.selection);
               this.onRowUnselect.emit({
@@ -721,8 +720,8 @@ export class Table
               }
             } else {
               this._selection = this.selection
-                ? [...this.selection, rowData]
-                : [rowData];
+                  ? [...this.selection, rowData]
+                  : [rowData];
               this.selectionChange.emit(this.selection);
               this.onRowSelect.emit({
                 originalEvent: event.originalEvent,
@@ -767,12 +766,12 @@ export class Table
     }
 
     for (let i = rangeStart; i <= rangeEnd; i++) {
-      let rangeRowData = this.value[i];
-      let selectionIndex = this.findIndexInSelection(rangeRowData);
+      const rangeRowData = this.value[i];
+      const selectionIndex = this.findIndexInSelection(rangeRowData);
       this._selection = this.selection.filter((val, i) => i != selectionIndex);
-      let dataKeyValue: string = this.dataKey
-        ? String(ObjectUtils.resolveFieldData(rangeRowData, this.dataKey))
-        : null;
+      const dataKeyValue: string = this.dataKey
+          ? String(ObjectUtils.resolveFieldData(rangeRowData, this.dataKey))
+          : null;
       if (dataKeyValue) {
         delete this.selectionKeys[dataKeyValue];
       }
@@ -788,9 +787,9 @@ export class Table
     if (rowData && this.selection) {
       if (this.dataKey) {
         return (
-          this.selectionKeys[
-            ObjectUtils.resolveFieldData(rowData, this.dataKey)
-          ] !== undefined
+            this.selectionKeys[
+                ObjectUtils.resolveFieldData(rowData, this.dataKey)
+                ] !== undefined
         );
       } else {
         if (this.selection instanceof Array)
@@ -803,7 +802,7 @@ export class Table
   }
 
   findIndexInSelection(rowData: any) {
-    let index: number = -1;
+    let index = -1;
     if (this.selection && this.selection.length) {
       for (let i = 0; i < this.selection.length; i++) {
         if (this.equals(rowData, this.selection[i])) {
@@ -818,14 +817,14 @@ export class Table
 
   toggleRowWithCheckbox(event, rowData: any) {
     this.selection = this.selection || [];
-    let selected = this.isSelected(rowData);
-    let dataKeyValue = this.dataKey
-      ? String(ObjectUtils.resolveFieldData(rowData, this.dataKey))
-      : null;
+    const selected = this.isSelected(rowData);
+    const dataKeyValue = this.dataKey
+        ? String(ObjectUtils.resolveFieldData(rowData, this.dataKey))
+        : null;
     this.preventSelectionSetterPropagation = true;
 
     if (selected) {
-      let selectionIndex = this.findIndexInSelection(rowData);
+      const selectionIndex = this.findIndexInSelection(rowData);
       this._selection = this.selection.filter((val, i) => i != selectionIndex);
       this.selectionChange.emit(this.selection);
       this.onRowUnselect.emit({
@@ -839,8 +838,8 @@ export class Table
       }
     } else {
       this._selection = this.selection
-        ? [...this.selection, rowData]
-        : [rowData];
+          ? [...this.selection, rowData]
+          : [rowData];
       this.selectionChange.emit(this.selection);
       this.onRowSelect.emit({
         originalEvent: event.originalEvent,
@@ -879,8 +878,8 @@ export class Table
 
   equals(data1, data2) {
     return this.compareSelectionBy === 'equals'
-      ? data1 === data2
-      : ObjectUtils.equals(data1, data2, this.dataKey);
+        ? data1 === data2
+        : ObjectUtils.equals(data1, data2, this.dataKey);
   }
 
   createLazyLoadMetadata(): any {
@@ -938,9 +937,9 @@ export class Table
     if (column) {
       let parent = column.parentElement;
       while (
-        parent &&
-        !DomHandler.hasClass(parent, 'fds-datatable-scrollable-view')
-      ) {
+          parent &&
+          !DomHandler.hasClass(parent, 'fds-datatable-scrollable-view')
+          ) {
         parent = parent.parentElement;
       }
 
@@ -951,7 +950,7 @@ export class Table
   }
 
   isEmpty() {
-    let data = this.value;
+    const data = this.value;
     return data == null || data.length == 0;
   }
 
@@ -969,7 +968,7 @@ export class Table
 
       default:
         throw new Error(
-          this.stateStorage +
+            this.stateStorage +
             ' is not a valid value for the state storage, supported values are "local" and "session".'
         );
     }
@@ -981,7 +980,7 @@ export class Table
 
   saveState() {
     const storage = this.getStorage();
-    let state: TableState = {};
+    const state: TableState = {};
 
     if (this.sortField) {
       state.sortField = this.sortField;
@@ -1024,7 +1023,7 @@ export class Table
     };
 
     if (stateString) {
-      let state: TableState = JSON.parse(stateString, reviver);
+      const state: TableState = JSON.parse(stateString, reviver);
 
       if (state.sortField) {
         this.restoringSort = true;
@@ -1039,7 +1038,7 @@ export class Table
 
       if (state.selection) {
         Promise.resolve(null).then(() =>
-          this.selectionChange.emit(state.selection)
+            this.selectionChange.emit(state.selection)
         );
       }
 
@@ -1050,10 +1049,10 @@ export class Table
   }
 
   saveColumnWidths(state) {
-    let widths = [];
-    let headers = DomHandler.find(
-      this.containerViewChild.nativeElement,
-      '.fds-datatable-thead > tr:first-child > th'
+    const widths = [];
+    const headers = DomHandler.find(
+        this.containerViewChild.nativeElement,
+        '.fds-datatable-thead > tr:first-child > th'
     );
     headers.map(header => widths.push(DomHandler.getOuterWidth(header)));
     state.columnWidths = widths.join(',');
@@ -1061,7 +1060,7 @@ export class Table
 
   findColumnByKey(key) {
     if (this.columns) {
-      for (let col of this.columns) {
+      for (const col of this.columns) {
         if (col.key === key || col.field === key) return col;
         else continue;
       }
@@ -1216,7 +1215,7 @@ export class ScrollableView implements AfterViewInit, OnDestroy {
     this._scrollHeight = val;
     if (val != null && (val.includes('%') || val.includes('calc'))) {
       console.log(
-        'Percentage scroll height calculation is removed in favor of the more performant CSS based flex mode, use scrollHeight="flex" instead.'
+          'Percentage scroll height calculation is removed in favor of the more performant CSS based flex mode, use scrollHeight="flex" instead.'
       );
     }
   }
@@ -1224,23 +1223,23 @@ export class ScrollableView implements AfterViewInit, OnDestroy {
   constructor(public dt: Table, public el: ElementRef, public zone: NgZone) {}
 
   ngAfterViewInit() {
-    let scrollBarWidth = DomHandler.calculateScrollbarWidth();
+    const scrollBarWidth = DomHandler.calculateScrollbarWidth();
     this.scrollHeaderBoxViewChild.nativeElement.style.paddingRight =
-      scrollBarWidth + 'px';
+        scrollBarWidth + 'px';
   }
 
   unbindEvents() {
     if (this.scrollBodyViewChild && this.scrollBodyViewChild.nativeElement) {
       this.scrollBodyViewChild.nativeElement.removeEventListener(
-        'scroll',
-        this.bodyScrollListener
+          'scroll',
+          this.bodyScrollListener
       );
     }
 
     if (this.virtualScrollBody && this.virtualScrollBody.getElementRef()) {
       this.virtualScrollBody
-        .getElementRef()
-        .nativeElement.removeEventListener('scroll', this.bodyScrollListener);
+          .getElementRef()
+          .nativeElement.removeEventListener('scroll', this.bodyScrollListener);
     }
   }
 
@@ -1259,11 +1258,11 @@ export class ScrollableView implements AfterViewInit, OnDestroy {
     }
 
     if (
-      this.scrollHeaderViewChild &&
-      this.scrollHeaderViewChild.nativeElement
+        this.scrollHeaderViewChild &&
+        this.scrollHeaderViewChild.nativeElement
     ) {
       this.scrollHeaderBoxViewChild.nativeElement.style.marginLeft =
-        -1 * event.target.scrollLeft + 'px';
+          -1 * event.target.scrollLeft + 'px';
     }
 
     if (this.frozenSiblingBody) {
@@ -1278,10 +1277,10 @@ export class ScrollableView implements AfterViewInit, OnDestroy {
       }
 
       this.virtualScrollTimeout = setTimeout(() => {
-        let page = Math.floor(index / this.dt.rows);
-        let virtualScrollOffset = page === 0 ? 0 : (page - 1) * this.dt.rows;
-        let virtualScrollChunkSize =
-          page === 0 ? this.dt.rows * 2 : this.dt.rows * 3;
+        const page = Math.floor(index / this.dt.rows);
+        const virtualScrollOffset = page === 0 ? 0 : (page - 1) * this.dt.rows;
+        const virtualScrollChunkSize =
+            page === 0 ? this.dt.rows * 2 : this.dt.rows * 3;
 
         if (page !== this.virtualPage) {
           this.virtualPage = page;
@@ -1340,9 +1339,9 @@ export class SortableColumn implements OnInit, OnDestroy {
   constructor(public dt: Table) {
     if (this.isEnabled()) {
       this.subscription = this.dt.tableService.sortSource$.subscribe(
-        sortMeta => {
-          this.updateSortState();
-        }
+          sortMeta => {
+            this.updateSortState();
+          }
       );
     }
   }
@@ -1356,10 +1355,10 @@ export class SortableColumn implements OnInit, OnDestroy {
   updateSortState() {
     this.sorted = this.dt.isSorted(this.field);
     this.sortOrder = this.sorted
-      ? this.dt.sortOrder === 1
-        ? 'ascending'
-        : 'descending'
-      : 'none';
+        ? this.dt.sortOrder === 1
+            ? 'ascending'
+            : 'descending'
+        : 'none';
   }
 
   @HostListener('click', ['$event'])
@@ -1434,7 +1433,7 @@ export class SortIcon implements OnInit, OnDestroy {
     if (this.dt.sortMode === 'single') {
       this.sortOrder = this.dt.isSorted(this.field) ? this.dt.sortOrder : 0;
     } else if (this.dt.sortMode === 'multiple') {
-      let sortMeta = this.dt.getSortMeta(this.field);
+      const sortMeta = this.dt.getSortMeta(this.field);
       this.sortOrder = sortMeta ? sortMeta.order : 0;
     }
 
@@ -1442,12 +1441,12 @@ export class SortIcon implements OnInit, OnDestroy {
   }
 
   getMultiSortMetaIndex() {
-    let multiSortMeta = this.dt._multiSortMeta;
+    const multiSortMeta = this.dt._multiSortMeta;
     let index = -1;
 
     if (multiSortMeta && this.dt.sortMode === 'multiple') {
       for (let i = 0; i < multiSortMeta.length; i++) {
-        let meta = multiSortMeta[i];
+        const meta = multiSortMeta[i];
         if (meta.field === this.field || meta.field === this.field) {
           index = i;
           break;
@@ -1472,32 +1471,21 @@ export class SortIcon implements OnInit, OnDestroy {
 @Component({
   selector: 'fds-tableCheckbox',
   template: `
-    <div class="fds-checkbox fds-component" (click)="onClick($event)">
-      <div class="fds-hidden-accessible">
-        <input
-          type="checkbox"
-          [attr.id]="inputId"
-          [attr.name]="name"
-          [checked]="checked"
-          (focus)="onFocus()"
-          (blur)="onBlur()"
-          [disabled]="disabled"
-          [attr.required]="required"
-          [attr.aria-label]="ariaLabel"
-        />
-      </div>
-      <div
-        #box
-        [ngClass]="{
-          'fds-checkbox-box fds-component': true,
-          'fds-highlight': checked,
-          'fds-disabled': disabled
-        }"
-        role="checkbox"
-        [attr.aria-checked]="checked"
-      ></div>
-    </div>
-  `,
+        <div class="fds-checkbox fds-component" [ngClass]="{
+            formCheck: true,
+            'fds-checkbox-checked': checked,
+            'fds-checkbox-disabled': disabled
+          }" (click)="onClick($event)">
+            <div class="checkBox checkBox--curved" [class.checkBox__bg]="checked" [class.disabled]="disabled">
+                <input type="checkbox" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()" [disabled]="disabled"
+                [attr.required]="required" [attr.aria-label]="ariaLabel">
+                <span class="checkboxFake"></span>
+            </div>
+            <div #box [ngClass]="{'fds-checkbox-box fds-component':true,
+                'fds-highlight':checked, 'fds-disabled':disabled}" role="checkbox" [attr.aria-checked]="checked">
+            </div>
+        </div>
+    `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -1523,9 +1511,9 @@ export class TableCheckbox {
   subscription: Subscription;
 
   constructor(
-    public dt: Table,
-    public tableService: TableService,
-    public cd: ChangeDetectorRef
+      public dt: Table,
+      public tableService: TableService,
+      public cd: ChangeDetectorRef
   ) {
     this.subscription = this.dt.tableService.selectionSource$.subscribe(() => {
       this.checked = this.dt.isSelected(this.value);
@@ -1540,11 +1528,11 @@ export class TableCheckbox {
   onClick(event: Event) {
     if (!this.disabled) {
       this.dt.toggleRowWithCheckbox(
-        {
-          originalEvent: event,
-          rowIndex: this.index
-        },
-        this.value
+          {
+            originalEvent: event,
+            rowIndex: this.index
+          },
+          this.value
       );
     }
     DomHandler.clearSelection();
@@ -1568,32 +1556,22 @@ export class TableCheckbox {
 @Component({
   selector: 'fds-tableHeaderCheckbox',
   template: `
-    <div class="fds-checkbox fds-component" (click)="onClick($event)">
-      <div class="fds-hidden-accessible">
-        <input
-          #cb
-          type="checkbox"
-          [attr.id]="inputId"
-          [attr.name]="name"
-          [checked]="checked"
-          (focus)="onFocus()"
-          (blur)="onBlur()"
-          [disabled]="isDisabled()"
-          [attr.aria-label]="ariaLabel"
-        />
-      </div>
-      <div
-        #box
-        [ngClass]="{
-          'fds-checkbox-box': true,
-          'fds-highlight': checked,
-          'fds-disabled': isDisabled()
-        }"
-        role="checkbox"
-        [attr.aria-checked]="checked"
-      ></div>
-    </div>
-  `,
+        <div class="fds-checkbox fds-component" [ngClass]="{
+            formCheck: true,
+            'fds-checkbox-minus-checked': (checked && !allChecked),
+            'fds-checkbox-all-checked': allChecked,
+            'fds-checkbox-disabled': disabled
+          }" (click)="onClick($event)">
+            <div class="checkBox checkBox--curved" [class.checkBox__bg]="checked || allChecked" [class.disabled]="disabled">
+                <input #cb type="checkbox" [attr.id]="inputId" [attr.name]="name" [checked]="checked" (focus)="onFocus()" (blur)="onBlur()"
+                [disabled]="isDisabled()" [attr.aria-label]="ariaLabel">
+                <span class="checkboxFake"></span>
+            </div>
+            <div #box [ngClass]="{'fds-checkbox-box':true,
+                'fds-highlight':checked, 'fds-disabled': isDisabled()}" role="checkbox" [attr.aria-checked]="checked">
+            </div>
+        </div>
+    `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -1609,31 +1587,35 @@ export class TableHeaderCheckbox {
   @Input() ariaLabel: string;
 
   checked: boolean;
+  allChecked: boolean;
 
   selectionChangeSubscription: Subscription;
 
   valueChangeSubscription: Subscription;
 
   constructor(
-    public dt: Table,
-    public tableService: TableService,
-    public cd: ChangeDetectorRef
+      public dt: Table,
+      public tableService: TableService,
+      public cd: ChangeDetectorRef
   ) {
     this.valueChangeSubscription = this.dt.tableService.valueSource$.subscribe(
-      () => {
-        this.checked = this.updateCheckedState();
-      }
+        () => {
+          this.checked = this.updateCheckedState();
+          this.allChecked = this.updateAllCheckedState();
+        }
     );
 
     this.selectionChangeSubscription = this.dt.tableService.selectionSource$.subscribe(
-      () => {
-        this.checked = this.updateCheckedState();
-      }
+        () => {
+          this.checked = this.updateCheckedState();
+          this.allChecked = this.updateAllCheckedState();
+        }
     );
   }
 
   ngOnInit() {
     this.checked = this.updateCheckedState();
+    this.allChecked = this.updateAllCheckedState();
   }
 
   onClick(event: Event) {
@@ -1672,11 +1654,20 @@ export class TableHeaderCheckbox {
     this.cd.markForCheck();
     const val = this.dt.value;
     return (
-      val &&
-      val.length > 0 &&
-      this.dt.selection &&
-      this.dt.selection.length > 0 &&
-      this.dt.selection.length === val.length
+        val && val.length > 0 && this.dt.selection && this.dt.selection.length > 0
+        // && this.dt.selection.length !== val.length
+    );
+  }
+
+  updateAllCheckedState() {
+    this.cd.markForCheck();
+    const val = this.dt.value;
+    return (
+        val &&
+        val.length > 0 &&
+        this.dt.selection &&
+        this.dt.selection.length > 0 &&
+        this.dt.selection.length === val.length
     );
   }
 }

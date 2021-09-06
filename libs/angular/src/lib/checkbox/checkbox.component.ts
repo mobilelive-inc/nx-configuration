@@ -55,7 +55,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   @Input() formControl: FormControl;
 
-  @Input() checkboxIcon: string = '';
+  @Input() checkboxIcon= '';
 
   @Input() readonly: boolean;
 
@@ -71,9 +71,9 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   onModelTouched: Function = () => {};
 
-  focused: boolean = false;
+  focused = false;
 
-  checked: boolean = false;
+  checked= false;
 
   constructor(private cd: ChangeDetectorRef) {}
 

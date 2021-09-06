@@ -19,7 +19,7 @@ import AdvancedStepper from './components/advanced-stepper';
 import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
-
+import SkipLink from './components/skiplink';
 export function App() {
    const [count, setCount] = useState<number>(1);
   return (
@@ -125,6 +125,19 @@ export function App() {
         <Text fontSize="fontSizeH2">OtherSpecs</Text>
         <Container>
           <OtherSpecs />
+          </Container>
+        <Text fontSize="fontSizeH2">Skip Navigation</Text>
+        <Container>
+          <div style={{ height: '100px', background: colors.primary }}></div>
+          <SkipLink
+            href="#"
+            focusableID="newId"
+            title="Skip"
+            top={150}
+            border="none"
+            backgroundColor="blue"
+            color="white"
+          />
         </Container>
         </MainContainer>
         </ThemeProvider>
