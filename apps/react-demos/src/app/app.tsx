@@ -19,6 +19,7 @@ import AdvancedStepper from './components/advanced-stepper';
 import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import SkipLink from './components/skiplink';
+import Stepper from './components/stepper';
 
 export function App() {
    const [count, setCount] = useState<number>(1);
@@ -130,6 +131,15 @@ export function App() {
             border="none"
             backgroundColor="blue"
             color="white"
+          />
+        </Container>
+        <Text fontSize="fontSizeH2">Stepper</Text>
+        <Container>
+          <Stepper
+            variant="primary"
+            value={85}
+            total={100}
+            isCountVisible={true}
           />
         </Container>
         </MainContainer>
