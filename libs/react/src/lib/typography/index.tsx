@@ -26,7 +26,7 @@ const BaseText = styled(RebassText)(
 
 const getDerivedProps = props => {
   const { underline, deleted, mark, italic, bold } = props;
-  const styles = {};
+  const styles = {marginBottom:'20px'};
   if (underline) {
     styles[`text-decoration`] = `underline`;
   }
