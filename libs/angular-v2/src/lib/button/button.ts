@@ -3,7 +3,7 @@ import {CommonModule} from "@angular/common";
 
 
 @Component({
-    selector: 'fds-v2-button',
+    selector: 'fds-button',
     templateUrl: 'button.html'
 })
 export class Button {
