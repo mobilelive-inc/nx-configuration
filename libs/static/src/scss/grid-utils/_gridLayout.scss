@@ -146,7 +146,7 @@
 
       @for $i from 0 through $columns {
         .order#{$infix}--#{$i} {
-          order: $i;
+          order: $i !important;
         }
       }
 
