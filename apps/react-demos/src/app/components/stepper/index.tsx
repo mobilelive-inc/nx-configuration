@@ -53,15 +53,4 @@ Stepper.defaultProps = {
   isCountVisible: true
 };
 
-Stepper.propTypes = {
-  /** Total Number of steps */
-  total: PropTypes.number.isRequired,
-  /** Step no where user stands */
-  value: PropTypes.number.isRequired,
-  /** To manage theme*/
-  variant: PropTypes.string,
-  /** This is to show/hide the below count, by-default it's value is true*/
-  isCountVisible: PropTypes.bool
-};
-
 export default Stepper;

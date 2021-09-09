@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import {Story, Meta } from '@storybook/react';
+import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import Stepper from '../stepper/stepper';
 import Text from '../typography';
 import Button from '../button/button';
-import Box from '../box';
 import { Flex } from 'rebass/styled-components';
 import Theme from '../theme/styles/stepper';
 import defaultTheme from '../theme/defaultTheme';
@@ -12,23 +13,24 @@ import '../icomoon_icons.css';
 
 export default {
   title: 'Stepper',
-  component: Stepper
-};
+  component: Stepper,
+} as Meta;
 
-export const BasicStepper = () => {
+
+export const BasicStepper:Story = (args) => {
   const [step, setStep] = useState(1);
 
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <Text>Primary Theme</Text>
-      <Stepper  isCountVisible={true} variant="primary" value={step} total={3} />
+      <Stepper isCountVisible={true} variant="primary" value={step} total={3} {...args}/>
       <Text>Secondary Theme</Text>
-      <Stepper isCountVisible={true} variant="secondary" value={step} total={3} />
+      <Stepper isCountVisible={true} variant="secondary" value={step} total={3} {...args} />
       <Text>Light Theme</Text>
-      <Stepper isCountVisible={true} variant="light" value={step} total={3} />
+      <Stepper isCountVisible={true} variant="light" value={step} total={3}  {...args}/>
       <Text>Dark Theme</Text>
-      <Stepper isCountVisible={true} variant="dark" value={step} total={3} />
+      <Stepper isCountVisible={true} variant="dark" value={step} total={3}  {...args} />
       <Text>Hidden Counter</Text>
       <Stepper
         variant="primary"
@@ -80,3 +82,9 @@ export const BasicStepper = () => {
     </ThemeProvider>
   );
 };
+BasicStepper.args = {
+  total: 10,
+  value: 3,
+  variant: 'primary',
+  isCountVisible: true
+}
