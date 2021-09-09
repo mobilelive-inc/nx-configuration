@@ -20,8 +20,10 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
+import Toggle from './components/toggle'
 export function App() {
    const [count, setCount] = useState<number>(1);
+   const [isOn, setIsOn] = useState<boolean>(false);
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -139,6 +141,55 @@ export function App() {
             color="white"
           />
         </Container>
+
+      <Text fontSize="fontSizeH2">Toggle</Text>
+       <Container>
+        <Toggle
+          shortDescription="Test toggle"
+          id="bt1"
+          size="lg"
+          isToggled={isOn}
+          error
+          label="On"
+          onChange={() => {
+            setIsOn(!isOn);
+          }}
+        />
+        <Toggle
+          shortDescription="Test toggle"
+          identity="bt1"
+          styles={{
+            toggledOnBgColor: 'green',
+            toggledOffBgColor: 'white',
+            switchOnColor: 'orange',
+            switchOffColor: 'black',
+            toggledOffBorder: '1px solid black'
+          }}
+          size="sm"
+          isToggled={isOn}
+          onChange={() => {
+            setIsOn(!isOn);
+          }}
+        />
+        <Toggle
+          shortDescription="Test toggle"
+          identity="bt1"
+          styles={{
+            toggledOnBgColor: 'white',
+            toggledOffBgColor: 'white',
+            switchOnColor: 'black',
+            switchOffColor: 'black',
+            toggledOffBorder: '1px solid black',
+            toggledOnBorder: '1px solid black'
+          }}
+          label="On"
+          size="sm"
+          isToggled={isOn}
+          onChange={() => {
+            setIsOn(!isOn);
+          }}
+        />
+      </Container>
         </MainContainer>
         </ThemeProvider>
   );
