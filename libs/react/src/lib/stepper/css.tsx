@@ -8,14 +8,14 @@ export const ProgressWrapper = styled('div')(
     width: 'stepperOverallWidth',
     height: 'stepperOverallHeight',
   }),
-  compose(color, layout, space, border,variant({ scale: 'stepperWrapper'})),
-  
+  compose(color, layout, space, border),
+  variant({ scale: 'stepperWrapper' })
 );
 export const ProgressStepper = styled('div')(
   css({
     width: '0%',
-    transition: 'width 0.6s ease'
+    transition: 'width 0.6s ease',
   }),
-  compose(color, layout, space, border,variant({ scale: 'stepper' })),
-  
+  compose(color, layout, space, border),
+  variant({ scale: 'stepper' })
 );

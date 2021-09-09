@@ -1,11 +1,6 @@
 import { colors } from '../properties/colors';
 
-export const borderCurved = '10px';
-export const borderRounded = '50px';
-const getBorder = color => {
-  return `2px solid ${color}`;
-};
-export const unVisitedStep = {
+export const stepper = {
   primary: {
     borderColor: colors.primary,
     color: colors.primary,
@@ -67,17 +62,21 @@ export const visitedStep = {
   }
 };
 
-export const progressBar = {
+export const stepperWrapper = {
   primary: {
-    backgroundColor: colors.primary
+    opacity: 1,
+    backgroundColor: `${colors.primary}1A`
   },
   secondary: {
-    backgroundColor: colors.secondary
+    opacity: 1,
+    backgroundColor: `${colors.secondary}1A`
   },
-  success: {
-    backgroundColor: colors.success
+  light: {
+    opacity: 1,
+    backgroundColor: `${colors.light}1A`
   },
-  danger: {
-    backgroundColor: colors.danger
+  dark: {
+    opacity: 1,
+    backgroundColor: colors.light
   }
 };

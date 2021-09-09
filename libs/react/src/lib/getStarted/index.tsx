@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import {
   compose,
@@ -11,7 +11,7 @@ import {
 import {
   Flex as BaseFlex, Image
  } from 'rebass/styled-components';
-import galaxy from '../../assets/galaxy.jpg';
+import * as galaxy from "../../assets/galaxy.jpg"
 /**
  * Rebass Flex with additional support
  */

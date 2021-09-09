@@ -3,7 +3,7 @@ import { _colors } from '../properties/colors';
 import { _space } from '../properties/space';
 import { _radii } from '../properties/radius';
 import { _borderWidths } from '../properties/borderWidths';
-import {stepper,stepperWrapper } from '../variants/stepper'
+import {stepper} from '../variants/stepper'
 
 export const fontSizes = {
   collapseHeadingTextFontSize: _fontSizes.fontSizeTiny,
@@ -41,6 +41,5 @@ export default {
   space,
   radii,
   borderWidths,
-  stepper,
-  stepperWrapper
+  stepper
 };
