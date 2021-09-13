@@ -77,3 +77,29 @@ Nx Cloud pairs with Nx in order to enable you to build and test code more rapidl
 Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
+
+
+
+
+### Component to Module Conversion
+- for example we are converting 'Accordian' component to module
+- Creat folder of accordian in angular-v2/lib.
+- Creat Accordian.html, Accordian.ts, Accordian.spec.ts
+- link html file in accordian.ts in component decorator, and add a selector
+- Copy the complete class code from the 'angular/lib/accordian/accordian.component.ts' and put it in 
+  'angular-v2/lib/accordian/accordian.ts' after Component decorator.
+- Register NgModule from Angular/core
+- Add at bottom: 
+    @NgModule({
+        declarations: [
+            Accordian
+        ],
+        imports: [
+            CommonModule
+        ],
+        exports: [
+            Accordian
+        ],
+    })
+- Declare component in declarations and exports
+- export class AccordianModule{}
