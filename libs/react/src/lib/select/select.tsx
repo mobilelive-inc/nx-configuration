@@ -25,7 +25,7 @@ interface SelectProps{
     borderType?:string
     withBorderBottomOnly?:boolean
     validationIcon?:string
-    isValid?:string
+    isValid?:boolean
     chevron?:string
     onChange?: (e) => void;
     disabled?:boolean
@@ -40,6 +40,7 @@ interface SelectProps{
     pl?: number
     mt?: number 
     pt?: number
+    ml?:number
     borderColor?: string
     boxSizing?: string
     cursor?: string

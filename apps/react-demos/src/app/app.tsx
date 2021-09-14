@@ -22,8 +22,14 @@ import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
 import Select from './components/select'
 import Option from './components/option'
+import { map } from 'rxjs/operators';
 export function App() {
-  const options = [
+  interface OptionProps{
+    id?:number
+    value?:string
+    target?: EventTarget;
+  }
+  const options : OptionProps[]= [
     {
       id: 0,
       value : 'Javascript'
@@ -39,7 +45,7 @@ export function App() {
   ];
   
    const [count, setCount] = useState<number>(1);
-   const [selected, setSelected] = useState();
+   const [selected, setSelected] = useState('');
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -175,10 +181,10 @@ export function App() {
             withBorderBottomOnly
             chevron="icon-keyboard_arrow_down_24px"
             value={selected}
-            onChange={e => setSelected(e.target.value)}
+            onChange={(e)=> setSelected(e.target.value)}
             color="black">
             {options.map(option => (
-              <Option value={option.id} key={option.id}>{option.value}</Option>
+              <option value={option.id} key={option.id}>{option.value}</option>
             ))}
           </Select>
           <Flex mt={20}>
@@ -206,15 +212,14 @@ export function App() {
             height="40px"
             errorMessage="this is error"
             borderRadius="10px">
-            <option value="1">Hey</option>
-            <option value="2">There</option>
-            <option value="3">Hello</option>
+            <Option value="1">Hey</Option>
+            <Option value="2">There</Option>
+            <Option value="3">Hello</Option>
           </Select>
         </Flex>
           </Container>
         </MainContainer>
         </ThemeProvider>
-  );
-}
+  )}
 
 export default App;
