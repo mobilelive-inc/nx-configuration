@@ -11,8 +11,8 @@ import Text from '../typography';
 import Option from '../option';
 
 interface SelectProps{
-    width?:string
-    height?:string
+    width?:string | number | string[] | number[]
+    height?:string | number | string[] | number[]
     id?:string
     name?:string
     value?:string
@@ -31,12 +31,17 @@ interface SelectProps{
     disabled?:boolean
     backgroundColor?:string
     color?:string
-    borderRadius?:string
+    borderRadius?:string | number | string[] | number[]
+    fontWeight?:string | number | string[] | number[]
+    textAlign?:string | number | string[] | number[]
+    border?:string
+    m?:string | number | string[] | number[]
+    p?:string | number | string[] | number[]
     children?: React.ReactNode
     position?: string
     as?: string
-    fontSize?: string
-    lineHeight?: string
+    fontSize?: string | number | string[] | number[]
+    lineHeight?:string | number | string[] | number[]
     pl?: number
     mt?: number 
     pt?: number

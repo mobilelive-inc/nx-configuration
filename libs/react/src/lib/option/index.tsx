@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface OptionProps{
-    value?:Element[any]
+    value?:string | number | readonly string[]
     children?:string,
     id?:number
 }

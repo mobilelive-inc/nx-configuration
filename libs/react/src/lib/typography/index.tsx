@@ -45,7 +45,30 @@ const getDerivedProps = props => {
   return styles;
 };
 
-export const Text = props => {
+interface TextProps{
+  children: React.ReactNode 
+  variant?: string
+  ml?: number
+  position?: string 
+  as?: string
+  color?: string 
+  fontSize?:string | number | string[] | number[]
+  lineHeight?:string | number | string[] | number[]
+  pl?: number 
+  mt?: number
+  pt?: number
+  underline?: boolean
+  deleted?: boolean
+  mark?: boolean
+  italic?: boolean
+  bold?:boolean
+  fontWeight?:string | number | string[] | number[]
+  m?:string | number | string[] | number[]
+  p?:string | number | string[] | number[]
+
+   }
+
+export const Text:React.FC<TextProps> = props => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <BaseText {...props} />
