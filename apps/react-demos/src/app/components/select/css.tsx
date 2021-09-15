@@ -1,57 +1,54 @@
-import React, { CSSProperties } from "react";
-import styled from 'styled-components'
-import {
-  compose, color, layout, space, border
-} from 'styled-system';
-
+import React, { CSSProperties } from 'react';
+import styled from 'styled-components';
+import { compose, color, layout, space, border } from 'styled-system';
 
 const getDerivedProps = (props) => {
   const {
-    borderType, theme: {
-      borderCurved, borderRounded,
-      colors : { black }
+    borderType,
+    theme: {
+      borderCurved,
+      borderRounded,
+      colors: { black },
     },
     theme: { colors },
     withBorderBottomOnly,
-    error
+    error,
   } = props;
-  const styles:CSSProperties = {
+  const styles: CSSProperties = {
     borderColor: error ? colors.error : black,
     boxSizing: 'border-box',
     cursor: 'pointer',
     padding: '10px',
     width: '100%',
-    // mozAppearance:'none',
-    // webkitAppearance: 'none',
+  };
+  if (borderType === 'curved') {
+    styles.borderRadius = borderCurved;
   }
-  if(borderType === 'curved'){
-    styles.borderRadius = borderCurved
+  if (borderType === 'rounded') {
+    styles.borderRadius = borderRounded;
   }
-  if(borderType === 'rounded'){
-    styles.borderRadius = borderRounded
-  }
-  if(withBorderBottomOnly){
+  if (withBorderBottomOnly) {
     styles.borderColor = 'transparent';
-    styles.borderBottom = `1px solid ${error ? colors.error : black}`
+    styles.borderBottom = `1px solid ${error ? colors.error : black}`;
   }
   return styles;
-}
+};
 
 export const BaseSelect = styled('select')(
-  props => getDerivedProps(props),
+  (props) => getDerivedProps(props),
   compose(color, layout, space, border)
-)
+);
 
 export const SelectWrapper = styled.div`
-  width: ${props => (props.width ? props.width: '100%') };
+  width: ${(props) => (props.width ? props.width : '100%')};
   position: relative;
-  ${
-  props => props.leftIcon &&
+  ${(props) =>
+    props.leftIcon &&
     `& > select{
        padding-left: 40px
      }
     `};
-`
+`;
 
 const common = `
   position: absolute;
@@ -63,15 +60,15 @@ const common = `
   padding: 0;
   border: none;
   box-shadow: none;
-`
+`;
 
 export const LeftIconButton = styled.button`
-right: calc(100% - 30px);
-top: 0;
-transform: translateY(50%);
-font-size: 16px;
-${common}
-`
+  right: calc(100% - 30px);
+  top: 0;
+  transform: translateY(50%);
+  font-size: 16px;
+  ${common}
+`;
 
 export const RightIconButton = styled.button`
   left: calc(100% - 50px);
@@ -79,7 +76,7 @@ export const RightIconButton = styled.button`
   transform: translateY(50%);
   font-size: 16px;
   ${common}
-`
+`;
 
 export const ChevronDownIcon = styled.span`
   left: calc(100% - 20px);
@@ -87,7 +84,7 @@ export const ChevronDownIcon = styled.span`
   transform: translateY(-50%);
   font-size: 8px;
   ${common}
-`
+`;
 
 export const ValidationIcon = styled.span`
   position: absolute;
@@ -95,6 +92,6 @@ export const ValidationIcon = styled.span`
   width: 20px;
   top: 0;
   transform: translateY(50%);
-  color: ${props => (props.isValid ? 'green': 'red')};
+  color: ${(props) => (props.isValid ? 'green' : 'red')};
   font-size: 18px;
 `;

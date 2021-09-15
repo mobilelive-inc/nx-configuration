@@ -9,7 +9,6 @@ import {
 } from './css';
 import Text from '../typography';
 import Option from '../option';
-
 interface SelectProps{
     width?:string
     height?:string

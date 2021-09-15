@@ -19,7 +19,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => {
-const [select, setSelected] = React.useState('')
+const [selected, setSelected] = React.useState('')
 return(
     <ThemeProvider theme={Theme}>
     <GlobalStyle />
@@ -237,8 +237,107 @@ Primary.args = {
     onClick: () => undefined,
     withIcon: false 
 }
-  
-  Select.propTypes = {
+
+const TemplateTwo: Story = (args) =>{
+    interface OptionProps{
+        id?:number
+        value?:string
+        target?: EventTarget;
+      }
+      const options : OptionProps[]= [
+        {
+          id: 0,
+          value : 'Javascript'
+        },
+        {
+          id: 2,
+          value: 'Java'
+        },
+        {
+          id: 3,
+          value: 'C++'
+        }
+      ];
+    const [selected, setSelected] = React.useState('')
+    return(
+        <ThemeProvider theme={Theme}>
+            <Select
+            name="greetings"
+            width="50%"
+            height="40px"
+            rightIcon="icon-delete_24px"
+            leftIcon="icon-delete_24px"
+            disabled
+            onLeftIconClick={() => alert('on left')}
+            backgroundColor="gray"
+            placeholder="select on option"
+            borderType="rounded"
+            errorMessage="this is error"
+            validationIcon="icon-check_circle_24px"
+            withBorderBottomOnly
+            chevron="icon-keyboard_arrow_down_24px"
+            value={selected}
+            onChange={(e)=> setSelected(e.target.value)}
+            color="black">
+            {options.map(option => (
+              <option value={option.id} key={option.id}>{option.value}</option>
+            ))}
+          </Select>
+
+        </ThemeProvider>
+    )
+}
+export const Error = TemplateTwo.bind({})
+
+const TemplateThree:Story = (args) =>{
+    interface OptionProps{
+        id?:number
+        value?:string
+        target?: EventTarget;
+      }
+      const options : OptionProps[]= [
+        {
+          id: 0,
+          value : 'Javascript'
+        },
+        {
+          id: 2,
+          value: 'Java'
+        },
+        {
+          id: 3,
+          value: 'C++'
+        }
+      ];
+    const [selected, setSelected] = React.useState('')
+    return(
+        <ThemeProvider theme={Theme}>
+            <Select
+            name="greetings"
+            width="50%"
+            height="40px"
+            rightIcon="icon-delete_24px"
+            leftIcon="icon-delete_24px"
+            onLeftIconClick={() => alert('on left')}
+            backgroundColor="gray"
+            placeholder="select on option"
+            borderType="rounded"
+            errorMessage="this is error"
+            validationIcon="icon-check_circle_24px"
+            chevron="icon-keyboard_arrow_down_24px"
+            value={selected}
+            onChange={(e)=> setSelected(e.target.value)}
+            color="black">
+            {options.map(option => (
+              <option value={option.id} key={option.id}>{option.value}</option>
+            ))}
+          </Select>
+
+        </ThemeProvider>)
+}
+export const DynamicOptionSelect = TemplateThree.bind({})
+
+Select.propTypes = {
     /** Need to be instances of Option component */
     children: PropTypes.oneOfType([
       PropTypes.node,
