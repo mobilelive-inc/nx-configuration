@@ -1,3 +1,5 @@
+export * from './lib/otherspecs/otherspecs';
+export * from './lib/skiplink/skiplink';
 export * from './lib/advanced-stepper/advanced-stepper';
 export * from './lib/react';
 export * from './lib/buttons/buttons';

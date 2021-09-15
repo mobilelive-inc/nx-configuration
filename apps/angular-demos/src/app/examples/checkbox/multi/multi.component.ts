@@ -13,7 +13,7 @@ import { map} from 'lodash';
         <form [formGroup]="form">
           <div *ngFor="let juice of  juices.controls; let i = index">
             <fds-checkbox
-              [formControl]="juice.name"
+              [formControl]="juice"
               [label]="user.juices[i].name"
               [binary]='binary'
               (onChange)="onCheckboxChange($event)"

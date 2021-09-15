@@ -32,42 +32,43 @@ import { FdsFormFieldControl } from '../form-field/form-field-control';
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'fds-autocomplete',
-  templateUrl: './autocomplete.component.html',
+  selector: "fds-autocomplete",
+  templateUrl: "./autocomplete.component.html",
   animations: [
-    trigger('overlayAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scaleY(0.8)' }),
-        animate('{{showTransitionParams}}')
+    trigger("overlayAnimation", [
+      transition(":enter", [
+        style({ opacity: 0, transform: "scaleY(0.8)" }),
+        animate("{{showTransitionParams}}"),
       ]),
-      transition(':leave', [
-        animate('{{hideTransitionParams}}', style({ opacity: 0 }))
-      ])
-    ])
+      transition(":leave", [
+        animate("{{hideTransitionParams}}", style({ opacity: 0 })),
+      ]),
+    ]),
   ],
   host: {
-    '[class.fds-inputwrapper-filled]': 'filled',
-    '[class.fds-inputwrapper-focus]': 'focus && !disabled',
-    '[class.w--100]': '100',
-    '[class.d--block]': '200'
+    "[class.fds-inputwrapper-filled]": "filled",
+    "[class.fds-inputwrapper-focus]": "focus && !disabled",
+    "[class.w--100]": "100",
+    "[class.d--block]": "200",
   },
   providers: [
     // AUTOCOMPLETE_VALUE_ACCESSOR,
     {
       provide: FdsFormFieldControl,
-      useExisting: forwardRef(() => AutocompleteComponent)
-    }
+      useExisting: forwardRef(() => AutocompleteComponent),
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./autocomplete.component.scss']
+  styleUrls: ["./autocomplete.component.scss"],
 })
 export class AutocompleteComponent
     implements
         AfterViewChecked,
         AfterContentInit,
         OnDestroy,
-        ControlValueAccessor {
+        ControlValueAccessor
+{
   @Input() minLength = 1;
 
   @Input() delay = 300;
@@ -80,7 +81,9 @@ export class AutocompleteComponent
 
   @Input() showEmptyMessageClasses: string;
 
-  @Input() btnText = 'Select a Person or Group';
+  @Input() showEmptyMessageClasses: string;
+
+  @Input() btnText = "Select a Person or Group";
 
   @Input() withinInput = true;
 
@@ -113,7 +116,7 @@ export class AutocompleteComponent
 
   @Input() inputId: string;
 
-  @Input() id: string = 'fdsAutocomplete' + nextUniqueId;
+  @Input() id: string = "fdsAutocomplete" + nextUniqueId;
 
   @Input() inputStyleClass: string;
 
@@ -137,7 +140,7 @@ export class AutocompleteComponent
 
   @Input() forceSelection: boolean;
 
-  @Input() type = 'text';
+  @Input() type = "text";
 
   @Input() autoZIndex = true;
 
@@ -147,7 +150,7 @@ export class AutocompleteComponent
 
   @Input() ariaLabelledBy: string;
 
-  @Input() dropdownIcon = 'icon-arrow-down';
+  @Input() dropdownIcon = "icon-arrow-down";
 
   @Input() unique = true;
 
@@ -175,11 +178,11 @@ export class AutocompleteComponent
 
   @Input() field: string;
 
-  @Input() scrollHeight = '200px';
+  @Input() scrollHeight = "200px";
 
   @Input() dropdown: boolean;
 
-  @Input() dropdownMode = 'blank';
+  @Input() dropdownMode = "blank";
 
   @Input() multiple: boolean;
 
@@ -191,23 +194,21 @@ export class AutocompleteComponent
 
   @Input() showEmptyMessage: boolean;
 
-  @Input() showTransitionOptions = '.12s cubic-bezier(0, 0, 0.2, 1)';
+  @Input() showTransitionOptions = ".12s cubic-bezier(0, 0, 0.2, 1)";
 
-  @Input() showTransitionOptions = '.12s cubic-bezier(0, 0, 0.2, 1)';
-
-  @Input() hideTransitionOptions = '.1s linear';
+  @Input() hideTransitionOptions = ".1s linear";
 
   @Input() autofocus: boolean;
 
-  @Input() autocomplete = 'off';
+  @Input() autocomplete = "off";
 
-  @ViewChild('in') inputEL: ElementRef;
+  @ViewChild("in") inputEL: ElementRef;
 
-  @ViewChild('multiIn') multiInputEL: ElementRef;
+  @ViewChild("multiIn") multiInputEL: ElementRef;
 
-  @ViewChild('multiContainer') multiContainerEL: ElementRef;
+  @ViewChild("multiContainer") multiContainerEL: ElementRef;
 
-  @ViewChild('ddBtn') dropdownButton: ElementRef;
+  @ViewChild("ddBtn") dropdownButton: ElementRef;
 
   @ContentChildren(Template) templates: QueryList<any>;
 
@@ -223,7 +224,7 @@ export class AutocompleteComponent
 
   ngControl: NgControl | null;
 
-  controlType = 'fds-autocomplete';
+  controlType = "fds-autocomplete";
 
   value: any;
   timeout: any;
@@ -254,7 +255,7 @@ export class AutocompleteComponent
       public differs: IterableDiffers
   ) {
     this.differ = differs.find([]).create(null);
-    this.listId = ++nextUniqueId + '_list';
+    this.listId = ++nextUniqueId + "_list";
     this.ngControl = this._injector.get(NgControl);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -262,7 +263,7 @@ export class AutocompleteComponent
   }
 
   getClasses() {
-    return { 'fds-autocomplete-dd': this.dropdown };
+    return { "fds-autocomplete-dd": this.dropdown };
   }
 
   _suggestions: any[];
@@ -296,7 +297,7 @@ export class AutocompleteComponent
         if (this.overlay) {
           const listItem = DomHandler.findSingle(
               this.overlay,
-              'li.fds-highlight'
+              "li.fds-highlight"
           );
           if (listItem) {
             DomHandler.scrollInView(this.overlay, listItem);
@@ -334,17 +335,17 @@ export class AutocompleteComponent
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates.forEach((item) => {
       switch (item.getType()) {
-        case 'item':
+        case "item":
           this.itemTemplate = item.template;
           break;
 
-        case 'selectedItem':
+        case "selectedItem":
           this.selectedItemTemplate = item.template;
           break;
 
-        case 'empty':
+        case "empty":
           this.emptyTemplate = item.template;
           break;
 
@@ -357,7 +358,7 @@ export class AutocompleteComponent
 
   writeValue(value: any): void {
     this.value = value;
-    this.filled = this.value && this.value != '';
+    this.filled = this.value && this.value != "";
     this.updateInputField();
   }
 
@@ -423,7 +424,7 @@ export class AutocompleteComponent
 
     this.completeMethod.emit({
       originalEvent: event,
-      query: query
+      query: query,
     });
   }
 
@@ -434,7 +435,7 @@ export class AutocompleteComponent
     }
 
     if (this.multiple) {
-      this.multiInputEL.nativeElement.value = '';
+      this.multiInputEL.nativeElement.value = "";
       this.value = this.value || [];
       if (!this.isSelected(option) || !this.unique) {
         this.value = [...this.value, option];
@@ -442,7 +443,7 @@ export class AutocompleteComponent
       }
     } else {
       this.inputEL.nativeElement.value = this.field
-          ? ObjectUtils.resolveFieldData(option, this.field) || ''
+          ? ObjectUtils.resolveFieldData(option, this.field) || ""
           : option;
       this.value = option;
       this.onModelChange(this.value);
@@ -473,7 +474,7 @@ export class AutocompleteComponent
 
   onOverlayAnimationStart(event: any | AnimationEvent) {
     switch (event.toState) {
-      case 'visible':
+      case "visible":
         this.overlay = event.element;
         this.appendOverlay();
         if (this.autoZIndex) {
@@ -487,26 +488,26 @@ export class AutocompleteComponent
         this.onShow.emit(event);
         break;
 
-      case 'void':
+      case "void":
         this.onOverlayHide();
         break;
     }
   }
 
   onOverlayAnimationDone(event: any | AnimationEvent) {
-    if (event.toState === 'void') {
+    if (event.toState === "void") {
       this._suggestions = null;
     }
   }
 
   appendOverlay() {
     if (this.appendTo) {
-      if (this.appendTo === 'body') document.body.appendChild(this.overlay);
+      if (this.appendTo === "body") document.body.appendChild(this.overlay);
       else DomHandler.appendChild(this.overlay, this.appendTo);
 
       if (!this.overlay.style.minWidth) {
         this.overlay.style.minWidth =
-            DomHandler.getWidth(this.el.nativeElement.children[0]) + 'px';
+            DomHandler.getWidth(this.el.nativeElement.children[0]) + "px";
       }
     }
   }
@@ -550,12 +551,12 @@ export class AutocompleteComponent
           ? this.multiInputEL.nativeElement.value
           : this.inputEL.nativeElement.value;
 
-      if (this.dropdownMode === 'blank') this.search(event, '');
-      else if (this.dropdownMode === 'current') this.search(event, queryValue);
+      if (this.dropdownMode === "blank") this.search(event, "");
+      else if (this.dropdownMode === "current") this.search(event, queryValue);
 
       this.onDropdownClick.emit({
         originalEvent: event,
-        query: queryValue
+        query: queryValue,
       });
     } else {
       this.hide();
@@ -709,10 +710,10 @@ export class AutocompleteComponent
 
       if (!valid) {
         if (this.multiple) {
-          this.multiInputEL.nativeElement.value = '';
+          this.multiInputEL.nativeElement.value = "";
         } else {
           this.value = null;
-          this.inputEL.nativeElement.value = '';
+          this.inputEL.nativeElement.value = "";
         }
 
         this.onClear.emit(event);
@@ -758,21 +759,21 @@ export class AutocompleteComponent
           (this.value && this.value.length) ||
           (this.multiInputEL &&
               this.multiInputEL.nativeElement &&
-              this.multiInputEL.nativeElement.value != '');
+              this.multiInputEL.nativeElement.value != "");
     else
       this.filled =
-          (this.inputFieldValue && this.inputFieldValue != '') ||
+          (this.inputFieldValue && this.inputFieldValue != "") ||
           (this.inputEL &&
               this.inputEL.nativeElement &&
-              this.inputEL.nativeElement.value != '');
+              this.inputEL.nativeElement.value != "");
   }
 
   updateInputField() {
     const formattedValue = this.value
         ? this.field
-            ? ObjectUtils.resolveFieldData(this.value, this.field) || ''
+            ? ObjectUtils.resolveFieldData(this.value, this.field) || ""
             : this.value
-        : '';
+        : "";
     this.inputFieldValue = formattedValue;
 
     if (this.inputEL && this.inputEL.nativeElement) {
@@ -786,12 +787,12 @@ export class AutocompleteComponent
     if (!this.documentClickListener) {
       const documentTarget: any = this.el
           ? this.el.nativeElement.ownerDocument
-          : 'document';
+          : "document";
 
       this.documentClickListener = this.renderer.listen(
           documentTarget,
-          'click',
-          event => {
+          "click",
+          (event) => {
             if (event.which === 3) {
               return;
             }
@@ -828,12 +829,12 @@ export class AutocompleteComponent
 
   bindDocumentResizeListener() {
     this.documentResizeListener = this.onWindowResize.bind(this);
-    window.addEventListener('resize', this.documentResizeListener);
+    window.addEventListener("resize", this.documentResizeListener);
   }
 
   unbindDocumentResizeListener() {
     if (this.documentResizeListener) {
-      window.removeEventListener('resize', this.documentResizeListener);
+      window.removeEventListener("resize", this.documentResizeListener);
       this.documentResizeListener = null;
     }
   }

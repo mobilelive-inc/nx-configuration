@@ -2,6 +2,6 @@
 
 @each $value in $overflows {
   .overflow--#{$value} {
-    overflow: $value;
+    overflow: $value !important;
   }
 }

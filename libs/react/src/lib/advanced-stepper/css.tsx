@@ -31,7 +31,6 @@ export const UnVisitedStep = styled(`div`)(
       backgroundColor: 'stepperThemeColor'
     }
   }),
-  props => props,
   compose(border, layout, space, color, variant({ scale: 'unVisitedStep' }))
 );
 
@@ -51,7 +50,6 @@ export const VistedStep = styled(`div`)(
       color: 'white'
     }
   }),
-  props => props,
   compose(border, layout, space, color, variant({ scale: 'visitedStep' }))
 );
 
@@ -78,9 +76,6 @@ export const StepItemContainer = styled(`div`)(
     display: 'flex',
     flexDirection: 'column'
   }),
-  {
-    alignItems: props => props.alignment || 'start'
-  }
 );
 
 export const AnnouncementText = styled(`span`)(
