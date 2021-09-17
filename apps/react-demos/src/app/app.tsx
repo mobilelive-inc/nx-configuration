@@ -154,6 +154,8 @@ export function App() {
           onChange={() => {
             setIsOn(!isOn);
           }}
+          styles={{
+          }}
         />
         <Toggle
           shortDescription="Test toggle"
