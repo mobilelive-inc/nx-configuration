@@ -6,10 +6,10 @@ import { ThemeService, ThemeListItem } from 'fds-angular';
   template: `
     <div class="theme-switcher">
       <p class="text--center">Choose <br />Theme:</p>
-      <div class="btns-switcher-holder">
+      <div class="btns-switcher-holder text--center">
         <button
           *ngFor="let theme of themes"
-          class="mb--2 btn navy default"
+          class="justify--content--center btn--primary mb--2 btn navy default"
           [class.btn--primary]= "activeClassName == theme.className"
           (click)="switchTheme(theme)"
         >

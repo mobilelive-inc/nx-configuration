@@ -10,7 +10,7 @@
 
     @each $value in $displays {
       .d#{$infix}--#{$value} {
-        display: $value;
+        display: $value !important;
       }
     }
   }
@@ -23,7 +23,7 @@
 @media print {
   @each $value in $displays {
     .d--print--#{$value} {
-      display: $value;
+      display: $value !important;
     }
   }
 }

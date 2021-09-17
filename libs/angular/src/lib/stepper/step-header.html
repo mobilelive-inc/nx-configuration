@@ -5,7 +5,7 @@
 >
   <span
     aria-hidden="true"
-    class="fds--stepper--counter btn btn--icon rounded--circle mx--5"
+    class="justify--content--center fds--stepper--counter btn btn--icon rounded--circle mx--5"
     [class.fds-done-step]="_getDefaultTextForState(state) === 'create'"
     [ngClass]="selected ? 'btn--primary' : 'btn--primary--outline'"
     [ngSwitch]="!!(iconOverrides && iconOverrides[state])"
