@@ -1,0 +1,14 @@
+{
+  "name": "@mobilelivenpm/fds-icons",
+  "version": "1.1.8-alpha",
+  "description": "mobileLive Designs System Static",
+  "author": "mobileLIVE",
+  "license": "Mobilelive",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobilelive-inc/friday-design-system"
+  },
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {}
+}

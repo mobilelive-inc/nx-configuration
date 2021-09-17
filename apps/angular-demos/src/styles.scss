@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 // Custom settings
-@import 'assets/styles/breakpoint-vals';
-@import 'assets/styles/spacing-vals';
+//@import 'assets/styles/breakpoint-vals';
+//@import 'assets/styles/spacing-vals';
 
 // Basic settings from Static Friday Design System
 @import 'libs/static/src/scss/_component-dependencies';
 
 // Add theme based custom styles from local project
-@import 'assets/themes/theme.scss';
+//@import 'assets/themes/theme.scss';
 
 // Component Styles form Static Friday Design System
 @import 'libs/static/src/scss/components/_buttons';
@@ -20,8 +20,8 @@
 @import "libs/static/src/scss/components/_modals";
 
 // tippy
-@import 'libs/angular/src/lib/shared/tippy/fds-tippy';
+@import 'libs/static/src/scss/fds-tippy';
 @import 'node_modules/tippy.js/animations/shift-away';
 
 // Icons
-@import "libs/icons/icomons_styles";
+@import "libs/static/src/scss/icons/icomons_styles";
