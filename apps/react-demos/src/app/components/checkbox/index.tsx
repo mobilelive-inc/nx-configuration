@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Input, InputContainer, Flex
 } from './css';
@@ -68,9 +67,8 @@ const Checkbox:React.FC<CheckboxProps> =(props) =>{
         pl={[10]}
         mt='-22px'
         lineHeight={5}
-        fontWeight={600}
         color={errorMessage && !isChecked ? 'error' : 'black'}
-        // fontWeight={isChecked ? [2] : [0]}
+        fontWeight={isChecked ? [2] : [0]}
         as="label">
         {label}
       </Label>

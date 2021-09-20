@@ -20,10 +20,34 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
-import Toggle from './components/toggle';
 import Checkbox from './components/checkbox'
+import Select from './components/select'
+import Option from './components/option'
+import Toggle from './components/toggle'
+
 export function App() {
+  interface OptionProps{
+    id?:number
+    value?:string
+    target?: EventTarget;
+  }
+  const options : OptionProps[]= [
+    {
+      id: 0,
+      value : 'Javascript'
+    },
+    {
+      id: 2,
+      value: 'Java'
+    },
+    {
+      id: 3,
+      value: 'C++'
+    }
+  ];
+  
    const [count, setCount] = useState<number>(1);
+   const [selected, setSelected] = useState('');
    const [isOn, setIsOn] = useState<boolean>(false);
    const [isChecked, setIschecked] = React.useState(false);
   return (
@@ -143,8 +167,7 @@ export function App() {
             color="white"
           />
         </Container>
-
-      {/* <Text fontSize="fontSizeH2">Toggle</Text>
+          <Text fontSize="fontSizeH2">Toggle</Text>
        <Container>
         <Toggle
           shortDescription="Test toggle"
@@ -155,6 +178,8 @@ export function App() {
           label="On"
           onChange={() => {
             setIsOn(!isOn);
+          }}
+          styles={{
           }}
         />
         <Toggle
@@ -191,7 +216,7 @@ export function App() {
             setIsOn(!isOn);
           }}
         />
-      </Container> */}
+      </Container> 
       <Text fontSize="fontSizeH2" >Check Box</Text>
       <Container>
         <Flex>
@@ -202,7 +227,7 @@ export function App() {
               label="Internet"
               backgroundColor="green"
               color="black"
-              errorMessage="asdas"
+              errorMessage="Error"
               isFilled
               variant={isChecked ? 'checked' : 'unchecked'}
               onChange={() => {
@@ -213,13 +238,13 @@ export function App() {
           <Box p={10}>
             <Checkbox
               name="services"
-              value="internet"
-              label="Internet"
+              value="internet2"
+              label="Internet2"
               backgroundColor="green"
               color="black"
               errorMessage="asdas"
-              isFilled
-              variant="unchecked"
+              // isFilled
+              variant={isChecked ? 'checked' : 'unchecked'}
               onChange={() => {
                 setIschecked(!isChecked);
               }}
@@ -381,7 +406,7 @@ export function App() {
               checkedIconClass="icon-check_circle_24px"
               borderType="rounded"
               isFilled={false}
-              variant="checked"
+              variant={isChecked ? 'checked' : 'unchecked'}
               onChange={() => {
                 setIschecked(!isChecked);
               }}
@@ -391,7 +416,6 @@ export function App() {
         </Container>
         </MainContainer>
         </ThemeProvider>
-  );
-}
+  )}
 
 export default App;
