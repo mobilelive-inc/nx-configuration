@@ -28,7 +28,7 @@
     "build-react-lib": "nx build react",
     "build-angular-lib": "ng-packagr -p libs/angular/ng-package.json",
     "build-libs": "rm -rf dist/ && npm run build-react-lib && npm run build-angular-lib",
-    "copy-styles": "ncp libs/static/src/scss dist/libs/@mobilelive/angular-v2/styles",
+    "copy-styles": "ncp libs/static/src/scss dist/libs/@mobilelive/angular/styles",
     "build-angular-v2": "nx build --project=angular-v2 && npm run copy-styles"
   },
   "private": true,

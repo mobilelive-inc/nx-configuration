@@ -3,10 +3,10 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
 import {
-  AccordionComponentModule,
-  ButtonModule, 
-  CardModule, 
-  ProgressModule, 
+  AccordionModule,
+  ButtonModule,
+  CardModule,
+  ProgressModule,
   SharedModule
 } from "@friday-design-systems/angular-v2";
 
@@ -33,9 +33,10 @@ import { WithImageComponent} from './examples/card/with-image/with-image.compone
 // Accordion
 import { BasicComponent } from "./examples/accordion/basic/basic.component";
 import { MultipleComponent } from "./examples/accordion/multiple/multiple.component";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
     SimpleComponent,
     BoxShadowComponent,
     IconFixedHeightComponent,
@@ -51,17 +52,22 @@ import { MultipleComponent } from "./examples/accordion/multiple/multiple.compon
     ButtonRoundedOutlineComponent,
     ButtonSolidComponent,
     ProgressWizardComponent,
+      //cards
+    ImageWithSolidShadowComponent,
+    NoIconComponent,
+    SolidShadowComponent,
+    SimpleComponent,
     // Accordion
     BasicComponent,
-    MultipleComponent,
+    MultipleComponent
   ],
   imports: [
-    BrowserModule, 
-    ButtonModule, 
-    CardModule, 
+    BrowserModule,
+    ButtonModule,
+    CardModule,
     SharedModule,
     ProgressModule,
-    AccordionComponentModule
+    AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'demo-accordion-multiple',
+  selector: "demo-accordion-multiple",
   template: `
     <fds-accordion [multiple]="true">
       <fds-accordion-tab
@@ -49,8 +49,6 @@ import { Component } from '@angular/core';
       </fds-accordion-tab>
     </fds-accordion>
   `,
-  styles: []
+  styles: [],
 })
-export class MultipleComponent {
-
-}
+export class MultipleComponent {}

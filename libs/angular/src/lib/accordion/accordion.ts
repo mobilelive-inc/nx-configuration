@@ -26,13 +26,15 @@ import {
 } from "@angular/animations";
 import {Subscription} from "rxjs";
 import {BlockableUI} from "../shared/utils/blockableui";
+
+//@TODO: make this dependency of shared modules
+
 import {
     HeaderComponent,
-    SharedModule,
     Template,
-} from "../shared/shared.module";
-import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+} from "../shared-new/shared.module";
 import {FocusableModule} from "../directive/focusable/focusable";
+
 
 let idx = 0;
 
@@ -339,7 +341,7 @@ export class AccordionComponent
 
 @NgModule({
     declarations: [AccordionTabComponent, AccordionComponent],
-    imports: [CommonModule, FocusableModule, NoopAnimationsModule],
+    imports: [CommonModule, FocusableModule],
     exports: [AccordionTabComponent, AccordionComponent],
 })
 export class AccordionModule {
