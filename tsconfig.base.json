@@ -18,6 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@friday-design-systems/angular-v2": [
+        "libs/angular-v2/src/index.ts"
+      ],
       "fds-angular": [
         "libs/angular/src/index.ts"
       ],

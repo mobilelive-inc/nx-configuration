@@ -4,24 +4,24 @@
 //@import 'assets/styles/spacing-vals';
 
 // Basic settings from Static Friday Design System
-@import 'libs/static/src/scss/_component-dependencies';
+//@import 'libs/static/src/scss/_component-dependencies';
 
 // Add theme based custom styles from local project
 //@import 'assets/themes/theme.scss';
 
 // Component Styles form Static Friday Design System
-@import 'libs/static/src/scss/components/_buttons';
-@import 'libs/static/src/scss/components/_forms';
-@import 'libs/static/src/scss/components/_progressbar';
-@import 'libs/static/src/scss/components/_tooltip';
-@import 'libs/static/src/scss/components/_card';
-@import 'libs/static/src/scss/components/_accordion';
-@import 'libs/static/src/scss/components/_tables';
-@import "libs/static/src/scss/components/_modals";
+//@import 'libs/static/src/scss/components/_buttons';
+//@import 'libs/static/src/scss/components/_forms';
+//@import 'libs/static/src/scss/components/_progressbar';
+//@import 'libs/static/src/scss/components/_tooltip';
+//@import 'libs/static/src/scss/components/_card';
+//@import 'libs/static/src/scss/components/_accordion';
+//@import 'libs/static/src/scss/components/_tables';
+//@import "libs/static/src/scss/components/_modals";
 
 // tippy
-@import 'libs/static/src/scss/fds-tippy';
-@import 'node_modules/tippy.js/animations/shift-away';
+@import "libs/static/src/scss/fds-tippy";
+@import "node_modules/tippy.js/animations/shift-away";
 
 // Icons
 @import "libs/static/src/scss/icons/icomons_styles";

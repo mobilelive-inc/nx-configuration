@@ -27,7 +27,9 @@
     "postinstall": "ngcc --properties es2015 browser module main",
     "build-react-lib": "nx build react",
     "build-angular-lib": "ng-packagr -p libs/angular/ng-package.json",
-    "build-libs": "rm -rf dist/ && npm run build-react-lib && npm run build-angular-lib"
+    "build-libs": "rm -rf dist/ && npm run build-react-lib && npm run build-angular-lib",
+    "copy-styles": "ncp libs/static/src/scss dist/libs/@mobilelive/angular-v2/styles",
+    "build-angular-v2": "nx build --project=angular-v2 && npm run copy-styles"
   },
   "private": true,
   "dependencies": {
@@ -91,6 +93,8 @@
     "@types/node": "14.14.33",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
+    "@types/rebass": "^4.0.9",
+    "@types/styled-components": "^5.1.11",
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
     "babel-jest": "26.2.2",
@@ -106,6 +110,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "jest": "27.0.3",
     "jest-preset-angular": "9.0.3",
+    "ncp": "^2.0.0",
     "ng-packagr": "^12.1.0",
     "prettier": "^2.3.1",
     "ts-jest": "27.0.3",
