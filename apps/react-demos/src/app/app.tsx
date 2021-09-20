@@ -20,10 +20,12 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
-import Toggle from './components/toggle'
+import Toggle from './components/toggle';
+import Checkbox from './components/checkbox'
 export function App() {
    const [count, setCount] = useState<number>(1);
    const [isOn, setIsOn] = useState<boolean>(false);
+   const [isChecked, setIschecked] = React.useState(false);
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -142,7 +144,7 @@ export function App() {
           />
         </Container>
 
-      <Text fontSize="fontSizeH2">Toggle</Text>
+      {/* <Text fontSize="fontSizeH2">Toggle</Text>
        <Container>
         <Toggle
           shortDescription="Test toggle"
@@ -189,7 +191,204 @@ export function App() {
             setIsOn(!isOn);
           }}
         />
-      </Container>
+      </Container> */}
+      <Text fontSize="fontSizeH2" >Check Box</Text>
+      <Container>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services"
+              value="internet"
+              label="Internet"
+              backgroundColor="green"
+              color="black"
+              errorMessage="asdas"
+              isFilled
+              variant={isChecked ? 'checked' : 'unchecked'}
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services"
+              value="internet"
+              label="Internet"
+              backgroundColor="green"
+              color="black"
+              errorMessage="asdas"
+              isFilled
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="white"
+              errorMessage=""
+              isFilled
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="white"
+              errorMessage=""
+              isFilled
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="black"
+              errorMessage=""
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="black"
+              color="black"
+              errorMessage=""
+              isFilled={false}
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="primary"
+              color="primary"
+              errorMessage=""
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="Internet"
+              backgroundColor="primary"
+              color="primary"
+              errorMessage=""
+              isFilled={false}
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label=""
+              backgroundColor="primary"
+              color="primary"
+              borderType="curved"
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label=""
+              backgroundColor="primary"
+              color="primary"
+              borderType="curved"
+              isFilled={false}
+              variant="unchecked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label=""
+              backgroundColor="primary"
+              color="primary"
+              borderType="rounded"
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+          <Box p={10}>
+            <Checkbox
+              name="services1"
+              value="internet1"
+              label="dong"
+              backgroundColor="primary"
+              color="primary"
+              errorMessage="dasdasd"
+              checkedIconClass="icon-check_circle_24px"
+              borderType="rounded"
+              isFilled={false}
+              variant="checked"
+              onChange={() => {
+                setIschecked(!isChecked);
+              }}
+            />
+          </Box>
+        </Flex>
+        </Container>
         </MainContainer>
         </ThemeProvider>
   );
