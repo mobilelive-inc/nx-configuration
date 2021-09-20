@@ -20,9 +20,32 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
+import Select from './components/select'
+import Option from './components/option'
 import Toggle from './components/toggle'
 export function App() {
+  interface OptionProps{
+    id?:number
+    value?:string
+    target?: EventTarget;
+  }
+  const options : OptionProps[]= [
+    {
+      id: 0,
+      value : 'Javascript'
+    },
+    {
+      id: 2,
+      value: 'Java'
+    },
+    {
+      id: 3,
+      value: 'C++'
+    }
+  ];
+  
    const [count, setCount] = useState<number>(1);
+   const [selected, setSelected] = useState('');
    const [isOn, setIsOn] = useState<boolean>(false);
   return (
       <ThemeProvider theme={theme}>
@@ -141,8 +164,62 @@ export function App() {
             color="white"
           />
         </Container>
-
-      <Text fontSize="fontSizeH2">Toggle</Text>
+        <Text fontSize="fontSizeH2">Select</Text>
+      <Container>
+          <Select
+            name="greetings"
+            width="50%"
+            height="40px"
+            rightIcon="icon-delete_24px"
+            leftIcon="icon-delete_24px"
+            disabled
+            onLeftIconClick={() => alert('on left')}
+            backgroundColor="gray"
+            placeholder="select on option"
+            borderType="rounded"
+            errorMessage="this is error"
+            validationIcon="icon-check_circle_24px"
+            withBorderBottomOnly
+            chevron="icon-keyboard_arrow_down_24px"
+            value={selected}
+            onChange={(e)=> setSelected(e.target.value)}
+            color="black">
+            {options.map(option => (
+              <option value={option.id} key={option.id}>{option.value}</option>
+            ))}
+          </Select>
+          <Flex mt={20}>
+          <Select
+            name="greetings"
+            width="50%"
+            height="40px"
+            borderRadius="50px"
+            placeholder="select on option"
+            borderType="rounded"
+            errorMessage=""
+            validationIcon="icon-check_circle_24px"
+            withBorderBottomOnly
+            chevron="icon-keyboard_arrow_down_24px"
+            value={selected}>
+            <Option value="1">Hey</Option>
+            <Option value="2">There</Option>
+            <Option value="3">Hello</Option>
+          </Select>
+        </Flex>
+        <Flex mt={20}>
+          <Select
+            name="greetings"
+            width="50%"
+            height="40px"
+            errorMessage="this is error"
+            borderRadius="10px">
+            <Option value="1">Hey</Option>
+            <Option value="2">There</Option>
+            <Option value="3">Hello</Option>
+          </Select>
+        </Flex>
+          </Container>
+          <Text fontSize="fontSizeH2">Toggle</Text>
        <Container>
         <Toggle
           shortDescription="Test toggle"
@@ -194,7 +271,6 @@ export function App() {
       </Container>
         </MainContainer>
         </ThemeProvider>
-  );
-}
+  )}
 
 export default App;
