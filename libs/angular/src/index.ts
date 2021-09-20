@@ -49,3 +49,10 @@ export * from './lib/accordion/accordion';
 export * from './lib/button/button';
 
 //card module
+
+export * from './lib/card/card';
+
+
+//progress
+
+export * from './lib/progress/progress';

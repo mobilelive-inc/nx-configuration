@@ -45,18 +45,6 @@
         "angular-demos"
       ]
     },
-    "angular-v2": {
-      "tags": []
-    },
-    "angular-v2-demos": {
-      "tags": []
-    },
-    "angular-v2-demos-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "angular-v2-demos"
-      ]
-    },
     "react": {
       "tags": []
     },
