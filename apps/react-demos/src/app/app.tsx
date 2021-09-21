@@ -23,6 +23,8 @@ import SkipLink from './components/skiplink';
 import Select from './components/select'
 import Option from './components/option'
 import Toggle from './components/toggle'
+import Label from './components/label';
+import Input from './components/input'
 export function App() {
   interface OptionProps{
     id?:number
@@ -47,6 +49,7 @@ export function App() {
    const [count, setCount] = useState<number>(1);
    const [selected, setSelected] = useState('');
    const [isOn, setIsOn] = useState<boolean>(false);
+   const [gender, setGender] = useState<string>('male');
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -288,7 +291,7 @@ export function App() {
             // rightIcon="icon-delete_24px"
             // rightIconClick={() => alert("right icon clicked")}
             clearButtonClasses="icon-delete_24px"
-            onClear={() => {}}
+            onClear={() => {''}}
             // borderType="curved"
             // borderRadius="10px"
             withBottomBorderOnly
@@ -344,7 +347,6 @@ export function App() {
             label="Email"
             id="Email"
             showErrorMessage
-            errorMessage=""
             isClearButtonVisible
             // leftIcon="icon-delete_24px"
             // leftIconClick={() => alert("left icon clicked")}
@@ -354,7 +356,6 @@ export function App() {
             // disabled
             errorMessage="required field"
             error
-            id="search"
             rows="20"
             cols="14"
             iconPosition="inside"
