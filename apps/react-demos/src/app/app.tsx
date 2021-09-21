@@ -269,6 +269,124 @@ export function App() {
           }}
         />
       </Container>
+      <Text fontSize="fontSizeH2">Text Fields</Text>
+        <Container>
+        <Flex>
+          <Label position="absolute" mb={20}>This is outside label</Label>
+          <Input
+            type="Password"
+            value=""
+            placeholder="Password"
+            label=""
+            id="Password"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            mt={16}
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            clearButtonClasses="icon-delete_24px"
+            onClear={() => {}}
+            // borderType="curved"
+            // borderRadius="10px"
+            withBottomBorderOnly
+            disabled={false}
+          />
+        </Flex>
+        <Flex mt={10}>
+          <Label>This is outside label</Label>
+          <Input
+            type="Email"
+            value=""
+            placeholder="Email"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            // borderType="curved"
+            // borderRadius="10px"
+            // withBottomBorderOnly
+            disabled={false}
+          />
+        </Flex>
+        <Flex mt={10}>
+          <Input
+            type="Email"
+            value=""
+            placeholder="Email"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            borderType="curved"
+            // borderRadius="10px"
+            // withBottomBorderOnly
+            disabled={false}
+          />
+        </Flex>
+        <Flex mt={10} style={{display:'block'}}>
+          <Input
+            type="search"
+            value="sdfsdf"
+            placeholder="Emasdfsdfsdfil"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            // leftIcon="icon-delete_24px"
+            // leftIconClick={() => alert("left icon clicked")}
+            // rightIcon="icon-delete_24px"
+            // rightIconClick={() => alert("right icon clicked")}
+            borderType="rounded"
+            // disabled
+            errorMessage="required field"
+            error
+            id="search"
+            rows="20"
+            cols="14"
+            iconPosition="inside"
+            validationIcon="icon-check_circle_24px"
+            bottomValidationIcon="icon-check_circle_24px"
+            isValid={true}
+          />
+          <TextArea
+            type="text"
+            // width="auto"
+            // height=""
+            value={''}
+            ml={10}
+            placeholder="Text Area"
+            label=""
+            onChange={e => {
+              setGender(e.target.value);
+            }}
+            borderType="rounded"
+            // disabled
+            errorMessage="required field"
+            error
+            id="search"
+            rows="20"
+            cols="14"
+            iconPosition="inside"
+            validationIcon="icon-check_circle_24px"
+            bottomValidationIcon="icon-check_circle_24px"
+            isValid={true}
+          />
+        </Flex>
+        </Container>
         </MainContainer>
         </ThemeProvider>
   )}
