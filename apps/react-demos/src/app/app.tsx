@@ -20,9 +20,10 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
-import Select from './components/select'
-import Option from './components/option'
-import Toggle from './components/toggle'
+import Select from './components/select';
+import Option from './components/option';
+import Toggle from './components/toggle';
+import Radio from './components/radio';
 export function App() {
   interface OptionProps{
     id?:number
@@ -47,6 +48,7 @@ export function App() {
    const [count, setCount] = useState<number>(1);
    const [selected, setSelected] = useState('');
    const [isOn, setIsOn] = useState<boolean>(false);
+   const [gender, setGender] = React.useState('male');
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -269,6 +271,39 @@ export function App() {
           }}
         />
       </Container>
+      <Text fontSize="fontSizeH2">Radio Button</Text>
+        <Container>
+        <Flex>
+          <Radio
+            name="male"
+            value="male"
+            label="Male"
+            backgroundColor="primary"
+            color="black"
+            borderType="rounded"
+            variant={gender === 'male' ? 'checked' : 'unchecked'}
+            onChange={() => {
+              setGender('male');
+            }}
+          />
+        </Flex>
+        <Flex>
+          <Radio
+            name="female"
+            value="female"
+            label="female"
+            backgroundColor="primary"
+            color="blue"
+            // errorMessage="dasdasd"
+            // borderType="rounded"
+            checkedIconClass="icon-check_circle_24px"
+            variant={gender === 'female' ? 'checked' : 'unchecked'}
+            onChange={() => {
+              setGender('female');
+            }}
+          />
+        </Flex>
+        </Container>
         </MainContainer>
         </ThemeProvider>
   )}
