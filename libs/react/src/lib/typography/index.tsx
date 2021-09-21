@@ -65,6 +65,9 @@ interface TextProps{
     fontWeight?:string | number | string[] | number[]
     m?:string | number | string[] | number[]
     p?:string | number | string[] | number[]
+    mb?:string | number | string[] | number[]
+    mr?:string | number | string[] | number[]
+    my?:string | number | string[] | number[]
    }
 
 export const Text:React.FC<TextProps> = props => {
