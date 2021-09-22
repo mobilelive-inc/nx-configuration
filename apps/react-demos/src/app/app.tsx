@@ -20,11 +20,14 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
-import Select from './components/select'
-import Option from './components/option'
-import Toggle from './components/toggle'
 import Label from './components/label';
-import Input from './components/input'
+import Input from './components/input';
+import Select from './components/select';
+import Option from './components/option';
+import Toggle from './components/toggle';
+import Radio from './components/radio';
+import TextArea from './components/textarea'
+
 export function App() {
   interface OptionProps{
     id?:number
@@ -272,6 +275,37 @@ export function App() {
           }}
         />
       </Container>
+      <Text fontSize="fontSizeH2">Radio Button</Text>
+        <Container>
+        <Flex>
+          <Radio
+            name="male"
+            value="male"
+            label="Male"
+            backgroundColor="primary"
+            color="black"
+            borderType="rounded"
+            variant={gender === 'male' ? 'checked' : 'unchecked'}
+            onChange={() => {
+              setGender('male');
+            }}
+          />
+        </Flex>
+        <Flex>
+          <Radio
+            name="female"
+            value="female"
+            label="female"
+            backgroundColor="primary"
+            color="blue"
+            checkedIconClass="icon-check_circle_24px"
+            variant={gender === 'female' ? 'checked' : 'unchecked'}
+            onChange={() => {
+              setGender('female');
+            }}
+          />
+        </Flex>
+        </Container>
       <Text fontSize="fontSizeH2">Text Fields</Text>
         <Container>
         <Flex>
@@ -363,19 +397,18 @@ export function App() {
             bottomValidationIcon="icon-check_circle_24px"
             isValid={true}
           />
+          </Flex>
+          <Flex mt={10}>
           <TextArea
             type="text"
-            // width="auto"
-            // height=""
             value={''}
             ml={10}
             placeholder="Text Area"
-            label=""
+            label="Enter your comment"
             onChange={e => {
               setGender(e.target.value);
             }}
             borderType="rounded"
-            // disabled
             errorMessage="required field"
             error
             id="search"
@@ -384,8 +417,7 @@ export function App() {
             iconPosition="inside"
             validationIcon="icon-check_circle_24px"
             bottomValidationIcon="icon-check_circle_24px"
-            isValid={true}
-          />
+            isValid={true} />
         </Flex>
         </Container>
         </MainContainer>
