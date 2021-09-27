@@ -53,6 +53,10 @@ export function App() {
    const [selected, setSelected] = useState('');
    const [isOn, setIsOn] = useState<boolean>(false);
    const [gender, setGender] = useState<string>('male');
+   const [value, setValue]= useState('');
+   const handleChange =(event:any) =>{
+     setValue(event.target.value)
+   }
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -308,7 +312,57 @@ export function App() {
         </Container>
       <Text fontSize="fontSizeH2">Text Fields</Text>
         <Container>
-        <Flex>
+        <Flex mt={10}>
+          <Label>Please Enter your Name (outside label)</Label>
+          <Input
+            type="text"
+            placeholder="Enter your Name"
+            label="name"
+            id="Name"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            disabled={false}
+            width='100%'
+          />
+        </Flex>
+        <Flex mt={10}>
+          <Label mb={10}>Enter your Email</Label>
+          <Input
+            type="Email"
+            value=""
+            placeholder="Email"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            borderType="curved"
+            disabled={false}
+            width='100%'
+          />
+        </Flex>
+        <Flex mt={10} style={{display:'block'}}>
+        <Label  mb={20}>Please Enter your Varified Email</Label>
+          <Input
+            type="search"
+            value="sdfsdf"
+            placeholder="Enter your Email "
+            label="Email"
+            id="Email"
+            showErrorMessage
+            isClearButtonVisible
+            borderType="rounded"
+            errorMessage="required field"
+            error
+            rows="20"
+            cols="14"
+            isValid={true}
+            width='100%'
+            withBottomBorderOnly
+          />
+          </Flex>
+          <Flex>
           <Label position="absolute" mb={20}>This is outside label</Label>
           <Input
             type="Password"
@@ -320,85 +374,17 @@ export function App() {
             errorMessage=""
             isClearButtonVisible
             mt={16}
-            // leftIcon="icon-delete_24px"
-            // leftIconClick={() => alert("left icon clicked")}
-            // rightIcon="icon-delete_24px"
-            // rightIconClick={() => alert("right icon clicked")}
             clearButtonClasses="icon-delete_24px"
-            onClear={() => {''}}
-            // borderType="curved"
-            // borderRadius="10px"
+            borderType="curved"
             withBottomBorderOnly
             disabled={false}
+            onChange={handleChange}
+            width='100%'
           />
+
         </Flex>
-        <Flex mt={10}>
-          <Label>This is outside label</Label>
-          <Input
-            type="Email"
-            value=""
-            placeholder="Email"
-            label="Email"
-            id="Email"
-            showErrorMessage
-            errorMessage=""
-            isClearButtonVisible
-            // leftIcon="icon-delete_24px"
-            // leftIconClick={() => alert("left icon clicked")}
-            // rightIcon="icon-delete_24px"
-            // rightIconClick={() => alert("right icon clicked")}
-            // borderType="curved"
-            // borderRadius="10px"
-            // withBottomBorderOnly
-            disabled={false}
-          />
-        </Flex>
-        <Flex mt={10}>
-          <Input
-            type="Email"
-            value=""
-            placeholder="Email"
-            label="Email"
-            id="Email"
-            showErrorMessage
-            errorMessage=""
-            isClearButtonVisible
-            // leftIcon="icon-delete_24px"
-            // leftIconClick={() => alert("left icon clicked")}
-            // rightIcon="icon-delete_24px"
-            // rightIconClick={() => alert("right icon clicked")}
-            borderType="curved"
-            // borderRadius="10px"
-            // withBottomBorderOnly
-            disabled={false}
-          />
-        </Flex>
-        <Flex mt={10} style={{display:'block'}}>
-          <Input
-            type="search"
-            value="sdfsdf"
-            placeholder="Emasdfsdfsdfil"
-            label="Email"
-            id="Email"
-            showErrorMessage
-            isClearButtonVisible
-            // leftIcon="icon-delete_24px"
-            // leftIconClick={() => alert("left icon clicked")}
-            // rightIcon="icon-delete_24px"
-            // rightIconClick={() => alert("right icon clicked")}
-            borderType="rounded"
-            // disabled
-            errorMessage="required field"
-            error
-            rows="20"
-            cols="14"
-            iconPosition="inside"
-            validationIcon="icon-check_circle_24px"
-            bottomValidationIcon="icon-check_circle_24px"
-            isValid={true}
-          />
-          </Flex>
           <Flex mt={10}>
+            <Label>Enter your comment here </Label>
           <TextArea
             type="text"
             value={''}
@@ -412,12 +398,13 @@ export function App() {
             errorMessage="required field"
             error
             id="search"
-            rows="20"
-            cols="14"
+            isValid={true} 
+            rows="100"
+            cols="100"
             iconPosition="inside"
             validationIcon="icon-check_circle_24px"
             bottomValidationIcon="icon-check_circle_24px"
-            isValid={true} />
+            />
         </Flex>
         </Container>
         </MainContainer>

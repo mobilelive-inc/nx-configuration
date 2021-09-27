@@ -7,44 +7,45 @@ import {
   typography,
   color,
 } from 'styled-system';
+import css from '@styled-system/css';
 
 const getDerivedProps = (props) => {
   const {
     theme: {
-      colors: {
-        red, black, white, grayDark, grayLight
-      }, borderCurved, borderRounded,
+       borderCurved, borderRounded,
     },
     error,
     borderType,
     withBottomBorderOnly
   } = props;
+
   // baseline styles
   
-  const styles = {
-    color: error ? red : black,
-    width: '100%',
-    height: '2.25rem',
+  const styles = css({
+    color: error ? 'errorMessage' : 'priamryText',
+    width: 'inputItemWidth',
+    height: 'inputItemHeight',
     boxSizing: 'border-box',
-    padding: '1rem 1rem',
-    letterSpacing: '0.125em',
-    lineHeight: '28px',
-    fontSize: '1rem',
-    fontWeight: 500,
+    padding: 'inputPadding',
+    fontSize: 'inputHeadingTextFontSize',
     backgroundColor: 'transparent',
+    border:0,
+    boxShadow:' 0 1px 0 0',
+    transition: 'ease-out 0.2s',
     borderRadius :'',
     borderColor:'',
-    borderBottom:'',
-    border:'',
     '::placeholder':{
-      color: grayDark,
+      color: 'placeholderColor',
       opacity: 1,
     },
     '&:disabled':{
-      backgroundColor: grayLight,
+      backgroundColor: 'disableColor',
       border: 'none'
+    },
+    '&:focus':{
+      // outline: 'none'
     }
-  };
+  });
   // conditional styles
   if(!withBottomBorderOnly && borderType && borderType === 'curved'){
     styles.borderRadius = borderCurved
@@ -53,12 +54,11 @@ const getDerivedProps = (props) => {
     styles.borderRadius = borderRounded
   }
   if(withBottomBorderOnly){
-    // styles.border = 'none';
     styles.borderColor= 'transparent';
-    styles.borderBottom = `1px solid ${error ? red : black}`
+    styles.borderBottom = `1px solid ${ error ? 'errorMessage' : 'priamryText'}`
   }
   else{
-    styles.border = `1px solid ${error ? red : black}`
+    styles.border = `1px solid ${ error ? 'errorMessage' : 'priamryText'}`
   }
   return styles;
 };
@@ -67,75 +67,25 @@ export const Input = styled.input(
   (props) => getDerivedProps(props),
   compose(border, layout, space, typography, color)
 );
-
 export const InputWrapper = styled.div`
   height: 'auto';
-  width: ${props => (props.width ? props.width : '100%')};
+  width: ${props => (props.width ? props.width : 'inputItemWidth')};
   display: ${props => (props.display ? props.display : 'block')};
-  ${
-  props => props.rightIcon &&
-  `position:relative;
-  `};
-  ${
-  props => props.leftIcon &&
-  `position:relative;
-   
-   & > input{
-     padding-left: 40px
-   }
-  `};
-`;
-
-export const RightIconButton = styled.button`
-  position: absolute;
-  left: calc(100% - 30px);
-  width: 20px;
-  top: calc(100% - 25px);
-  font-size: 16px;
-  z-index: 20;
-  cursor: pointer;
-  text-decoration: none;
-  cursor:pointer;
-  background-color: transparent !important;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-`
-
-export const LeftIconButton = styled.button`
-  position: absolute;
-  right: calc(100% - 30px);
-  width: 20px;
-  top: calc(100% - 25px);
-  font-size: 16px;
-  z-index: 20;
-  cursor: pointer;
-  text-decoration: none;
-  cursor:pointer;
-  background-color: transparent !important;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-`
-export const LeftIcon = styled.span`
-  position: absolute;
-  right: calc(100% - 30px);
-  width: 20px;
-  top: calc(100% - 25px);
-  font-size: 16px;
-  z-index: 20;
-  text-decoration: none;
-  cursor:pointer;
-  background-color: transparent !important;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-`
+ `
 export const ValidationIcon = styled.span`
   position: absolute;
   left: calc(100% + 10px);
   width: 20px;
-  top: 40px;top: calc(100% - 25px);
-  color: ${props => (props.isValid ? 'green': 'red')};
-  font-size: 18px;
+  top: calc(100% - 25px);
+  color: ${props => ( props.isValid ? 'errorMessage' : 'priamryText')};
+  font-size: 'inputHeadingTextFontSize;
 `;
+
+export const Form = styled(`form`)(
+  css({
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+  })
+  )

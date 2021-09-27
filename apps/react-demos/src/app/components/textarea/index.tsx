@@ -31,7 +31,6 @@ const TextArea = (props) => {
         <BaseTextArea
           id={id}
           placeholder={placeholder}
-          value={value}
           error={error}
           type={type}
           onChange={onChange}

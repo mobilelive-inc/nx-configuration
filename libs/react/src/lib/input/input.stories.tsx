@@ -5,10 +5,12 @@ import { ThemeProvider } from 'styled-components';
 import Input from './input';
 import {InputProps} from './input'
 import Text from '../typography';
-import Theme from '../theme/defaultTheme';
+import inputTheme from '../theme/styles/input';
 import GlobalStyle from '../theme/globalStyles';
 import '../icomoon_icons.css';
 import { Flex, Box } from 'rebass/styled-components';
+import {Form} from './css'
+import {Button} from '../button/button'
 
 export default {
   title: 'Input',
@@ -16,7 +18,7 @@ export default {
 } as Meta ;;
 
 export const TextFields:Story<InputProps> = (args) => (
-  <ThemeProvider theme={Theme}>
+  <ThemeProvider theme={inputTheme}>
     <GlobalStyle />
     <Text variant="H5" ml={10}>
       Basic Input Fields
@@ -279,6 +281,7 @@ export const TextFields:Story<InputProps> = (args) => (
     </Flex>
   </ThemeProvider>
 );
+
 TextFields.args={
   type: 'text',
   value: '',
@@ -287,3 +290,43 @@ TextFields.args={
   onChange: () => undefined,
   onBlur: () => undefined,
 }
+const Example=(args) =>(
+  <ThemeProvider theme={inputTheme}>
+     <GlobalStyle />
+       <Form>
+        <Box mt={16} width="350px">
+        <Input
+          type="text"
+          value=""
+          label=""
+          placeholder="Enter your Name"
+          id="Default"
+          {...args}
+        />
+      </Box>
+      <Box mt={32} width="350px">
+        <Input
+          type="password"
+          value=""
+          label=""
+          placeholder="Enter your password"
+          id="Default"
+          errorMessage= 'please Enter valid password'
+          {...args}
+        />
+      </Box>
+      <Button variant="primary" width="10%" m={32}>Singup</Button>
+       </Form>
+ </ThemeProvider>);
+
+ export const  TextFields_Example = Example.bind({})
+ 
+ TextFields_Example.args = {
+  type: 'text',
+  value: '',
+  error: false,
+  errorMessage: '',
+  onChange: () => undefined,
+  onBlur: () => undefined,
+ 
+ }
