@@ -166,22 +166,5 @@ const AdvancedStepper:React.FC<advstepperprops> = ({total,value,hideName,dataLis
   );
 };
 
-AdvancedStepper.defaultProps = {
-  total: 3,
-  value: 1,
-  hideName: true,
-  dataList: []
-};
-
-AdvancedStepper.propTypes = {
-  /** number of total steps */
-  total: PropTypes.number,
-  /** current step in stepper */
-  value: PropTypes.number,
-  /** want to show/hide name with every step */
-  hideName: PropTypes.bool,
-  /** if names are visible than provide array of string to set these */
-  dataList: PropTypes.array
-};
 
 export default AdvancedStepper;
