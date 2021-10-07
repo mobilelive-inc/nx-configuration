@@ -80,7 +80,7 @@ const Select:React.FC<SelectProps> = props => {
           {...restProps}
           id={id}
           name={name}
-          value={value}
+          // value={value}
           error={errorMessage}
           borderType={borderType}
           withBorderBottomOnly={withBorderBottomOnly}

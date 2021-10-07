@@ -5,3 +5,5 @@ export const fontWeights = {
   fontweight_medium: 600,
   fontweight_large: 700
 };
+
+export const _fontWeights = fontWeights

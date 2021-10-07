@@ -1,4 +1,4 @@
-
+export * from './lib/input/input';
 export * from './lib/radiobutton/radiobutton';
 export * from './lib/select/select';
 export * from './lib/toggle/toggle';

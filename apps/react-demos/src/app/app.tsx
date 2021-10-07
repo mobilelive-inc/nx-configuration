@@ -20,10 +20,14 @@ import { Flex, Box } from 'rebass/styled-components';
 import Button from './components/button';
 import { OtherSpecs, Typography } from './components/otherspecs';
 import SkipLink from './components/skiplink';
+import Label from './components/label';
+import Input from './components/input';
 import Select from './components/select';
 import Option from './components/option';
 import Toggle from './components/toggle';
 import Radio from './components/radio';
+import TextArea from './components/textarea'
+
 export function App() {
   interface OptionProps{
     id?:number
@@ -48,7 +52,11 @@ export function App() {
    const [count, setCount] = useState<number>(1);
    const [selected, setSelected] = useState('');
    const [isOn, setIsOn] = useState<boolean>(false);
-   const [gender, setGender] = React.useState('male');
+   const [gender, setGender] = useState<string>('male');
+   const [value, setValue]= useState('');
+   const handleChange =(event:any) =>{
+     setValue(event.target.value)
+   }
   return (
       <ThemeProvider theme={theme}>
       <Box
@@ -294,14 +302,109 @@ export function App() {
             label="female"
             backgroundColor="primary"
             color="blue"
-            // errorMessage="dasdasd"
-            // borderType="rounded"
             checkedIconClass="icon-check_circle_24px"
             variant={gender === 'female' ? 'checked' : 'unchecked'}
             onChange={() => {
               setGender('female');
             }}
           />
+        </Flex>
+        </Container>
+      <Text fontSize="fontSizeH2">Text Fields</Text>
+        <Container>
+        <Flex mt={10}>
+          <Label>Please Enter your Name (outside label)</Label>
+          <Input
+            type="text"
+            placeholder="Enter your Name"
+            label="name"
+            id="Name"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            disabled={false}
+            width='100%'
+          />
+        </Flex>
+        <Flex mt={10}>
+          <Label mb={10}>Enter your Email</Label>
+          <Input
+            type="Email"
+            value=""
+            placeholder="Email"
+            label="Email"
+            id="Email"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            borderType="curved"
+            disabled={false}
+            width='100%'
+          />
+        </Flex>
+        <Flex mt={10} style={{display:'block'}}>
+        <Label  mb={20}>Please Enter your Varified Email</Label>
+          <Input
+            type="search"
+            value="sdfsdf"
+            placeholder="Enter your Email "
+            label="Email"
+            id="Email"
+            showErrorMessage
+            isClearButtonVisible
+            borderType="rounded"
+            errorMessage="required field"
+            error
+            rows="20"
+            cols="14"
+            isValid={true}
+            width='100%'
+            withBottomBorderOnly
+          />
+          </Flex>
+          <Flex>
+          <Label position="absolute" mb={20}>This is outside label</Label>
+          <Input
+            type="Password"
+            value=""
+            placeholder="Password"
+            label=""
+            id="Password"
+            showErrorMessage
+            errorMessage=""
+            isClearButtonVisible
+            mt={16}
+            clearButtonClasses="icon-delete_24px"
+            borderType="curved"
+            withBottomBorderOnly
+            disabled={false}
+            onChange={handleChange}
+            width='100%'
+          />
+
+        </Flex>
+          <Flex mt={10}>
+            <Label>Enter your comment here </Label>
+          <TextArea
+            type="text"
+            value={''}
+            ml={10}
+            placeholder="Text Area"
+            label="Enter your comment"
+            onChange={e => {
+              setGender(e.target.value);
+            }}
+            borderType="rounded"
+            errorMessage="required field"
+            error
+            id="search"
+            isValid={true} 
+            rows="100"
+            cols="100"
+            iconPosition="inside"
+            validationIcon="icon-check_circle_24px"
+            bottomValidationIcon="icon-check_circle_24px"
+            />
         </Flex>
         </Container>
         </MainContainer>
