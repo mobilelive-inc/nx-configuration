@@ -1,6 +1,0 @@
-.clearfix::after {
-  display: block;
-  clear: both;
-  content: '';
-}
-/*# sourceMappingURL=tool.clearfix.css.map */
