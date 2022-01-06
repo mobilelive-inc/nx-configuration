@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/angular",
+  "sourceRoot": "libs/angular/src",
+  "prefix": "nx-configuration",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/angular"],
+      "options": {
+        "jestConfig": "libs/angular/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/angular/src/**/*.ts",
+          "libs/angular/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

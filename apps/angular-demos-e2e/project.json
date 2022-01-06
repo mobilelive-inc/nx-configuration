@@ -1,0 +1,28 @@
+{
+  "root": "apps/angular-demos-e2e",
+  "sourceRoot": "apps/angular-demos-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/angular-demos-e2e/cypress.json",
+        "devServerTarget": "angular-demos:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "angular-demos:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/angular-demos-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["angular-demos"]
+}

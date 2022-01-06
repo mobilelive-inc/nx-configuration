@@ -1,0 +1,28 @@
+{
+  "root": "apps/react-demos-e2e",
+  "sourceRoot": "apps/react-demos-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/react-demos-e2e/cypress.json",
+        "devServerTarget": "react-demos:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "react-demos:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/react-demos-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["react-demos"]
+}

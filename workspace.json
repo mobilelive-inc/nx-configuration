@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "projects": {
+    "angular": "libs/angular",
+    "angular-demos": "apps/angular-demos",
+    "angular-demos-e2e": "apps/angular-demos-e2e",
+    "react": "libs/react",
+    "react-demos": "apps/react-demos",
+    "react-demos-e2e": "apps/react-demos-e2e",
+    "react-e2e": "apps/react-e2e"
+  }
+}
