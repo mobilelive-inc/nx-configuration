@@ -7,6 +7,9 @@
     "react": "libs/react",
     "react-demos": "apps/react-demos",
     "react-demos-e2e": "apps/react-demos-e2e",
-    "react-e2e": "apps/react-e2e"
+    "react-e2e": "apps/react-e2e",
+    "static": "libs/static",
+    "static-demos": "apps/static-demos",
+    "static-demos-e2e": "apps/static-demos-e2e"
   }
 }
